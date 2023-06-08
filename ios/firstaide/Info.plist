@@ -47,9 +47,9 @@
       </dict>
     </dict>
     <key>NSMicrophoneUsageDescription</key>
-    <string>Allow $(PRODUCT_NAME) to access the microphone</string>
+    <string>Allow FirstAide to access the microphone</string>
     <key>NSSpeechRecognitionUsageDescription</key>
-    <string>Allow $(PRODUCT_NAME) to securely recognize user speech</string>
+    <string>Allow FirstAide to securely recognize user speech</string>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>
