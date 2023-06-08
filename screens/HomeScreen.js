@@ -58,13 +58,6 @@ export default function HomeScreen() {
     }
   };
 
-  // when the user stops recording, the onSpeechResults callback is called
-  Voice.onSpeechResults = (e) => {
-    console.log("Speech Results", e.value);
-    setVoiceResult(e.value[0]);
-    setIsRecording(false);
-  };
-
   return (
     <View className="flex-1 items-center justify-center">
       <Text>First Aide</Text>
