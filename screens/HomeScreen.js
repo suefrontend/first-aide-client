@@ -1,7 +1,6 @@
-import { View, Text, Button } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import { themeColors } from "../theme";
-import Voice from "@react-native-voice/voice";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -12,6 +11,7 @@ import HospitalInfo from "./components/HospitalInfo";
 const Tab = createBottomTabNavigator();
 
 export default function HomeScreen() {
+  const [user, setUser] = useState(null);
   return (
     <NavigationContainer>
       <Tab.Navigator>
