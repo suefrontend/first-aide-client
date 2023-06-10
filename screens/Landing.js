@@ -19,6 +19,14 @@ export default function Landing() {
   const [registerPress, setRegisterPress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const storeToken = async (token) => {
+    try {
+      await AsyncStorage.setItem("token", token);
+    } catch (error) {
+      console.log("Error storing token: ", error);
+    }
+  };
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -40,7 +48,8 @@ export default function Landing() {
       const response = await axios.post("http://localhost:8000/login/", {
         email: user.email,
       });
-      console.log(response.data);
+      console.log(response.data.accessToken);
+      storeToken(response.data.accessToken);
     } catch (error) {
       console.log(error);
     }
