@@ -18,6 +18,7 @@ export default function Landing() {
   const [loginPress, setLoginPress] = useState(false);
   const [registerPress, setRegisterPress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [userAuthenticated, setUserAuthenticated] = useState(false);
 
   const [user, setUser] = useState({
     name: "",
@@ -54,8 +55,6 @@ export default function Landing() {
       city: "",
     });
   };
-
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
 
   return (
     <>
