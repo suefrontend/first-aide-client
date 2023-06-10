@@ -7,22 +7,20 @@ import {
   TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 
 export default function Login(props) {
+  const { setUser, loginHandler, emailTypeHandler } = props;
+
   return (
     <View style={styles.formContainer}>
+      <Text style={styles.text}>Email:</Text>
       <TextInput
         style={styles.text}
         placeholder="enter your email"
         placeholderTextColor="white"
-        onChangeText={(text) => setUser({ ...user, email: text })}
+        onChangeText={(text) => emailTypeHandler(text)}
       />
-      <Pressable
-        style={styles.button}
-        onPress={() => console.log("Login:", user)}
-      >
+      <Pressable style={styles.button} onPress={loginHandler}>
         <Text style={styles.text}>Login</Text>
       </Pressable>
     </View>
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
   },
   buttonContainer: {
     flex: 1,

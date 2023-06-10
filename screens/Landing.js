@@ -17,11 +17,34 @@ import axios from "axios";
 export default function Landing() {
   const [loginPress, setLoginPress] = useState(false);
   const [registerPress, setRegisterPress] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [user, setUser] = useState({
     name: "",
     email: "",
     city: "",
   });
+
+  const emailTypeHandler = (text) => {
+    setUser({ ...user, email: text.toLowerCase() });
+  };
+
+  const loginHandler = async () => {
+    console.log("Login:", user);
+    if (user.email === "") {
+      alert("Please enter your email");
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const response = await axios.post("http://localhost:8000/login/", {
+        email: user.email,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const clearUser = () => {
     setUser({
@@ -65,7 +88,13 @@ export default function Landing() {
                 <Text style={styles.text}>Register</Text>
               </Pressable>
             </View>
-            {loginPress && <Login />}
+            {loginPress && (
+              <Login
+                setUser={setUser}
+                loginHandler={loginHandler}
+                emailTypeHandler={emailTypeHandler}
+              />
+            )}
             {registerPress && <Register />}
           </LinearGradient>
         </View>
