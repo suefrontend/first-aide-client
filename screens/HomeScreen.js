@@ -16,10 +16,9 @@ export default function HomeScreen(props) {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen
-          name="Recorder"
-          component={() => <Recorder logoutHandler={logoutHandler} />}
-        />
+        <Tab.Screen name="Recorder">
+          {() => <Recorder logoutHandler={logoutHandler} />}
+        </Tab.Screen>
         <Tab.Screen name="Medical Info" component={MedicalInfo} />
         <Tab.Screen name="Hospital Info" component={HospitalInfo} />
       </Tab.Navigator>
