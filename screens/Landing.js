@@ -7,17 +7,76 @@ import {
   TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import HomeScreen from "./HomeScreen";
+import Login from "./components/landing/Login";
+import Register from "./components/landing/Register";
+import { storeToken, getToken, removeToken } from "./helpers/tokenStorage";
 
 export default function Landing() {
   const [loginPress, setLoginPress] = useState(false);
   const [registerPress, setRegisterPress] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userAuthenticated, setUserAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const value = await getToken();
+        if (value !== null) {
+          setUserAuthenticated(true);
+          console.log(value);
+        } else {
+          setUserAuthenticated(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkToken();
+  }, [userAuthenticated]);
+
   const [user, setUser] = useState({
     name: "",
     email: "",
     city: "",
   });
+
+  const emailTypeHandler = (text) => {
+    setUser({ ...user, email: text.toLowerCase() });
+  };
+
+  const loginHandler = async () => {
+    console.log("Login:", user);
+    if (user.email === "") {
+      alert("Please enter your email");
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const response = await axios.post("http://localhost:8000/login", {
+        email: user.email,
+      });
+      console.log(response.data.accessToken);
+      storeToken(response.data.accessToken);
+      setUserAuthenticated(true);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const logoutHandler = () => {
+    console.log("Logout:", user);
+    setIsLoading(true);
+    removeToken();
+    setUserAuthenticated(false);
+    setLoginPress(false);
+    setRegisterPress(false);
+    setIsLoading(false);
+    console.log(userAuthenticated);
+  };
 
   const clearUser = () => {
     setUser({
@@ -26,8 +85,6 @@ export default function Landing() {
       city: "",
     });
   };
-
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
 
   return (
     <>
@@ -62,53 +119,17 @@ export default function Landing() {
               </Pressable>
             </View>
             {loginPress && (
-              <View style={styles.formContainer}>
-                <TextInput
-                  style={styles.text}
-                  placeholder="enter your email"
-                  placeholderTextColor="white"
-                  onChangeText={(text) => setUser({ ...user, email: text })}
-                />
-                <Pressable
-                  style={styles.button}
-                  onPress={() => console.log("Login:", user)}
-                >
-                  <Text style={styles.text}>Login</Text>
-                </Pressable>
-              </View>
+              <Login
+                setUser={setUser}
+                loginHandler={loginHandler}
+                emailTypeHandler={emailTypeHandler}
+              />
             )}
-            {registerPress && (
-              <View style={styles.formContainer}>
-                <TextInput
-                  style={styles.text}
-                  placeholder="enter your name"
-                  placeholderTextColor="white"
-                  onChangeText={(text) => setUser({ ...user, name: text })}
-                />
-                <TextInput
-                  style={styles.text}
-                  placeholder="enter your email"
-                  placeholderTextColor="white"
-                  onChangeText={(text) => setUser({ ...user, email: text })}
-                />
-                <TextInput
-                  style={styles.text}
-                  placeholder="enter your city"
-                  placeholderTextColor="white"
-                  onChangeText={(text) => setUser({ ...user, city: text })}
-                />
-                <Pressable
-                  style={styles.button}
-                  onPress={() => console.log("Register:", user)}
-                >
-                  <Text style={styles.text}>Register</Text>
-                </Pressable>
-              </View>
-            )}
+            {registerPress && <Register />}
           </LinearGradient>
         </View>
       )}
-      {userAuthenticated && <HomeScreen />}
+      {userAuthenticated && <HomeScreen logoutHandler={logoutHandler} />}
     </>
   );
 }
