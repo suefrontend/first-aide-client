@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Button, Text, StyleSheet } from 'react-native';
 import * as Speech from 'expo-speech';
 
-
 const instruction = $instruction;
 
 export default function SpeechRecognitionComponent({ onSpeechBoundary }) {
