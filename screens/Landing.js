@@ -9,6 +9,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import HomeScreen from "./HomeScreen";
+import Login from "./components/landing/Login";
+import Register from "./components/landing/Register";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 export default function Landing() {
   const [loginPress, setLoginPress] = useState(false);
@@ -61,50 +65,8 @@ export default function Landing() {
                 <Text style={styles.text}>Register</Text>
               </Pressable>
             </View>
-            {loginPress && (
-              <View style={styles.formContainer}>
-                <TextInput
-                  style={styles.text}
-                  placeholder="enter your email"
-                  placeholderTextColor="white"
-                  onChangeText={(text) => setUser({ ...user, email: text })}
-                />
-                <Pressable
-                  style={styles.button}
-                  onPress={() => console.log("Login:", user)}
-                >
-                  <Text style={styles.text}>Login</Text>
-                </Pressable>
-              </View>
-            )}
-            {registerPress && (
-              <View style={styles.formContainer}>
-                <TextInput
-                  style={styles.text}
-                  placeholder="enter your name"
-                  placeholderTextColor="white"
-                  onChangeText={(text) => setUser({ ...user, name: text })}
-                />
-                <TextInput
-                  style={styles.text}
-                  placeholder="enter your email"
-                  placeholderTextColor="white"
-                  onChangeText={(text) => setUser({ ...user, email: text })}
-                />
-                <TextInput
-                  style={styles.text}
-                  placeholder="enter your city"
-                  placeholderTextColor="white"
-                  onChangeText={(text) => setUser({ ...user, city: text })}
-                />
-                <Pressable
-                  style={styles.button}
-                  onPress={() => console.log("Register:", user)}
-                >
-                  <Text style={styles.text}>Register</Text>
-                </Pressable>
-              </View>
-            )}
+            {loginPress && <Login />}
+            {registerPress && <Register />}
           </LinearGradient>
         </View>
       )}
