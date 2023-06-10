@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
-import * as Speech from 'expo-speech';
-
-const instruction = $instruction;
+import { View, Text, StyleSheet } from 'react-native';
+import Speech from 'expo-speech';
 
 export default function SpeechRecognitionComponent({ onSpeechBoundary }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [spokenText, setSpokenText] = useState('');
+  const [instruction, setInstruction] = useState('');
+
+  useEffect(() => {
+    const fetchInstructions = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/instructions/instruction');
+        const data = await response.json();
+
+        if (response.ok) {
+          const { instruction } = data;
+          setInstruction(instruction);
+        } else {
+          console.error('An error occurred:', data.error);
+        }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    };
+
+    fetchInstructions();
+  }, []);
 
   const speak = async () => {
     setIsSpeaking(true);
