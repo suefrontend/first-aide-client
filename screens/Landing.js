@@ -20,6 +20,22 @@ export default function Landing() {
   const [isLoading, setIsLoading] = useState(false);
   const [userAuthenticated, setUserAuthenticated] = useState(false);
 
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const value = await getToken();
+        if (value !== null) {
+          setUserAuthenticated(true);
+        } else {
+          setUserAuthenticated(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkToken();
+  }, []);
+
   const [user, setUser] = useState({
     name: "",
     email: "",
