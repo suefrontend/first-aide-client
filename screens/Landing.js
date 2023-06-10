@@ -7,25 +7,17 @@ import {
   TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import HomeScreen from "./HomeScreen";
 import Login from "./components/landing/Login";
 import Register from "./components/landing/Register";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+import { storeToken, getToken } from "./helpers/tokenStorage";
 
 export default function Landing() {
   const [loginPress, setLoginPress] = useState(false);
   const [registerPress, setRegisterPress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const storeToken = async (token) => {
-    try {
-      await AsyncStorage.setItem("token", token);
-    } catch (error) {
-      console.log("Error storing token: ", error);
-    }
-  };
 
   const [user, setUser] = useState({
     name: "",
