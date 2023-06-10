@@ -12,7 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import HomeScreen from "./HomeScreen";
 import Login from "./components/landing/Login";
 import Register from "./components/landing/Register";
-import { storeToken, getToken } from "./helpers/tokenStorage";
+import { storeToken, getToken, removeToken } from "./helpers/tokenStorage";
 
 export default function Landing() {
   const [loginPress, setLoginPress] = useState(false);
@@ -26,6 +26,7 @@ export default function Landing() {
         const value = await getToken();
         if (value !== null) {
           setUserAuthenticated(true);
+          console.log(value);
         } else {
           setUserAuthenticated(false);
         }
@@ -34,7 +35,7 @@ export default function Landing() {
       }
     };
     checkToken();
-  }, []);
+  }, [userAuthenticated]);
 
   const [user, setUser] = useState({
     name: "",
@@ -54,14 +55,27 @@ export default function Landing() {
     }
     setIsLoading(true);
     try {
-      const response = await axios.post("http://localhost:8000/login/", {
+      const response = await axios.post("http://localhost:8000/login", {
         email: user.email,
       });
       console.log(response.data.accessToken);
       storeToken(response.data.accessToken);
+      setUserAuthenticated(true);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const logoutHandler = () => {
+    console.log("Logout:", user);
+    setIsLoading(true);
+    removeToken();
+    setUserAuthenticated(false);
+    setLoginPress(false);
+    setRegisterPress(false);
+    setIsLoading(false);
+    console.log(userAuthenticated);
   };
 
   const clearUser = () => {
@@ -115,7 +129,7 @@ export default function Landing() {
           </LinearGradient>
         </View>
       )}
-      {userAuthenticated && <HomeScreen />}
+      {userAuthenticated && <HomeScreen logoutHandler={logoutHandler} />}
     </>
   );
 }

@@ -10,12 +10,16 @@ import HospitalInfo from "./components/HospitalInfo";
 
 const Tab = createBottomTabNavigator();
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
+  const { logoutHandler } = props;
   const [user, setUser] = useState(null);
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Recorder" component={Recorder} />
+        <Tab.Screen
+          name="Recorder"
+          component={() => <Recorder logoutHandler={logoutHandler} />}
+        />
         <Tab.Screen name="Medical Info" component={MedicalInfo} />
         <Tab.Screen name="Hospital Info" component={HospitalInfo} />
       </Tab.Navigator>
