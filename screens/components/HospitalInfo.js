@@ -1,4 +1,4 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 
 export default function HospitalInfo() {
@@ -27,3 +27,23 @@ export default function HospitalInfo() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    width: "90%",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  linearGradient: {
+    width: "100%",
+    height: "100%",
+  },
+  headings: {
+    textShadowColor: "rgba(0, 0, 0, 0.15)",
+    textShadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    textShadowRadius: 2,
+  },
+});
