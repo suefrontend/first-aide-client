@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Recorder from "./components/Recorder";
 import MedicalInfo from "./components/MedicalInfo";
 import HospitalInfo from "./components/HospitalInfo";
+import Bookmarks from "./components/Bookmarks";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,6 +21,7 @@ export default function HomeScreen(props) {
           {() => <Recorder logoutHandler={logoutHandler} />}
         </Tab.Screen>
         <Tab.Screen name="Medical Info" component={MedicalInfo} />
+        <Tab.Screen name="Bookmarks" component={Bookmarks} />
         <Tab.Screen name="Hospital Info" component={HospitalInfo} />
       </Tab.Navigator>
     </NavigationContainer>
