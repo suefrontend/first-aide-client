@@ -1,5 +1,6 @@
-import Landing from "./screens/Landing";
+import HomeScreen from "./screens/HomeScreen";
+// import Landing from "./screens/Landing";
 
 export default function App() {
-  return <Landing />;
+  return <HomeScreen />;
 }
