@@ -13,6 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import HomeScreen from "./HomeScreen";
 import Login from "./components/landing/Login";
 import Register from "./components/landing/Register";
+import Loader from "./components/loading/Loader";
 import { storeToken, getToken, removeToken } from "./helpers/tokenStorage";
 
 export default function Landing() {
@@ -123,6 +124,10 @@ export default function Landing() {
     });
   };
 
+  toggleLoading = () => {
+    setIsLoading(!isLoading);
+  };
+
   return (
     <>
       {userAuthenticated == false && (
@@ -147,6 +152,7 @@ export default function Landing() {
                   <Pressable style={styles.button} onPress={switchHandler}>
                     <Text style={styles.text}>Create Account</Text>
                   </Pressable>
+                  {isLoading && <Loader toggleLoading={toggleLoading} />}
                 </>
               )}
               {registerPress && (
@@ -158,6 +164,10 @@ export default function Landing() {
                   cityTypeHandler={cityTypeHandler}
                 />
               )}
+              <Button
+                title="Click me to toggle loading screen"
+                onPress={toggleLoading}
+              />
             </View>
           </LinearGradient>
         </View>
