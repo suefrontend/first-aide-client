@@ -1,4 +1,5 @@
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
 
 export default function HospitalInfo() {
@@ -22,8 +23,25 @@ export default function HospitalInfo() {
   ];
 
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text>Hospital Information Screen</Text>
+    <View>
+      <LinearGradient
+        colors={["#FE0944", "#FEAE96"]}
+        style={styles.linearGradient}
+      >
+        <View style={styles.wrapper}>
+          <Text
+            className="py-6 text-2xl font-bold text-white"
+            style={styles.headings}
+          >
+            Hospitals
+          </Text>
+          <FlatList
+            data={hospitals}
+            keyExtractor={(hospital) => hospital.id}
+            renderItem={({ item }) => <HospitalListItem {...item} />}
+          />
+        </View>
+      </LinearGradient>
     </View>
   );
 }
