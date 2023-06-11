@@ -1,5 +1,6 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import HospitalInfoItem from "./HospitalInfoItem";
 import React, { useEffect, useState } from "react";
 
 export default function HospitalInfo() {
@@ -38,7 +39,7 @@ export default function HospitalInfo() {
           <FlatList
             data={hospitals}
             keyExtractor={(hospital) => hospital.id}
-            renderItem={({ item }) => <HospitalListItem {...item} />}
+            renderItem={({ item }) => <HospitalInfoItem {...item} />}
           />
         </View>
       </LinearGradient>
