@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Recorder from "./components/Recorder";
 import MedicalInfo from "./components/MedicalInfo";
 import HospitalInfo from "./components/HospitalInfo";
-import Bookmarks from "./components/Bookmarks";
+import Bookmarks from "./components/Bookmark";
 
 const Tab = createBottomTabNavigator();
 
