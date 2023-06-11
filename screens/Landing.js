@@ -63,7 +63,6 @@ export default function Landing() {
       alert("Please enter your email");
       return;
     }
-    setIsLoading(true);
     try {
       const response = await axios.post("http://localhost:8000/login", {
         email: user.email,
@@ -71,7 +70,6 @@ export default function Landing() {
       console.log(response.data.accessToken);
       storeToken(response.data.accessToken);
       setUserAuthenticated(true);
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }

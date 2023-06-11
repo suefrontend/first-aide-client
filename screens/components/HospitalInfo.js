@@ -1,27 +1,46 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import HospitalInfoItem from "./HospitalInfoItem";
+import JustLoader from "./loading/JustLoader";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { getToken } from "../helpers/tokenStorage";
+import { authGet } from "../helpers/authenticatedCalls";
 
 export default function HospitalInfo() {
-  const hospitals = [
-    {
-      city_id: 1,
-      name: "Vancouver General Hospital",
-      address: "899 West 12th Avenue",
-      phone: "(604)-875-4111",
-      hours: "24 hours a day, 7 days a week",
-      er_exists: true,
-    },
-    {
-      city_id: 1,
-      name: "Vancouver General Hospital",
-      address: "899 West 12th Avenue",
-      phone: "(604)-875-4111",
-      hours: "24 hours a day, 7 days a week",
-      er_exists: true,
-    },
-  ];
+  // const hospitals = [
+  //   {
+  //     city_id: 1,
+  //     name: "Vancouver General Hospital",
+  //     address: "899 West 12th Avenue",
+  //     phone: "(604)-875-4111",
+  //     hours: "24 hours a day, 7 days a week",
+  //     er_exists: true,
+  //   },
+  //   {
+  //     city_id: 1,
+  //     name: "Vancouver General Hospital",
+  //     address: "899 West 12th Avenue",
+  //     phone: "(604)-875-4111",
+  //     hours: "24 hours a day, 7 days a week",
+  //     er_exists: true,
+  //   },
+  // ];
+
+  const [hospitals, setHospitals] = useState(null);
+
+  useEffect(() => {
+    const fetchHospitalData = async () => {
+      try {
+        const response = await authGet("http://localhost:8000/hospitals");
+        console.log("Hospitals", response.data);
+        setHospitals(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchHospitalData();
+  }, []);
 
   return (
     <View>
@@ -36,11 +55,18 @@ export default function HospitalInfo() {
           >
             Hospitals
           </Text>
-          <FlatList
-            data={hospitals}
-            keyExtractor={(hospital) => hospital.id}
-            renderItem={({ item }) => <HospitalInfoItem {...item} />}
-          />
+          {hospitals === null && <JustLoader />}
+          <JustLoader />
+          {hospitals && hospitals.length === 0 && (
+            <>
+              <Text className="text-white">HOSPITALSSSSSSSSS</Text>
+              <FlatList
+                data={hospitals}
+                keyExtractor={(hospital) => hospital.id}
+                renderItem={({ item }) => <HospitalInfoItem {...item} />}
+              />
+            </>
+          )}
         </View>
       </LinearGradient>
     </View>
