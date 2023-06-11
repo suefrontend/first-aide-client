@@ -19,7 +19,7 @@ import { storeToken, getToken, removeToken } from "./helpers/tokenStorage";
 export default function Landing() {
   const [loginPress, setLoginPress] = useState(true);
   const [registerPress, setRegisterPress] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [userAuthenticated, setUserAuthenticated] = useState(false);
 
   useEffect(() => {
