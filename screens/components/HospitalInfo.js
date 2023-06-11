@@ -56,10 +56,8 @@ export default function HospitalInfo() {
             Hospitals
           </Text>
           {hospitals === null && <JustLoader />}
-          <JustLoader />
-          {hospitals && hospitals.length === 0 && (
+          {hospitals && hospitals.length > 0 && (
             <>
-              <Text className="text-white">HOSPITALSSSSSSSSS</Text>
               <FlatList
                 data={hospitals}
                 keyExtractor={(hospital) => hospital.id}
