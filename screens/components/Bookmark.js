@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import BookmarkItem from "./BookmarkItem";
 
 export default function Bookmarks() {
   const bookmarks = [
@@ -14,6 +15,7 @@ export default function Bookmarks() {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       ></LinearGradient>
+      <BookmarkItem />
     </View>
   );
 }
