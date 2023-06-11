@@ -3,6 +3,11 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function Bookmarks() {
+  const bookmarks = [
+    { users_id: 1, keyword: "abrasions", instruction: "", bookmarked: true },
+    { users_id: 1, keyword: "rash", instruction: "", bookmarked: true },
+  ];
+
   return (
     <View>
       <LinearGradient
