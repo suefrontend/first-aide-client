@@ -9,11 +9,11 @@ import {
 import React, { useEffect, useState } from "react";
 
 export default function Login(props) {
-  const { setUser, loginHandler, emailTypeHandler } = props;
+  const { loginHandler, emailTypeHandler } = props;
 
   return (
-    <View style={styles.formContainer}>
-      <Text style={styles.text}>Email:</Text>
+    <>
+      <Text style={styles.text}>Please enter your email:</Text>
       <TextInput
         style={styles.text}
         placeholder="enter your email"
@@ -23,7 +23,7 @@ export default function Login(props) {
       <Pressable style={styles.button} onPress={loginHandler}>
         <Text style={styles.text}>Login</Text>
       </Pressable>
-    </View>
+    </>
   );
 }
 

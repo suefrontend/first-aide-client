@@ -11,37 +11,50 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 export default function Register(props) {
+  const {
+    switchHandler,
+    registerHandler,
+    nameTypeHandler,
+    emailTypeHandler,
+    cityTypeHandler,
+  } = props;
   return (
-    <View style={styles.formContainer}>
+    <>
+      <Text>Please enter your name, email and city</Text>
       <TextInput
         style={styles.text}
-        placeholder="enter your name"
+        placeholder="name"
         placeholderTextColor="white"
-        onChangeText={(text) => setUser({ ...user, name: text })}
+        onChangeText={(text) => nameTypeHandler(text)}
       />
       <TextInput
         style={styles.text}
-        placeholder="enter your email"
+        placeholder="email"
         placeholderTextColor="white"
-        onChangeText={(text) => setUser({ ...user, email: text })}
+        onChangeText={(text) => emailTypeHandler(text)}
       />
       <TextInput
         style={styles.text}
-        placeholder="enter your city"
+        placeholder="city"
         placeholderTextColor="white"
-        onChangeText={(text) => setUser({ ...user, city: text })}
+        onChangeText={(text) => cityTypeHandler(text)}
       />
-      <Pressable
-        style={styles.button}
-        onPress={() => console.log("Login:", user)}
-      >
+      <Pressable style={styles.button} onPress={registerHandler}>
+        <Text style={styles.text}>Sign Up</Text>
+      </Pressable>
+
+      <Pressable style={styles.button} onPress={switchHandler}>
         <Text style={styles.text}>Login</Text>
       </Pressable>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+  // container: {
+  //   width: "100%",
+  //   height: "100%",
+  // },
   button: {
     alignItems: "center",
     justifyContent: "center",
@@ -59,14 +72,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
-  formContainer: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-  },
+  // formContainer: {
+  //   flex: 1,
+  //   flexDirection: "column",
+  // },
 });
