@@ -181,10 +181,6 @@ export default function Landing() {
                   cityTypeHandler={cityTypeHandler}
                 />
               )}
-              <Button
-                title="Click me to toggle loading screen"
-                onPress={toggleLoading}
-              />
             </View>
           </LinearGradient>
         </View>
