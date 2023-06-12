@@ -21,7 +21,7 @@ export default function HomeScreen(props) {
           {() => <Recorder logoutHandler={logoutHandler} />}
         </Tab.Screen>
         <Tab.Screen name="Medical Info" component={MedicalInfo} />
-        <Tab.Screen name="Bookmark" component={Bookmark} />
+        <Tab.Screen name="Bookmarks" component={Bookmark} />
         <Tab.Screen name="Hospital Info" component={HospitalInfo} />
       </Tab.Navigator>
     </NavigationContainer>
