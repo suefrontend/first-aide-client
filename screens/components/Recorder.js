@@ -132,7 +132,7 @@ export default function Recorder(props) {
     }
 
     // split voiceResult into an array of words
-    const voiceResultArray = voiceResult.split(" ");
+    const voiceResultArray = voiceResult.toLowerCase().split(" ");
     console.log("voiceResultArray", voiceResultArray);
 
     // find the keywords that match the voiceResultArray
@@ -146,7 +146,7 @@ export default function Recorder(props) {
       alert("Sorry, no match found. Please try again.");
       return;
     } else {
-      const key = matchedKeywords[0].toLowerCase();
+      const key = matchedKeywords[0];
 
       const fetchInstruction = async () => {
         try {
