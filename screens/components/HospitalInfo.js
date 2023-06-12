@@ -49,22 +49,24 @@ export default function HospitalInfo() {
         style={styles.linearGradient}
       >
         <View style={styles.wrapper}>
-          <Text
-            className="py-6 text-2xl font-bold text-white"
-            style={styles.headings}
-          >
-            Hospitals
-          </Text>
-          {hospitals === null && <JustLoader />}
-          {hospitals && hospitals.length > 0 && (
-            <>
-              <FlatList
-                data={hospitals}
-                keyExtractor={(hospital) => hospital.id}
-                renderItem={({ item }) => <HospitalInfoItem {...item} />}
-              />
-            </>
-          )}
+          <View style={styles.contentBox}>
+            <Text
+              className="py-6 text-2xl font-bold text-white"
+              style={styles.headings}
+            >
+              Hospitals
+            </Text>
+            {hospitals === null && <JustLoader />}
+            {hospitals && hospitals.length > 0 && (
+              <>
+                <FlatList
+                  data={hospitals}
+                  keyExtractor={(hospital) => hospital.id}
+                  renderItem={({ item }) => <HospitalInfoItem {...item} />}
+                />
+              </>
+            )}
+          </View>
         </View>
       </LinearGradient>
     </View>
@@ -76,6 +78,11 @@ const styles = StyleSheet.create({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
+  },
+  contentBox: {
+    marginTop: 90,
+    width: "100%",
+    justifyContent: "center",
   },
   linearGradient: {
     width: "100%",
