@@ -10,6 +10,7 @@ import MedicalInfo from "./components/MedicalInfo";
 import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmark";
 import EmergencyContact from "./components/EmergencyContact";
+import Instruction from "./components/Instruction";
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +52,7 @@ export default function HomeScreen(props) {
         />
         <Tab.Screen
           name="Emergency Contacts"
-          component={Settings}
+          component={EmergencyContact}
           options={{ headerShown: false }}
         />
       </Tab.Navigator>
@@ -59,15 +60,22 @@ export default function HomeScreen(props) {
   }
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Recorder">
-          {() => <Recorder logoutHandler={logoutHandler} />}
-        </Tab.Screen>
-        <Tab.Screen name="Medical Info" component={MedicalInfo} />
-        <Tab.Screen name="Bookmark" component={Bookmark} />
-        <Tab.Screen name="EmergencyContact" component={EmergencyContact} />
-        <Tab.Screen name="Hospital Info" component={HospitalInfo} />
-      </Tab.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeTabs}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen name="Instruction">
+          {() => (
+            <Instruction
+              instructionKey={instructionKey}
+              instructionDetail={instructionDetail}
+            />
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
