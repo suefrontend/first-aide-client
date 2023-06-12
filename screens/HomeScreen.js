@@ -9,8 +9,7 @@ import Recorder from "./components/Recorder";
 import MedicalInfo from "./components/MedicalInfo";
 import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmark";
-import Settings from "./components/Settings";
-import Instruction from "./components/Instruction";
+import EmergencyContact from "./components/EmergencyContact";
 
 const Tab = createBottomTabNavigator();
 
@@ -60,21 +59,15 @@ export default function HomeScreen(props) {
   }
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeTabs}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Instruction">
-          {() => (
-            <Instruction
-              instructionKey={instructionKey}
-              instructionDetail={instructionDetail}
-            />
-          )}
-        </Stack.Screen>
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Recorder">
+          {() => <Recorder logoutHandler={logoutHandler} />}
+        </Tab.Screen>
+        <Tab.Screen name="Medical Info" component={MedicalInfo} />
+        <Tab.Screen name="Bookmark" component={Bookmark} />
+        <Tab.Screen name="EmergencyContact" component={EmergencyContact} />
+        <Tab.Screen name="Hospital Info" component={HospitalInfo} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
