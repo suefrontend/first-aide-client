@@ -4,13 +4,20 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function MedicalInfo() {
   return (
-    <View className="flex-1 items-center justify-center">
+    <View>
       <LinearGradient
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View>
-          <Text>Medical Information Screen</Text>
+        <View style={styles.wrapper}>
+          <View style={styles.contentBox}>
+            <Text
+              className="py-6 text-2xl font-bold text-white"
+              style={styles.headings}
+            >
+              Medical Record
+            </Text>
+          </View>
         </View>
       </LinearGradient>
     </View>
@@ -18,6 +25,16 @@ export default function MedicalInfo() {
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    width: "90%",
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  contentBox: {
+    marginTop: 90,
+    width: "100%",
+    justifyContent: "center",
+  },
   linearGradient: {
     width: "100%",
     height: "100%",
