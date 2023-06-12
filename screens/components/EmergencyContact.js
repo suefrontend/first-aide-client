@@ -10,26 +10,15 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import EmergencyContactItem from "./EmergencyContactItem";
-import { authGet } from "../helpers/authenticatedCalls";
+import { authGet, authPost } from "../helpers/authenticatedCalls";
 
 export default function EmergencyContact() {
-  // const contacts = [
-  //   {
-  //     id: 1,
-  //     name: "John Doe",
-  //     phone: "(555)-555-5555",
-  //     relationship: "Father",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Jane Doe",
-  //     phone: "(555)-555-5556",
-  //     relationship: "Mother",
-  //   },
-  //   { id: 3, name: "Jack Doe", phone: "(555)-555-5557", relationship: "Uncle" },
-  // ];
-
   const [contacts, setContacts] = useState([]);
+  const [person, setPerson] = useState({
+    name: "",
+    phone: "",
+    relationship: "",
+  });
 
   useEffect(() => {
     const getContacts = async () => {
@@ -43,6 +32,33 @@ export default function EmergencyContact() {
     };
     getContacts();
   }, []);
+
+  const nameTypeHandler = (text) => {
+    setPerson({ ...person, name: text });
+  };
+
+  const phoneTypeHandler = (text) => {
+    setPerson({ ...person, phone: text });
+  };
+
+  const relationshipTypeHandler = (text) => {
+    setPerson({ ...person, relationship: text });
+  };
+
+  const addContactHandler = async () => {
+    try {
+      if (person.name && person.phone && person.relationship) {
+        const response = await authPost("/emergencyContacts/", person);
+        const data = response.data;
+        setContacts([...contacts, data]);
+        setPerson({ name: "", phone: "", relationship: "" });
+      } else {
+        alert("Please complete all the fields");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View>
