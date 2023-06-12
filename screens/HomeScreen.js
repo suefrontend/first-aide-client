@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import { themeColors } from "../theme";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -10,20 +10,30 @@ import MedicalInfo from "./components/MedicalInfo";
 import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmark";
 import Settings from "./components/Settings";
-import InstuctionScreen from "./components/Instruction";
+import Instruction from "./components/Instruction";
 
 const Tab = createBottomTabNavigator();
 
 export default function HomeScreen(props) {
   const { logoutHandler } = props;
   const [user, setUser] = useState(null);
+  const [instructionKey, setInstructionKey] = useState(null);
+  const [instructionDetail, setInstructionDetail] = useState(null);
   const Stack = createNativeStackNavigator();
 
   function HomeTabs() {
+    const navigation = useNavigation();
     return (
       <Tab.Navigator>
         <Tab.Screen name="Recorder" options={{ headerShown: false }}>
-          {() => <Recorder logoutHandler={logoutHandler} />}
+          {() => (
+            <Recorder
+              logoutHandler={logoutHandler}
+              navigation={navigation}
+              setInstructionKey={setInstructionKey}
+              setInstructionDetail={setInstructionDetail}
+            />
+          )}
         </Tab.Screen>
         <Tab.Screen
           name="Bookmarks"
@@ -56,7 +66,14 @@ export default function HomeScreen(props) {
           component={HomeTabs}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Instruction" component={InstuctionScreen} />
+        <Stack.Screen name="Instruction">
+          {() => (
+            <Instruction
+              instructionKey={instructionKey}
+              instructionDetail={instructionDetail}
+            />
+          )}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

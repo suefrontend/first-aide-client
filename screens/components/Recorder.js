@@ -17,7 +17,30 @@ import Loader from "./loading/Loader";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function Recorder(props) {
-  const { logoutHandler } = props;
+  const keywords = [
+    "cut",
+    "abrasions",
+    "stings",
+    "splinter",
+    "sprains",
+    "burns",
+    "fever",
+    "headache",
+    "allergies",
+    "cough",
+    "stomachache",
+    "rash",
+    "eye injuries",
+    "cpr",
+    "choking",
+    "nosebleed",
+    "seizures",
+    "allergic reactions",
+    "heat exhaustion",
+    "fractures",
+  ];
+  const { logoutHandler, navigation, setInstructionKey, setInstructionDetail } =
+    props;
   const [voiceResult, setVoiceResult] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
@@ -101,10 +124,47 @@ export default function Recorder(props) {
     });
     stopRecordingHandler();
     setIsFetching(true);
+    console.log("Voice Result", voiceResult);
 
-    setTimeout(() => {
+    if (voiceResult === "" || voiceResult === undefined) {
       setIsFetching(false);
-    }, 2000);
+      return;
+    }
+
+    // split voiceResult into an array of words
+    const voiceResultArray = voiceResult.split(" ");
+    console.log("voiceResultArray", voiceResultArray);
+
+    // find the keywords that match the voiceResultArray
+    const matchedKeywords = keywords.filter((keyword) =>
+      voiceResultArray.includes(keyword)
+    );
+    console.log("matchedKeywords", matchedKeywords);
+
+    if (matchedKeywords.length === 0) {
+      setIsFetching(false);
+      alert("Sorry, no match found. Please try again.");
+      return;
+    } else {
+      const key = matchedKeywords[0].toLowerCase();
+
+      const fetchInstruction = async () => {
+        try {
+          const response = await authGet(
+            `http://localhost:8000/instructions/${key}`
+          );
+          console.log("Instructions", response.data);
+          setInstructionDetail(response.data.instruction);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchInstruction();
+      setIsFetching(false);
+      setInstructionKey(key);
+      navigation.navigate("Instruction");
+    }
   };
   const pressableRef = useRef(null);
 
@@ -142,6 +202,10 @@ export default function Recorder(props) {
         {isFetching && <Loader />}
         <Button title="CLEAR" onPress={clear} />
         <Button title="logout" onPress={logoutHandler} />
+        <Button
+          title="Go to instructions"
+          onPress={() => navigation.navigate("Instruction")}
+        />
       </LinearGradient>
     </View>
   );
