@@ -36,7 +36,7 @@ export default function HomeScreen(props) {
           )}
         </Tab.Screen>
         <Tab.Screen
-          name="Bookmarks"
+          name="Bookmark"
           component={Bookmark}
           options={{ headerShown: false }}
         />
