@@ -19,7 +19,7 @@ export default function EmergencyContactItem({ name, phone, relationship }) {
           >
             <Image
               contentFit="cover"
-              source={require("../docs/icons/avatar.png")}
+              source={require("../../docs/icons/avatar.png")}
               style={{
                 width: 35,
                 height: 35,
@@ -52,7 +52,7 @@ export default function EmergencyContactItem({ name, phone, relationship }) {
 
 const styles = StyleSheet.create({
   card: {
-    width: "90%",
+    width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
     shadowColor: "#000",

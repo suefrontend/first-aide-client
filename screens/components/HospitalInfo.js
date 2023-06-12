@@ -32,7 +32,7 @@ export default function HospitalInfo() {
   useEffect(() => {
     const fetchHospitalData = async () => {
       try {
-        const response = await authGet("http://localhost:8000/hospitals");
+        const response = await authGet("/hospitals");
         console.log("Hospitals", response.data);
         setHospitals(response.data);
       } catch (error) {

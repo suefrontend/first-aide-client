@@ -9,7 +9,7 @@ import Recorder from "./components/Recorder";
 import MedicalInfo from "./components/MedicalInfo";
 import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmark";
-import EmergencyContact from "./components/EmergencyContact";
+import EmergencyContact from "./components/EmergContacts/EmergencyContact";
 import Instruction from "./components/Instruction";
 
 const Tab = createBottomTabNavigator();
