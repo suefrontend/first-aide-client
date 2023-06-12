@@ -19,7 +19,7 @@ export default function EmergencyContactItem({ name, phone, relationship }) {
           >
             <Image
               contentFit="cover"
-              source={require("../docs/icons/avatar.png")}
+              source={require("../../docs/icons/avatar.png")}
               style={{
                 width: 35,
                 height: 35,

@@ -14,8 +14,8 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import EmergencyContactItem from "./EmergencyContactItem";
-import EmergContactForm from "./forms/EmergContactForm";
-import { authGet, authPost } from "../helpers/authenticatedCalls";
+import EmergContactForm from "./EmergContactForm";
+import { authGet, authPost } from "../../helpers/authenticatedCalls";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function EmergencyContact() {
@@ -59,6 +59,8 @@ export default function EmergencyContact() {
         const data = response.data;
         setContacts([...contacts, data]);
         setPerson({ name: "", phone: "", relationship: "" });
+        alert("Contact added successfully");
+        setShowForm(false);
       } else {
         alert("Please complete all the fields");
       }
@@ -110,7 +112,13 @@ export default function EmergencyContact() {
           >
             <View style={styles.modalContainer}>
               <View style={styles.formContainer}>
-                <EmergContactForm setShowForm={setShowForm} />
+                <EmergContactForm
+                  addContactHandler={addContactHandler}
+                  nameTypeHandler={nameTypeHandler}
+                  phoneTypeHandler={phoneTypeHandler}
+                  relationshipTypeHandler={relationshipTypeHandler}
+                  setShowForm={setShowForm}
+                />
               </View>
             </View>
           </Modal>

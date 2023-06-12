@@ -10,7 +10,13 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function EmergContactForm(props) {
-  const { addContactHandler, setShowForm } = props;
+  const {
+    addContactHandler,
+    nameTypeHandler,
+    phoneTypeHandler,
+    relationshipTypeHandler,
+    setShowForm,
+  } = props;
   return (
     <View className="rounded-lg bg-white py-4 px-4 mt-5" style={styles.card}>
       <Pressable style={styles.cross} onPress={() => setShowForm(false)}>
@@ -23,6 +29,7 @@ export default function EmergContactForm(props) {
         className="bg-gray-200 py-3 px-3 rounded-md"
         placeholder="Name"
         placeholderTextColor="#a9a9a9"
+        onChangeText={nameTypeHandler}
       />
       <View className="flex-row mt-3 justify-between">
         <TextInput
@@ -30,18 +37,21 @@ export default function EmergContactForm(props) {
           style={styles.inputsmall}
           placeholder="Phone number"
           placeholderTextColor="#a9a9a9"
+          onChangeText={phoneTypeHandler}
         />
         <TextInput
           className="bg-gray-200 rounded p-3"
           style={styles.inputsmall}
           placeholder="Relationship"
           placeholderTextColor="#a9a9a9"
+          onChangeText={relationshipTypeHandler}
         />
       </View>
       <Pressable
         title="Add"
         className="mt-4 rounded py-2"
         style={styles.button}
+        onPress={addContactHandler}
       >
         <Text>
           <Icon name="plus" size={20} color="#fff" />
