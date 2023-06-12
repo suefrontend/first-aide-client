@@ -8,6 +8,7 @@ import Recorder from "./components/Recorder";
 import MedicalInfo from "./components/MedicalInfo";
 import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmark";
+import EmergencyContact from "./components/EmergencyContact";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,7 @@ export default function HomeScreen(props) {
         </Tab.Screen>
         <Tab.Screen name="Medical Info" component={MedicalInfo} />
         <Tab.Screen name="Bookmark" component={Bookmark} />
+        <Tab.Screen name="EmergencyContact" component={EmergencyContact} />
         <Tab.Screen name="Hospital Info" component={HospitalInfo} />
       </Tab.Navigator>
     </NavigationContainer>
