@@ -13,46 +13,56 @@ export default function Login(props) {
 
   return (
     <>
-      <Text style={styles.text}>Please enter your email:</Text>
+      <Text
+        className="text-white text-center mt-10 mb-3 text-base"
+        style={styles.shadowtext}
+      >
+        Please enter your email
+      </Text>
       <TextInput
-        style={styles.text}
-        placeholder="enter your email"
+        className="p-2 mb-3 rounded-md border-2 border-white text-lg"
+        style={styles.input}
+        placeholder="Email"
         placeholderTextColor="white"
+        clearTextOnFocus={true}
         onChangeText={(text) => emailTypeHandler(text)}
       />
-      <Pressable style={styles.button} onPress={loginHandler}>
-        <Text style={styles.text}>Login</Text>
+      <Pressable
+        className="bg-white p-3 rounded mb-14"
+        onPress={loginHandler}
+        style={styles.shadowbutton}
+      >
+        <Text
+          className="text-center font-bold text-lg"
+          style={styles.red}
+        >
+          Login
+        </Text>
       </Pressable>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 8,
-    paddingVertical: 12,
-    width: 200,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "black",
+  red: {
+    color: "#FE0944",
   },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
+  shadowbutton: {
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
-  formContainer: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
+  input: {
+    backgroundColor: "rgba(0,0,0,0.15)",
+    textAlign: "center",
   },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
+  shadowtext: {
+    textShadowColor: "rgba(0, 0, 0, 0.2)",
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 2,
   },
 });

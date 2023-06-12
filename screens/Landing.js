@@ -134,21 +134,40 @@ export default function Landing() {
             colors={["#FE0944", "#FEAE96"]}
             style={styles.linearGradient}
           >
-            <View style={styles.formContainer}>
-              <Text style={styles.text}>First Aid</Text>
-              <Image
-                source={require("./docs/first-aid-box2.png")}
-                alt="First Aid Logo"
-                style={{ width: 200, height: 200 }}
-              />
+            <View style={styles.formcontainer}>
+              <Text
+                className="text-center font-bold text-4xl text-white mb-4"
+                style={styles.shadowtext}
+              >
+                First Aide
+              </Text>
+              <View
+                className="bg-white items-center justify-center mb-2"
+                style={styles.logo}
+              >
+                <Image
+                  source={require("./docs/first-aid-box2.png")}
+                  alt="First Aid Logo"
+                  style={{
+                    width: 200,
+                    height: 200,
+                  }}
+                  className="ml-2 mt-2"
+                />
+              </View>
               {loginPress && (
                 <>
                   <Login
                     loginHandler={loginHandler}
                     emailTypeHandler={emailTypeHandler}
                   />
-                  <Pressable style={styles.button} onPress={switchHandler}>
-                    <Text style={styles.text}>Create Account</Text>
+                  <Pressable
+                    className="border-white border-2 rounded p-2 mt-auto"
+                    onPress={switchHandler}
+                  >
+                    <Text className="text-white font-bold text-lg text-center">
+                      Create Account
+                    </Text>
                   </Pressable>
                   {isLoading && <Loader toggleLoading={toggleLoading} />}
                 </>
@@ -179,6 +198,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
+    flex: 1,
   },
   linearGradient: {
     width: "100%",
@@ -186,34 +206,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 8,
-    paddingVertical: 12,
-    width: 200,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "black",
+  logo: {
+    width: 120,
+    height: 120,
+    marginLeft: "auto",
+    marginRight: "auto",
+    borderRadius: 60,
+    shadowColor: "#171717",
+    shadowOffset: { width: -3, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
+  formcontainer: {
+    width: "85%",
+    height: "80%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    paddingTop: 20,
   },
-  formText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
-  },
-  formContainer: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+  shadowtext: {
+    textShadowColor: "rgba(0, 0, 0, 0.2)",
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 2,
   },
 });
