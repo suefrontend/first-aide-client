@@ -10,11 +10,15 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function EmergContactForm(props) {
+  const { addContactHandler, setShowForm } = props;
   return (
     <View className="rounded-lg bg-white py-4 px-4 mt-5" style={styles.card}>
-      {/* <Text className="mb-4 text-lg font-bold" style={styles.color}>
-Add New Contact
-</Text> */}
+      <Pressable style={styles.cross} onPress={() => setShowForm(false)}>
+        <Icon name="close" size={20} color="#c2c2c2" />
+      </Pressable>
+      <Text className="mb-4 text-lg font-bold" style={styles.color}>
+        Add New Contact
+      </Text>
       <TextInput
         className="bg-gray-200 py-3 px-3 rounded-md"
         placeholder="Name"
@@ -56,5 +60,17 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.3,
     elevation: 3,
+  },
+  inputsmall: {
+    width: "48%",
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 3,
+    backgroundColor: "#FE0944",
+  },
+  cross: {
+    alignSelf: "flex-end",
   },
 });

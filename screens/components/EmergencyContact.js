@@ -110,10 +110,7 @@ export default function EmergencyContact() {
           >
             <View style={styles.modalContainer}>
               <View style={styles.formContainer}>
-                <EmergContactForm />
-                <TouchableOpacity onPress={() => setShowForm(false)}>
-                  <Text>Close Modal</Text>
-                </TouchableOpacity>
+                <EmergContactForm setShowForm={setShowForm} />
               </View>
             </View>
           </Modal>
@@ -149,9 +146,6 @@ const styles = StyleSheet.create({
   color: {
     color: "#555",
   },
-  inputsmall: {
-    width: "48%",
-  },
   card: {
     width: "100%",
     marginLeft: "auto",
@@ -160,12 +154,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.3,
     elevation: 3,
-  },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    elevation: 3,
-    backgroundColor: "#FE0944",
   },
   touchableOpacityStyle: {
     position: "absolute",
