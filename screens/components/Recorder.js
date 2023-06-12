@@ -132,7 +132,7 @@ export default function Recorder(props) {
     }
 
     // split voiceResult into an array of words
-    const voiceResultArray = voiceResult.split(" ");
+    const voiceResultArray = voiceResult.toLowerCase().split(" ");
     console.log("voiceResultArray", voiceResultArray);
 
     // find the keywords that match the voiceResultArray
@@ -146,7 +146,7 @@ export default function Recorder(props) {
       alert("Sorry, no match found. Please try again.");
       return;
     } else {
-      const key = matchedKeywords[0].toLowerCase();
+      const key = matchedKeywords[0];
 
       const fetchInstruction = async () => {
         try {
@@ -182,14 +182,18 @@ export default function Recorder(props) {
           <Text className="text-2xl font-bold text-white">
             Tell me your symptoms
           </Text>
-          {isRecording && (
-            <Text className="text-2xl font-bold text-white">Recording...</Text>
-          )}
-          {voiceResult !== "" && (
-            <Text className="text-2xl font-bold text-white">
-              {voiceResult}...
-            </Text>
-          )}
+          <View style={styles.voiceBox}>
+            {isRecording && (
+              <Text className="text-2xl font-bold text-white">
+                Recording...
+              </Text>
+            )}
+            {voiceResult !== "" && (
+              <Text className="text-2xl font-bold text-white">
+                {voiceResult}...
+              </Text>
+            )}
+          </View>
           <Pressable
             ref={pressableRef}
             style={styles.microphoneButton}
@@ -222,9 +226,14 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   contentBox: {
+    marginTop: 100,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  voiceBox: {
+    height: 200,
+    width: "80%",
   },
   microphoneButton: {
     width: 120,

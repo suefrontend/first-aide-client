@@ -51,7 +51,7 @@ export default function HomeScreen(props) {
           options={{ headerShown: false }}
         />
         <Tab.Screen
-          name="Settings"
+          name="Emergency Contacts"
           component={Settings}
           options={{ headerShown: false }}
         />
