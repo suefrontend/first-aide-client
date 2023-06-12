@@ -12,12 +12,16 @@ import Voice from "@react-native-voice/voice";
 import { getToken, removeToken } from "../helpers/tokenStorage";
 import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { authGet } from "../helpers/authenticatedCalls";
+import Loader from "./loading/Loader";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function Recorder(props) {
   const { logoutHandler } = props;
   const [voiceResult, setVoiceResult] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
+  const [isFetching, setIsFetching] = useState(false); // for loading animation
   const scaleRef = useRef(1);
 
   const getDecodedName = async () => {
@@ -82,6 +86,7 @@ export default function Recorder(props) {
     }
   };
 
+  // Microphone Button Handlers
   const handlePressIn = () => {
     scaleRef.current = 0.9;
     pressableRef.current.setNativeProps({
@@ -95,6 +100,11 @@ export default function Recorder(props) {
       style: { transform: [{ scale: scaleRef.current }] },
     });
     stopRecordingHandler();
+    setIsFetching(true);
+
+    setTimeout(() => {
+      setIsFetching(false);
+    }, 2000);
   };
   const pressableRef = useRef(null);
 
@@ -129,6 +139,7 @@ export default function Recorder(props) {
             <FontAwesome name="microphone" size={50} color="red" />
           </Pressable>
         </View>
+        {isFetching && <Loader />}
         <Button title="CLEAR" onPress={clear} />
         <Button title="logout" onPress={logoutHandler} />
       </LinearGradient>
