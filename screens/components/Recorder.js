@@ -1,15 +1,24 @@
-import { StyleSheet, View, Text, Button, Pressable } from "react-native";
-import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Pressable,
+  Animated,
+} from "react-native";
+import React, { useEffect, useState, useRef } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Voice from "@react-native-voice/voice";
 import { getToken, removeToken } from "../helpers/tokenStorage";
 import jwt_decode from "jwt-decode";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function Recorder(props) {
   const { logoutHandler } = props;
   const [voiceResult, setVoiceResult] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
+  const scaleRef = useRef(1);
 
   const getDecodedName = async () => {
     try {
@@ -73,6 +82,22 @@ export default function Recorder(props) {
     }
   };
 
+  const handlePressIn = () => {
+    scaleRef.current = 0.9;
+    pressableRef.current.setNativeProps({
+      style: { transform: [{ scale: scaleRef.current }] },
+    });
+    recordHandler();
+  };
+  const handlePressOut = () => {
+    scaleRef.current = 1;
+    pressableRef.current.setNativeProps({
+      style: { transform: [{ scale: scaleRef.current }] },
+    });
+    stopRecordingHandler();
+  };
+  const pressableRef = useRef(null);
+
   return (
     <View
       style={styles.container}
@@ -82,12 +107,28 @@ export default function Recorder(props) {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <Text className="text-2xl font-bold text-white">Hello, {name}</Text>
-        <Text>Tell me your symptoms</Text>
-        <Button title="START RECORDING" onPress={recordHandler} />
-        {isRecording && <Text>Recording...</Text>}
-        {voiceResult !== "" && <Text>{voiceResult}</Text>}
-        <Button title="STOP RECORDING" onPress={stopRecordingHandler} />
+        <View style={styles.contentBox}>
+          <Text className="text-2xl font-bold text-white">Hello, {name}</Text>
+          <Text className="text-2xl font-bold text-white">
+            Tell me your symptoms
+          </Text>
+          {isRecording && (
+            <Text className="text-2xl font-bold text-white">Recording...</Text>
+          )}
+          {voiceResult !== "" && (
+            <Text className="text-2xl font-bold text-white">
+              {voiceResult}...
+            </Text>
+          )}
+          <Pressable
+            ref={pressableRef}
+            style={styles.microphoneButton}
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut}
+          >
+            <FontAwesome name="microphone" size={50} color="red" />
+          </Pressable>
+        </View>
         <Button title="CLEAR" onPress={clear} />
         <Button title="logout" onPress={logoutHandler} />
       </LinearGradient>
@@ -104,5 +145,20 @@ const styles = StyleSheet.create({
   linearGradient: {
     width: "100%",
     height: "100%",
+  },
+  contentBox: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  microphoneButton: {
+    width: 120,
+    height: 120,
+    borderRadius: 120,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 20,
+    zIndex: 3,
   },
 });
