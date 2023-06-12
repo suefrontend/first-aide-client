@@ -92,7 +92,7 @@ export default function EmergencyContact() {
   const deleteContactHandler = async (id) => {
     try {
       console.log(id);
-      const response = await authDelete(`/emergencyContacts/`, id);
+      const response = await authDelete(`/emergencyContacts`, id);
       const data = response.data;
       console.log("Deleted contact:", data);
       setContacts(contacts.filter((contact) => contact.id !== id));
