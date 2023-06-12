@@ -5,12 +5,18 @@ import {
   FlatList,
   TextInput,
   Pressable,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  Modal,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import EmergencyContactItem from "./EmergencyContactItem";
+import EmergContactForm from "./forms/EmergContactForm";
 import { authGet, authPost } from "../helpers/authenticatedCalls";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function EmergencyContact() {
   const [contacts, setContacts] = useState([]);
@@ -19,6 +25,7 @@ export default function EmergencyContact() {
     phone: "",
     relationship: "",
   });
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const getContacts = async () => {
@@ -75,50 +82,42 @@ export default function EmergencyContact() {
               >
                 Emergency Contacts
               </Text>
-            </View>
-            <FlatList
-              data={contacts}
-              keyExtractor={(contact) => contact.id}
-              renderItem={({ item }) => <EmergencyContactItem {...item} />}
-            />
-            <View
-              className="rounded-lg bg-white py-4 px-4 mt-5"
-              style={styles.card}
-            >
-              {/* <Text className="mb-4 text-lg font-bold" style={styles.color}>
-            Add New Contact
-          </Text> */}
-              <TextInput
-                className="bg-gray-200 py-3 px-3 rounded-md"
-                placeholder="Name"
-                placeholderTextColor="#a9a9a9"
+
+              <FlatList
+                data={contacts}
+                keyExtractor={(contact) => contact.id}
+                renderItem={({ item }) => <EmergencyContactItem {...item} />}
+                contentContainerStyle={{ paddingBottom: 200 }}
               />
-              <View className="flex-row mt-3 justify-between">
-                <TextInput
-                  className="bg-gray-200 rounded p-3"
-                  style={styles.inputsmall}
-                  placeholder="Phone number"
-                  placeholderTextColor="#a9a9a9"
-                />
-                <TextInput
-                  className="bg-gray-200 rounded p-3"
-                  style={styles.inputsmall}
-                  placeholder="Relationship"
-                  placeholderTextColor="#a9a9a9"
-                />
-              </View>
-              <Pressable
-                title="Add"
-                className="mt-4 rounded py-2"
-                style={styles.button}
-              >
-                <Text>
-                  <Icon name="plus" size={20} color="#fff" />
-                </Text>
-              </Pressable>
             </View>
           </View>
         </View>
+        <TouchableOpacity
+          activeOpacity={1}
+          style={styles.touchableOpacityStyle}
+          onPress={() => setShowForm(!showForm)}
+        >
+          <View style={styles.floatingButton}>
+            <Ionicons name="person-add" size={32} color="white" />
+          </View>
+        </TouchableOpacity>
+        {showForm && (
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={showForm}
+            onRequestClose={() => setShowForm(false)}
+          >
+            <View style={styles.modalContainer}>
+              <View style={styles.formContainer}>
+                <EmergContactForm />
+                <TouchableOpacity onPress={() => setShowForm(false)}>
+                  <Text>Close Modal</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+        )}
       </LinearGradient>
     </View>
   );
@@ -167,5 +166,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 3,
     backgroundColor: "#FE0944",
+  },
+  touchableOpacityStyle: {
+    position: "absolute",
+    width: 50,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    right: 30,
+    bottom: 30,
+    backgroundColor: "#FE0944",
+    borderRadius: 50,
+    opacity: 0.7,
+  },
+  floatingButton: {
+    resizeMode: "contain",
+    width: 50,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
