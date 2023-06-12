@@ -27,3 +27,14 @@ export const authPost = async (url, data) => {
     },
   });
 };
+
+export const authDelete = async (url, data) => {
+  if (!url.startsWith("/")) url = `/${url}`;
+  const fullUrl = `${API}${url}/${data}`;
+  const token = await getToken();
+  return axios.delete(fullUrl, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
