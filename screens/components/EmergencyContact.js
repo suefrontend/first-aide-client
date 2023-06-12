@@ -10,23 +10,39 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import EmergencyContactItem from "./EmergencyContactItem";
+import { authGet } from "../helpers/authenticatedCalls";
 
 export default function EmergencyContact() {
-  const contacts = [
-    {
-      id: 1,
-      name: "John Doe",
-      phone: "(555)-555-5555",
-      relationship: "Father",
-    },
-    {
-      id: 2,
-      name: "Jane Doe",
-      phone: "(555)-555-5556",
-      relationship: "Mother",
-    },
-    { id: 3, name: "Jack Doe", phone: "(555)-555-5557", relationship: "Uncle" },
-  ];
+  // const contacts = [
+  //   {
+  //     id: 1,
+  //     name: "John Doe",
+  //     phone: "(555)-555-5555",
+  //     relationship: "Father",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Jane Doe",
+  //     phone: "(555)-555-5556",
+  //     relationship: "Mother",
+  //   },
+  //   { id: 3, name: "Jack Doe", phone: "(555)-555-5557", relationship: "Uncle" },
+  // ];
+
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    const getContacts = async () => {
+      try {
+        const response = await authGet("/emergencyContacts/");
+        const data = response.json();
+        setContacts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getContacts();
+  }, []);
 
   return (
     <View>
@@ -48,7 +64,10 @@ export default function EmergencyContact() {
             keyExtractor={(contact) => contact.id}
             renderItem={({ item }) => <EmergencyContactItem {...item} />}
           />
-          <View className="rounded-lg bg-white py-4 px-4 mt-5" style={styles.card}>
+          <View
+            className="rounded-lg bg-white py-4 px-4 mt-5"
+            style={styles.card}
+          >
             {/* <Text className="mb-4 text-lg font-bold" style={styles.color}>
             Add New Contact
           </Text> */}

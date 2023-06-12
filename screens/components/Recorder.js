@@ -150,9 +150,7 @@ export default function Recorder(props) {
 
       const fetchInstruction = async () => {
         try {
-          const response = await authGet(
-            `http://localhost:8000/instructions/${key}`
-          );
+          const response = await authGet(`/instructions/${key}`);
           console.log("Instructions", response.data);
           setInstructionDetail(response.data.instruction);
         } catch (error) {
