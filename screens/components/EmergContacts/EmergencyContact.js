@@ -15,23 +15,33 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import EmergencyContactItem from "./EmergencyContactItem";
 import EmergContactForm from "./EmergContactForm";
-import { authGet, authPost } from "../../helpers/authenticatedCalls";
+import {
+  authGet,
+  authPost,
+  authDelete,
+} from "../../helpers/authenticatedCalls";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import FocusContact from "./FocusContact";
 
 export default function EmergencyContact() {
   const [contacts, setContacts] = useState([]);
   const [person, setPerson] = useState({
+    id: "",
     name: "",
     phone: "",
     relationship: "",
+    user_id: "",
   });
   const [showForm, setShowForm] = useState(false);
+  const [showContact, setShowContact] = useState(false);
+  const [focusContact, setFocusContact] = useState(null);
 
   useEffect(() => {
     const getContacts = async () => {
       try {
         const response = await authGet("/emergencyContacts/");
         const data = response.data;
+        console.log("All contacts:", data);
         setContacts(data);
       } catch (error) {
         console.log(error);
@@ -69,6 +79,30 @@ export default function EmergencyContact() {
     }
   };
 
+  const popUpContact = (id) => {
+    setShowContact(true);
+    setFocusContact(id);
+  };
+
+  const cancelFocus = () => {
+    setShowContact(false);
+    setFocusContact(null);
+  };
+
+  const deleteContactHandler = async (id) => {
+    try {
+      console.log(id);
+      const response = await authDelete(`/emergencyContacts`, id);
+      const data = response.data;
+      console.log("Deleted contact:", data);
+      setContacts(contacts.filter((contact) => contact.id !== id));
+      setShowContact(false);
+      alert("Contact deleted successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View>
       <LinearGradient
@@ -88,7 +122,14 @@ export default function EmergencyContact() {
               <FlatList
                 data={contacts}
                 keyExtractor={(contact) => contact.id}
-                renderItem={({ item }) => <EmergencyContactItem {...item} />}
+                renderItem={({ item }) => (
+                  <EmergencyContactItem
+                    {...item}
+                    setShowContact={setShowContact}
+                    popUpContact={popUpContact}
+                    deleteContactHandler={deleteContactHandler}
+                  />
+                )}
                 contentContainerStyle={{ paddingBottom: 200 }}
               />
             </View>
@@ -120,6 +161,22 @@ export default function EmergencyContact() {
                   setShowForm={setShowForm}
                 />
               </View>
+            </View>
+          </Modal>
+        )}
+        {showContact && (
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={showContact}
+            onRequestClose={() => setShowContact(false)}
+          >
+            <View style={styles.modalContainer}>
+              <FocusContact
+                focusContact={focusContact}
+                cancelFocus={cancelFocus}
+                deleteContactHandler={deleteContactHandler}
+              />
             </View>
           </Modal>
         )}

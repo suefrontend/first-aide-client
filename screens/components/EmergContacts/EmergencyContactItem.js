@@ -1,10 +1,23 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-export default function EmergencyContactItem({ name, phone, relationship }) {
+export default function EmergencyContactItem({
+  id,
+  name,
+  phone,
+  relationship,
+  user_id,
+  setShowContact,
+  popUpContact,
+  deleteContactHandler,
+}) {
   return (
-    <View className="rounded-lg bg-white py-3 px-4 mb-2" style={styles.card}>
+    <Pressable
+      className="rounded-lg bg-white py-3 px-4 mb-2"
+      style={styles.card}
+      onPress={() => popUpContact(id)}
+    >
       <View className="flex-row justify-between items-center">
         <View>
           <View
@@ -46,7 +59,7 @@ export default function EmergencyContactItem({ name, phone, relationship }) {
           <Text style={styles.labeltext}>{relationship}</Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
