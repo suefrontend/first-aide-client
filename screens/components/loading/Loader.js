@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, View, Text, Button, StyleSheet, Image } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 const images = [
   require("../../docs/first-aid-box1.png"),
@@ -25,29 +26,41 @@ export default function Loader(props) {
   }, [currentIndex]);
 
   return (
-    <Modal>
+    <Modal style={styles.modal}>
       <View style={styles.centeredContainer}>
-        <View style={styles.animationContainer}>
-          <Image
-            style={{ width: 300, height: 300 }}
-            source={images[currentIndex]}
-            alt="Loading..."
-          />
-        </View>
-        <Text style={styles.loadingText}>LOADING SCREEN</Text>
-        <Button title="Close" onPress={toggleLoading} />
+        <LinearGradient
+          colors={["#FE0944", "#FEAE96"]}
+          style={styles.linearGradient}
+        >
+          <View style={styles.animationContainer}>
+            <Image
+              style={{ width: 300, height: 300 }}
+              source={images[currentIndex]}
+              alt="Loading..."
+            />
+          </View>
+          <Text style={styles.loadingText}>Processing...</Text>
+        </LinearGradient>
       </View>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
+  modal: {
+    margin: 0,
+  },
   centeredContainer: {
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+  },
+  linearGradient: {
+    width: "100%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   loadingText: {
     fontSize: 24,
