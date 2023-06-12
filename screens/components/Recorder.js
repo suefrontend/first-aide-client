@@ -182,14 +182,18 @@ export default function Recorder(props) {
           <Text className="text-2xl font-bold text-white">
             Tell me your symptoms
           </Text>
-          {isRecording && (
-            <Text className="text-2xl font-bold text-white">Recording...</Text>
-          )}
-          {voiceResult !== "" && (
-            <Text className="text-2xl font-bold text-white">
-              {voiceResult}...
-            </Text>
-          )}
+          <View style={styles.voiceBox}>
+            {isRecording && (
+              <Text className="text-2xl font-bold text-white">
+                Recording...
+              </Text>
+            )}
+            {voiceResult !== "" && (
+              <Text className="text-2xl font-bold text-white">
+                {voiceResult}...
+              </Text>
+            )}
+          </View>
           <Pressable
             ref={pressableRef}
             style={styles.microphoneButton}
@@ -222,9 +226,14 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   contentBox: {
+    marginTop: 100,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  voiceBox: {
+    height: 200,
+    width: "80%",
   },
   microphoneButton: {
     width: 120,
