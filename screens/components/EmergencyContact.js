@@ -35,7 +35,7 @@ export default function EmergencyContact() {
     const getContacts = async () => {
       try {
         const response = await authGet("/emergencyContacts/");
-        const data = response.json();
+        const data = response.data;
         setContacts(data);
       } catch (error) {
         console.log(error);
@@ -52,53 +52,55 @@ export default function EmergencyContact() {
       >
         <View>
           <View style={styles.wrapper}>
-            <Text
-              className="py-6 text-2xl font-bold text-white"
-              style={styles.headings}
+            <View style={styles.contentBox}>
+              <Text
+                className="py-6 text-2xl font-bold text-white"
+                style={styles.headings}
+              >
+                Emergency Contacts
+              </Text>
+            </View>
+            <FlatList
+              data={contacts}
+              keyExtractor={(contact) => contact.id}
+              renderItem={({ item }) => <EmergencyContactItem {...item} />}
+            />
+            <View
+              className="rounded-lg bg-white py-4 px-4 mt-5"
+              style={styles.card}
             >
-              Emergency Contact
-            </Text>
-          </View>
-          <FlatList
-            data={contacts}
-            keyExtractor={(contact) => contact.id}
-            renderItem={({ item }) => <EmergencyContactItem {...item} />}
-          />
-          <View
-            className="rounded-lg bg-white py-4 px-4 mt-5"
-            style={styles.card}
-          >
-            {/* <Text className="mb-4 text-lg font-bold" style={styles.color}>
+              {/* <Text className="mb-4 text-lg font-bold" style={styles.color}>
             Add New Contact
           </Text> */}
-            <TextInput
-              className="bg-gray-200 py-3 px-3 rounded-md"
-              placeholder="Name"
-              placeholderTextColor="#a9a9a9"
-            />
-            <View className="flex-row mt-3 justify-between">
               <TextInput
-                className="bg-gray-200 rounded p-3"
-                style={styles.inputsmall}
-                placeholder="Phone number"
+                className="bg-gray-200 py-3 px-3 rounded-md"
+                placeholder="Name"
                 placeholderTextColor="#a9a9a9"
               />
-              <TextInput
-                className="bg-gray-200 rounded p-3"
-                style={styles.inputsmall}
-                placeholder="Relationship"
-                placeholderTextColor="#a9a9a9"
-              />
+              <View className="flex-row mt-3 justify-between">
+                <TextInput
+                  className="bg-gray-200 rounded p-3"
+                  style={styles.inputsmall}
+                  placeholder="Phone number"
+                  placeholderTextColor="#a9a9a9"
+                />
+                <TextInput
+                  className="bg-gray-200 rounded p-3"
+                  style={styles.inputsmall}
+                  placeholder="Relationship"
+                  placeholderTextColor="#a9a9a9"
+                />
+              </View>
+              <Pressable
+                title="Add"
+                className="mt-4 rounded py-2"
+                style={styles.button}
+              >
+                <Text>
+                  <Icon name="plus" size={20} color="#fff" />
+                </Text>
+              </Pressable>
             </View>
-            <Pressable
-              title="Add"
-              className="mt-4 rounded py-2"
-              style={styles.button}
-            >
-              <Text>
-                <Icon name="plus" size={20} color="#fff" />
-              </Text>
-            </Pressable>
           </View>
         </View>
       </LinearGradient>
@@ -116,6 +118,11 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  contentBox: {
+    marginTop: 90,
+    width: "100%",
+    justifyContent: "center",
+  },
   headings: {
     textShadowColor: "rgba(0, 0, 0, 0.15)",
     textShadowOffset: {
@@ -131,7 +138,7 @@ const styles = StyleSheet.create({
     width: "48%",
   },
   card: {
-    width: "90%",
+    width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
     shadowColor: "#000",

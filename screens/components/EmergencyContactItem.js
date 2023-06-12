@@ -52,7 +52,7 @@ export default function EmergencyContactItem({ name, phone, relationship }) {
 
 const styles = StyleSheet.create({
   card: {
-    width: "90%",
+    width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
     shadowColor: "#000",
