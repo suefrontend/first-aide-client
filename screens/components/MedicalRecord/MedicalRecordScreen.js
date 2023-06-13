@@ -14,16 +14,26 @@ import { LinearGradient } from "expo-linear-gradient";
 import MedicalInfoTable from "./MedicalInfoTable";
 import MedicalInfoTableSM from "./MedicalInfoTableSM";
 import AllergyList from "./allergy/AllergyList";
+import { authGet } from "../../helpers/authenticatedCalls";
 
 export default function MedicalRecordScreen() {
-  const medications = [
-    { id: 1, name: "Salbutimol Inhaler" },
-    { id: 2, name: "Clonazepam" },
-  ];
-  const conditions = [
-    { id: 1, name: "Asthma" },
-    { id: 2, name: "Anxiety" },
-  ];
+  const [allergies, setAllergies] = useState({});
+  const [medications, setMedications] = useState([]);
+  const [conditions, setConditions] = useState([]);
+
+  useEffect(() => {
+    const getMedicalInfo = async () => {
+      try {
+        const response = await authGet("/medicalRecords");
+        setAllergies(response.data.allergies);
+        setMedications(response.data.medications);
+        setConditions(response.data.conditions);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMedicalInfo();
+  }, []);
 
   return (
     <View>
