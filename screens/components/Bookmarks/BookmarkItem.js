@@ -1,81 +1,89 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function BookmarkItem({ keyword }) {
-  const [icon, setIcon] = useState(keyword);
+export default function BookmarkItem(props) {
+  const { id, instruction, title, users_id, popUpBookmark } = props;
+  const [icon, setIcon] = useState(title);
+
+  useEffect(() => {
+    console.log("id:", id);
+    console.log("instruction:", instruction);
+    console.log("title:", title);
+  }, []);
 
   const getIcon = () => {
     switch (icon) {
       case "cut":
-        return require("../docs/icons/choking.png");
+        return require("../../docs/icons/choking.png");
         break;
       case "abrasions":
-        return require("../docs/icons/abrasions.png");
+        return require("../../docs/icons/abrasions.png");
       case "stings":
         break;
-        return require("../docs/icons/stings.png");
+        return require("../../docs/icons/stings.png");
         break;
       case "splinter":
-        return require("../docs/icons/splinter.png");
+        return require("../../docs/icons/splinter.png");
         break;
       case "sprains":
-        return require("../docs/icons/sprains.png");
+        return require("../../docs/icons/sprains.png");
         break;
       case "burns":
-        return require("../docs/icons/burns.png");
+        return require("../../docs/icons/burns.png");
         break;
       case "fever":
-        return require("../docs/icons/fever.png");
+        return require("../../docs/icons/fever.png");
         break;
       case "headache":
-        return require("../docs/icons/headache.png");
+        return require("../../docs/icons/headache.png");
         break;
       case "allergies":
-        return require("../docs/icons/allergies.png");
+        return require("../../docs/icons/allergies.png");
         break;
       case "cough":
-        return require("../docs/icons/cough.png");
+        return require("../../docs/icons/cough.png");
         break;
       case "stomachache":
-        return require("../docs/icons/stomachache.png");
+        return require("../../docs/icons/stomachache.png");
         break;
       case "rash":
-        return require("../docs/icons/rash.png");
+        return require("../../docs/icons/rash.png");
         break;
       case "eye injuries":
-        return require("../docs/icons/eyeinjuries.png");
+        return require("../../docs/icons/eyeinjuries.png");
         break;
       case "cpr":
-        return require("../docs/icons/cpr.png");
+        return require("../../docs/icons/cpr.png");
         break;
       case "choking":
-        return require("../docs/icons/choking.png");
+        return require("../../docs/icons/choking.png");
         break;
       case "nosebleed":
-        return require("../docs/icons/nosebleed.png");
+        return require("../../docs/icons/nosebleed.png");
         break;
       case "seizures":
-        return require("../docs/icons/seizures.png");
+        return require("../../docs/icons/seizures.png");
         break;
-      case "allergic Reactions":
-        return require("../docs/icons/allergies.png");
+      case "allergic reactions":
+        return require("../../docs/icons/allergies.png");
         break;
-      case "heat Exhaustion":
-        return require("../docs/icons/heatexhaustion.png");
+      case "heat exhaustion":
+        return require("../../docs/icons/heatexhaustion.png");
         break;
       case "fractures":
-        return require("../docs/icons/fractures.png");
+        return require("../../docs/icons/fractures.png");
         break;
       default:
-        return require("../docs/icons/seizures.png");
+        return require("../../docs/icons/seizures.png");
     }
   };
 
   return (
-    <View
+    <Pressable
       style={styles.card}
       className="bg-white flex items-center justify-center rounded-lg"
+      onPress={() => popUpBookmark([id, instruction, title, users_id])}
     >
       <View
         className="flex items-center justify-center"
@@ -88,11 +96,11 @@ export default function BookmarkItem({ keyword }) {
             source={getIcon()}
           />
           <Text className="uppercase text-sm" style={styles.color}>
-            {keyword}
+            {title}
           </Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
