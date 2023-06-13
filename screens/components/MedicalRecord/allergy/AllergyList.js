@@ -14,6 +14,7 @@ import AllergyItem from "./AllergyItem";
 
 export default function AllergyList(props) {
   const { allergies } = props;
+
   return (
     <>
       <View style={styles.borderthick} />
@@ -34,12 +35,9 @@ export default function AllergyList(props) {
         </View>
       </View>
       <View style={styles.borderthin} />
-      <FlatList
-        data={allergies}
-        keyExtractor={(allergy) => allergy.id}
-        renderItem={({ item }) => <AllergyItem {...item} />}
-      />
-
+      {allergies.map((allergy) => (
+        <AllergyItem key={allergy.id} {...allergy} />
+      ))}
       <View className="flex-row items-center justify-between px-3 py-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
