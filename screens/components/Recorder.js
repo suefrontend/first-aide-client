@@ -9,14 +9,6 @@ import { authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
 import { FontFamily, ThemeColors } from "../../theme";
 import Marquee from "./Marquee";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withRepeat,
-  withTiming,
-  interpolate,
-} from "react-native-reanimated";
 import AnimatedRing from "./AnimatedRing";
 
 export default function Recorder(props) {
@@ -25,7 +17,14 @@ export default function Recorder(props) {
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
   const [isFetching, setIsFetching] = useState(false); // for loading animation
+  const [startAnimation, setStartAnimation] = useState(false); // Recording animation
   const scaleRef = useRef(1);
+
+  let recordingMessage = isRecording ? "Recording..." : "Tell me your symptoms";
+
+  const toggleAnimation = () => {
+    setStartAnimation((prev) => !prev);
+  };
 
   // "Hello, name"
   const getDecodedName = async () => {
@@ -98,6 +97,7 @@ export default function Recorder(props) {
       style: { transform: [{ scale: scaleRef.current }] },
     });
     recordHandler();
+    toggleAnimation();
   };
   const handlePressOut = () => {
     scaleRef.current = 1;
@@ -155,18 +155,13 @@ export default function Recorder(props) {
           >
             Hello, {name}
           </Text>
-          <Text
-            className="text-4xl font-bold text-white"
-            style={[styles.title, styles.textshadow]}
-          >
-            Tell me your symptoms
-          </Text>
-          <View style={styles.voiceBox}>
-            {isRecording && (
-              <Text className="text-2xl font-bold text-white">
-                Recording...
-              </Text>
-            )}
+          <View style={styles.voicebox}>
+            <Text
+              className="text-4xl font-bold text-white"
+              style={[styles.title, styles.textshadow]}
+            >
+              {recordingMessage}
+            </Text>
             {voiceResult !== "" && (
               <Text className="text-2xl font-bold text-white">
                 {voiceResult}...
@@ -174,21 +169,20 @@ export default function Recorder(props) {
             )}
           </View>
           <View>
-            <View className="flex-column items-center justify-center py-14">
+            <View
+              className="flex-column items-center justify-center py-14"
+              style={styles.mic}
+            >
               <Pressable
                 ref={pressableRef}
                 style={styles.microphoneButton}
                 onPressIn={handlePressIn}
                 onPressOut={handlePressOut}
               >
+                <AnimatedRing delay={0} />
+                <AnimatedRing delay={1000} />
                 <FontAwesome name="microphone" size={60} style={styles.red} />
               </Pressable>
-              {/* <Animated.View style={[styles.ring1, ringStyle]} /> */}
-              {/* <Animated.View style={[styles.ring2]} /> */}
-              {/* <View> */}
-                <AnimatedRing delay={0} />
-                <AnimatedRing delay={3000} />
-              {/* </View> */}
             </View>
           </View>
           <View style={styles.temp}>
@@ -205,7 +199,7 @@ export default function Recorder(props) {
           </View>
         </View>
         {/* More Instructions Section */}
-        <View className="mt-11" style={{ marginLeft: -20 }}>
+        <View className="mt-11" style={styles.instructions}>
           {/* <Text
             className="text-white text-lg py-1"
             style={[styles.text, styles.textshadow]}
@@ -252,6 +246,9 @@ const styles = StyleSheet.create({
   contentBox: {
     marginTop: 30,
   },
+  voicebox: {
+    height: 100,
+  },
   temp: {
     position: "absolute",
     top: 400,
@@ -266,19 +263,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 20,
     zIndex: 3,
+    position: "absolute",
+    top: 60,
   },
-  // ring1: {
-  //   position: "absolute",
-  //   width: 190,
-  //   height: 190,
-  //   borderRadius: 90,
-  //   backgroundColor: "rgba(255,255,255,0.15)",
-  // },
-  // ring2: {
-  //   position: "absolute",
-  //   width: 244,
-  //   height: 244,
-  //   borderRadius: 140,
-  //   backgroundColor: "rgba(255,255,255,0.1)",
-  // },
+  instructions: {
+    position: "absolute",
+    bottom: 10,
+  },
 });

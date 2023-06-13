@@ -17,7 +17,7 @@ export default function AnimatedRing({ delay }) {
       opacity: 0.8 - ring.value,
       transform: [
         {
-          scale: interpolate(ring.value, [0, 1], [0, 4]),
+          scale: interpolate(ring.value, [0, 1], [0, 10]),
         },
       ],
     };
@@ -27,7 +27,7 @@ export default function AnimatedRing({ delay }) {
       delay,
       withRepeat(
         withTiming(1, {
-          duration: 4000,
+          duration: 2000,
         }),
         -1,
         false
