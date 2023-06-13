@@ -14,6 +14,7 @@ import AllergyItem from "./AllergyItem";
 
 export default function AllergyList(props) {
   const { allergies } = props;
+  console.log("allergies", allergies);
 
   return (
     <>
@@ -35,9 +36,11 @@ export default function AllergyList(props) {
         </View>
       </View>
       <View style={styles.borderthin} />
-      {allergies.map((allergy) => (
-        <AllergyItem key={allergy.id} {...allergy} />
-      ))}
+      {allergies &&
+        allergies.length > 0 &&
+        allergies.map((allergy) => (
+          <AllergyItem key={allergy.id} {...allergy} />
+        ))}
       <View className="flex-row items-center justify-between px-3 py-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
@@ -60,34 +63,6 @@ export default function AllergyList(props) {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-  titleBox: {
-    marginTop: 90,
-    width: "100%",
-    justifyContent: "center",
-  },
-  linearGradient: {
-    width: "100%",
-    height: "100%",
-  },
-  headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
-  },
-  bg: {
-    backgroundColor: "#FE0944",
-  },
-  color: {
-    color: "#555",
-  },
   borderthick: {
     height: 2,
     borderTopWidth: 2,
