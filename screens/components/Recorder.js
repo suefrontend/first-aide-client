@@ -161,7 +161,10 @@ export default function Recorder(props) {
               {recordingMessage}
             </Text>
             {voiceResult !== "" && (
-              <Text className="text-2xl font-bold text-white">
+              <Text
+                className="text-2xl font-bold text-white text-center"
+                style={[styles.result, styles.textshadow]}
+              >
                 {voiceResult}...
               </Text>
             )}
@@ -192,8 +195,26 @@ export default function Recorder(props) {
                 )}
                 {isRecording && (
                   <>
-                    <AnimatedRing delay={0} isRecording={isRecording} />
-                    <AnimatedRing delay={1000} isRecording={isRecording} />
+                    <AnimatedRing
+                      delay={0}
+                      scale={0.5}
+                      isRecording={isRecording}
+                    />
+                    <AnimatedRing
+                      delay={1000}
+                      scale={1}
+                      isRecording={isRecording}
+                    />
+                    <AnimatedRing
+                      delay={2000}
+                      scale={1}
+                      isRecording={isRecording}
+                    />
+                    <AnimatedRing
+                      delay={3000}
+                      scale={1}
+                      isRecording={isRecording}
+                    />
                   </>
                 )}
                 <FontAwesome name="microphone" size={60} style={styles.red} />

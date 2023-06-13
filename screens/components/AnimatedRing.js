@@ -9,16 +9,16 @@ import Animated, {
   interpolate,
 } from "react-native-reanimated";
 
-export default function AnimatedRing({ delay }) {
-
+export default function AnimatedRing({ delay, scale }) {
   const ring = useSharedValue(0);
 
   const ringStyle = useAnimatedStyle(() => {
     return {
-      opacity: 0.8 - ring.value,
+      opacity: 0.3 - ring.value,
       transform: [
         {
-          scale: interpolate(ring.value, [0, 1], [0, 10]),
+          // scale: interpolate(ring.value, [0, 1], [scale, scale * 12]),
+          scale: interpolate(ring.value, [0, 1], [1, 10]),
         },
       ],
     };
@@ -29,22 +29,22 @@ export default function AnimatedRing({ delay }) {
       delay,
       withRepeat(
         withTiming(1, {
-          duration: 2000,
+          duration: 3000,
         }),
         -1,
         false
       )
     );
-  }, []);
+  }, [delay]);
   return <Animated.View style={[styles.ring, ringStyle]} />;
 }
 
 const styles = StyleSheet.create({
   ring: {
     position: "absolute",
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 140,
+    height: 140,
+    borderRadius: 70,
     backgroundColor: "rgba(255,255,255,0.8)",
   },
 });
