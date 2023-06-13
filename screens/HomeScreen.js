@@ -23,6 +23,9 @@ export default function HomeScreen(props) {
     instruction: "",
   });
   const Stack = createNativeStackNavigator();
+
+  const [bookmark, setBookmark] = useState(null);
+
   const [hideSplashScreen, setHideSplashScreen] = useState(true);
   const [fontsLoaded, error] = useFonts({
     Poppins_regular: require("../assets/fonts/Poppins_regular.ttf"),
@@ -33,6 +36,7 @@ export default function HomeScreen(props) {
   if (!fontsLoaded && !error) {
     return null;
   }
+
 
   function HomeTabs() {
     const navigation = useNavigation();
@@ -80,7 +84,13 @@ export default function HomeScreen(props) {
         />
 
         <Stack.Screen name="Instruction">
-          {() => <Instruction apiResponse={apiResponse} />}
+          {() => (
+            <Instruction
+              apiResponse={apiResponse}
+              bookmark={bookmark}
+              setBookmark={setBookmark}
+            />
+          )}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

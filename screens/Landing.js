@@ -81,7 +81,7 @@ export default function Landing() {
       alert("Please fill out all fields");
       return;
     }
-    setIsLoading(true);
+
     try {
       const response = await axios.post("http://localhost:8000/register", {
         username: user.name,
@@ -91,7 +91,6 @@ export default function Landing() {
       console.log(response.data.accessToken);
       storeToken(response.data.accessToken);
       setUserAuthenticated(true);
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -99,12 +98,10 @@ export default function Landing() {
 
   const logoutHandler = () => {
     console.log("Logout:", user);
-    setIsLoading(true);
     removeToken();
     setUserAuthenticated(false);
     setLoginPress(true);
     setRegisterPress(false);
-    setIsLoading(false);
     console.log(userAuthenticated);
   };
 
