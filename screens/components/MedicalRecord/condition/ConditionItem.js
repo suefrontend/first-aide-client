@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function MedicalInfoTable({ name, allergy, severity }) {
+export default function ConditionItem({ name, allergy, severity }) {
   console.log("name", name);
   return (
     <>

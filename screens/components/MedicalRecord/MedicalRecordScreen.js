@@ -15,6 +15,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AllergyList from "./allergy/AllergyList";
 import { authGet } from "../../helpers/authenticatedCalls";
 import MedicationList from "./medication/MedicationList";
+import ConditionList from "./condition/ConditionList";
 
 export default function MedicalRecordScreen() {
   const [allergies, setAllergies] = useState({});
@@ -41,33 +42,36 @@ export default function MedicalRecordScreen() {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View style={styles.wrapper}>
-          <View style={styles.titleBox}>
-            <Text
-              className="py-6 text-2xl font-bold text-white"
-              style={styles.headings}
-            >
-              Medical Record
-            </Text>
+        <ScrollView>
+          <View style={styles.wrapper}>
+            <View style={styles.titleBox}>
+              <Text
+                className="py-6 text-2xl font-bold text-white"
+                style={styles.headings}
+              >
+                Medical Record
+              </Text>
+            </View>
           </View>
-        </View>
-        <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
-          <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
-            Allergies
-          </Text>
-          <AllergyList allergies={allergies} />
-        </View>
-        <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
-          <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
-            Medications
-          </Text>
-          <MedicationList medications={medications} />
-        </View>
-        <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
-          <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
-            Conditions
-          </Text>
-        </View>
+          <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
+            <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
+              Allergies
+            </Text>
+            <AllergyList allergies={allergies} />
+          </View>
+          <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
+            <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
+              Medications
+            </Text>
+            <MedicationList medications={medications} />
+          </View>
+          <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
+            <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
+              Conditions
+            </Text>
+            <ConditionList conditions={conditions} />
+          </View>
+        </ScrollView>
       </LinearGradient>
     </View>
   );
