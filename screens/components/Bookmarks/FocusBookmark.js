@@ -46,7 +46,7 @@ export default function FocusBookmark(props) {
               style={{ marginLeft: 10, marginTop: 10 }}
               onPress={cancelFocusBookmark}
             >
-              <Text style={{ color: "white" }}>Edit</Text>
+              <Feather name="arrow-left-circle" size={30} color="gray" />
             </Pressable>
             <View style={styles.textBox}>
               <Text style={{ textAlign: "center" }}>{instruction}</Text>
