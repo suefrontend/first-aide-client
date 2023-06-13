@@ -17,13 +17,12 @@ export default function Recorder(props) {
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
   const [isFetching, setIsFetching] = useState(false); // for loading animation
-  const [startAnimation, setStartAnimation] = useState(false); // Recording animation
   const scaleRef = useRef(1);
 
   let recordingMessage = isRecording ? "Recording..." : "Tell me your symptoms";
 
-  const toggleAnimation = () => {
-    setStartAnimation((prev) => !prev);
+  const setRecording = (value) => {
+    setIsRecording(value);
   };
 
   // "Hello, name"
@@ -97,7 +96,6 @@ export default function Recorder(props) {
       style: { transform: [{ scale: scaleRef.current }] },
     });
     recordHandler();
-    toggleAnimation();
   };
   const handlePressOut = () => {
     scaleRef.current = 1;
@@ -176,17 +174,28 @@ export default function Recorder(props) {
               <Pressable
                 ref={pressableRef}
                 style={styles.microphoneButton}
-                onPressIn={handlePressIn}
-                onPressOut={handlePressOut}
+                onPressIn={() => {
+                  setRecording(true);
+                  handlePressIn();
+                }}
+                onPressOut={() => {
+                  handlePressOut();
+                  setRecording(false);
+                }}
               >
+                {/* Default two rings */}
                 {!isRecording && (
                   <>
                     <View style={styles.ring2} />
                     <View style={styles.ring1} />
                   </>
                 )}
-                <AnimatedRing delay={0} />
-                <AnimatedRing delay={1000} />
+                {isRecording && (
+                  <>
+                    <AnimatedRing delay={0} isRecording={isRecording} />
+                    <AnimatedRing delay={1000} isRecording={isRecording} />
+                  </>
+                )}
                 <FontAwesome name="microphone" size={60} style={styles.red} />
               </Pressable>
             </View>

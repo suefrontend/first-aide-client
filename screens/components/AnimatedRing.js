@@ -10,7 +10,6 @@ import Animated, {
 } from "react-native-reanimated";
 
 export default function AnimatedRing({ delay }) {
-  const [isRecording, setIsRecording] = useState(false);
 
   const ring = useSharedValue(0);
 
@@ -25,7 +24,7 @@ export default function AnimatedRing({ delay }) {
     };
   });
 
-  const onRecording = () => {
+  useEffect(() => {
     ring.value = withDelay(
       delay,
       withRepeat(
@@ -36,11 +35,7 @@ export default function AnimatedRing({ delay }) {
         false
       )
     );
-  };
-
-  //   useEffect(() => {
-
-  //   }, []);
+  }, []);
   return <Animated.View style={[styles.ring, ringStyle]} />;
 }
 
