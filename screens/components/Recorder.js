@@ -2,8 +2,10 @@ import { StyleSheet, View, Text, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Voice from "@react-native-voice/voice";
+import { removeToken } from "../helpers/tokenStorage";
 
-export default function Recorder() {
+export default function Recorder(props) {
+  const { logoutHandler } = props;
   const [voiceResult, setVoiceResult] = useState("");
   const [isRecording, setIsRecording] = useState(false);
 
@@ -73,6 +75,7 @@ export default function Recorder() {
         {voiceResult !== "" && <Text>{voiceResult}</Text>}
         <Button title="STOP RECORDING" onPress={stopRecordingHandler} />
         <Button title="CLEAR" onPress={clear} />
+        <Button title="logout" onPress={logoutHandler} />
       </LinearGradient>
     </View>
   );
