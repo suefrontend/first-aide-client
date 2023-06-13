@@ -9,9 +9,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Recorder from "./components/Recorder";
 import MedicalInfo from "./components/MedicalInfo";
 import HospitalInfo from "./components/HospitalInfo";
-import Bookmark from "./components/Bookmark";
+import Bookmark from "./components/Bookmarks/Bookmark";
 import EmergencyContact from "./components/EmergContacts/EmergencyContact";
 import Instruction from "./components/Instruction";
+import FocusBookmark from "./components/Bookmarks/FocusBookmark";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,8 +26,6 @@ export default function HomeScreen(props) {
   const Stack = createNativeStackNavigator();
 
   const [bookmark, setBookmark] = useState(null);
-
-  const [hideSplashScreen, setHideSplashScreen] = useState(true);
   const [fontsLoaded, error] = useFonts({
     Poppins_regular: require("../assets/fonts/Poppins_regular.ttf"),
     Poppins_medium: require("../assets/fonts/Poppins_medium.ttf"),
@@ -36,7 +35,6 @@ export default function HomeScreen(props) {
   if (!fontsLoaded && !error) {
     return null;
   }
-
 
   function HomeTabs() {
     const navigation = useNavigation();
@@ -91,6 +89,9 @@ export default function HomeScreen(props) {
               setBookmark={setBookmark}
             />
           )}
+        </Stack.Screen>
+        <Stack.Screen name="Focus Bookmark">
+          {() => <FocusBookmark />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

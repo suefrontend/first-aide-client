@@ -2,7 +2,7 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import BookmarkItem from "./BookmarkItem";
-import { authGet } from "../helpers/authenticatedCalls";
+import { authGet } from "../../helpers/authenticatedCalls";
 
 export default function Bookmarks() {
   const [allBookmarks, setAllBookmarks] = useState([]);
