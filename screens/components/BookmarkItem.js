@@ -2,8 +2,9 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function BookmarkItem({ keyword }) {
-  const [icon, setIcon] = useState(keyword);
+export default function BookmarkItem(props) {
+  const { id, instruction, title, users_id } = props;
+  const [icon, setIcon] = useState(title);
 
   const getIcon = () => {
     switch (icon) {
@@ -88,7 +89,7 @@ export default function BookmarkItem({ keyword }) {
             source={getIcon()}
           />
           <Text className="uppercase text-sm" style={styles.color}>
-            {keyword}
+            {title}
           </Text>
         </View>
       </View>

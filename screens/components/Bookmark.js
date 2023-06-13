@@ -2,12 +2,23 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import BookmarkItem from "./BookmarkItem";
+import { authGet } from "../helpers/authenticatedCalls";
 
 export default function Bookmarks() {
-  const bookmarks = [
-    { users_id: 1, keyword: "choking", instruction: "", bookmarked: true },
-    { users_id: 1, keyword: "abrasions", instruction: "", bookmarked: true },
-  ];
+  const [allBookmarks, setAllBookmarks] = useState([]);
+
+  useEffect(() => {
+    const getBookmarks = async () => {
+      try {
+        const response = await authGet("/bookmarks/");
+        setAllBookmarks(response.data);
+        console.log(allBookmarks);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getBookmarks();
+  }, []);
 
   return (
     <View>
@@ -16,22 +27,24 @@ export default function Bookmarks() {
         style={styles.linearGradient}
       >
         <View style={styles.wrapper}>
-          <Text
-            className="py-6 text-2xl font-bold text-white"
-            style={styles.headings}
-          >
-            Bookmarks
-          </Text>
+          <View style={styles.contentBox}>
+            <Text
+              className="py-6 text-2xl font-bold text-white"
+              style={styles.headings}
+            >
+              Bookmarks
+            </Text>
 
-          <FlatList
-            data={bookmarks}
-            keyExtractor={(bookmarks) => bookmarks.id}
-            numColumns={2}
-            renderItem={({ item }) => <BookmarkItem {...item} />}
-            columnWrapperStyle={{
-              justifyContent: "space-between",
-            }}
-          />
+            <FlatList
+              data={allBookmarks}
+              keyExtractor={(allBookmarks) => allBookmarks.id}
+              numColumns={2}
+              renderItem={({ item }) => <BookmarkItem {...item} />}
+              columnWrapperStyle={{
+                justifyContent: "space-between",
+              }}
+            />
+          </View>
         </View>
       </LinearGradient>
     </View>
@@ -44,7 +57,11 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
   },
-
+  contentBox: {
+    marginTop: 90,
+    width: "100%",
+    justifyContent: "center",
+  },
   linearGradient: {
     width: "100%",
     height: "100%",
