@@ -35,6 +35,13 @@ export default function FocusBookmark(props) {
             <View style={styles.textBox}>
               <Text style={{ textAlign: "center" }}>{instruction}</Text>
             </View>
+            <Pressable
+              title="Add"
+              className="mt-4 rounded py-2"
+              style={styles.button}
+            >
+              <Text style={{ color: "white" }}>Delete Bookmark</Text>
+            </Pressable>
           </View>
         </View>
       </LinearGradient>
@@ -76,5 +83,14 @@ const styles = StyleSheet.create({
     borderColor: "#ff8aa6",
     borderStyle: "solid",
     borderRadius: 8,
+  },
+  button: {
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 3,
+    backgroundColor: "#FE0944",
+    width: "90%",
+    marginBottom: 20,
   },
 });
