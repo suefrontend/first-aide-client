@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Recorder from "./components/Recorder";
-import MedicalInfo from "./components/MedicalInfo";
+import MedicalRecordScreen from "./components/MedicalRecord/MedicalRecordScreen";
 import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmarks/Bookmark";
 import EmergencyContact from "./components/EmergContacts/EmergencyContact";
