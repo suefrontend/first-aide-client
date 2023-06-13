@@ -11,38 +11,33 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function MedicalInfoTableSM({ allergy, severity }) {
+export default function AllergyItem({ id, name, severity }) {
   return (
     <>
-      {"allergy" && (
-        <>
-          <View className="flex-row py-2 justify-between">
-            <View style={styles.leftrow}>
-              <Text className="text-base pl-4" style={styles.color}>
-                {allergy}
-              </Text>
-            </View>
-            <View style={styles.rightrow}>
-              <Text className="text-base" style={styles.color}>
-                {severity}
-              </Text>
-            </View>
-            <View>
-              <Icon
-                name="close"
-                size={20}
-                color="#c2c2c2"
-                style={{ marginRight: 10 }}
-              />
-            </View>
-          </View>
-          <View style={styles.borderthin} />
-        </>
-      )}
+      <View className="flex-row py-2 justify-between">
+        <View style={styles.leftrow}>
+          <Text className="text-base pl-4" style={styles.color}>
+            {name}
+          </Text>
+        </View>
+        <View style={styles.rightrow}>
+          <Text className="text-base" style={styles.color}>
+            {severity}
+          </Text>
+        </View>
+        <View>
+          <Icon
+            name="close"
+            size={20}
+            color="#c2c2c2"
+            style={{ marginRight: 10 }}
+          />
+        </View>
+      </View>
+      <View style={styles.borderthin} />
     </>
   );
 }
-
 const styles = StyleSheet.create({
   wrapper: {
     width: "90%",

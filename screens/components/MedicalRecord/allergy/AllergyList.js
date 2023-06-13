@@ -10,21 +10,10 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
-import MedicalInfoTableSM from "../MedicalInfoTableSM";
+import AllergyItem from "./AllergyItem";
 
-export default function AllergyList() {
-  const allergies = [
-    {
-      id: 1,
-      allergy: "Peanuts",
-      severity: "Severe",
-    },
-    {
-      id: 2,
-      allergy: "Grass",
-      severity: "Not Severe",
-    },
-  ];
+export default function AllergyList(props) {
+  const { allergies } = props;
   return (
     <>
       <View style={styles.borderthick} />
@@ -48,7 +37,7 @@ export default function AllergyList() {
       <FlatList
         data={allergies}
         keyExtractor={(allergy) => allergy.id}
-        renderItem={({ item }) => <MedicalInfoTableSM {...item} />}
+        renderItem={({ item }) => <AllergyItem {...item} />}
       />
 
       <View className="flex-row items-center justify-between px-3 py-3">

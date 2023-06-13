@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
 import MedicalInfoTable from "./MedicalInfoTable";
-import MedicalInfoTableSM from "./MedicalInfoTableSM";
+import MedicalInfoTableSM from "./allergy/AllergyItem";
 import AllergyList from "./allergy/AllergyList";
 import { authGet } from "../../helpers/authenticatedCalls";
 
@@ -55,19 +55,7 @@ export default function MedicalRecordScreen() {
           <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
             Allergies
           </Text>
-          <AllergyList />
-        </View>
-        <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
-          <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
-            Allergies
-          </Text>
-          <AllergyList />
-        </View>
-        <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
-          <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
-            Allergies
-          </Text>
-          <AllergyList />
+          <AllergyList allergies={allergies} />
         </View>
       </LinearGradient>
     </View>
