@@ -12,41 +12,19 @@ import Voice from "@react-native-voice/voice";
 import { getToken, removeToken } from "../helpers/tokenStorage";
 import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { authGet } from "../helpers/authenticatedCalls";
+import { authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function Recorder(props) {
-  const keywords = [
-    "cut",
-    "abrasions",
-    "stings",
-    "splinter",
-    "sprains",
-    "burns",
-    "fever",
-    "headache",
-    "allergies",
-    "cough",
-    "stomachache",
-    "rash",
-    "eye injuries",
-    "cpr",
-    "choking",
-    "nosebleed",
-    "seizures",
-    "allergic reactions",
-    "heat exhaustion",
-    "fractures",
-  ];
-  const { logoutHandler, navigation, setInstructionKey, setInstructionDetail } =
-    props;
+  const { logoutHandler, navigation, setApiResponse } = props;
   const [voiceResult, setVoiceResult] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
   const [isFetching, setIsFetching] = useState(false); // for loading animation
   const scaleRef = useRef(1);
 
+  // "Hello, name"
   const getDecodedName = async () => {
     try {
       const token = await getToken();
@@ -80,6 +58,7 @@ export default function Recorder(props) {
   };
 
   useEffect(() => {
+    clear();
     getDecodedName();
     Voice.onSpeechStart = onSpeechStart;
     Voice.onSpeechEnd = onSpeechEnd;
@@ -128,40 +107,31 @@ export default function Recorder(props) {
 
     if (voiceResult === "" || voiceResult === undefined) {
       setIsFetching(false);
-      return;
-    }
-
-    // split voiceResult into an array of words
-    const voiceResultArray = voiceResult.toLowerCase().split(" ");
-    console.log("voiceResultArray", voiceResultArray);
-
-    // find the keywords that match the voiceResultArray
-    const matchedKeywords = keywords.filter((keyword) =>
-      voiceResultArray.includes(keyword)
-    );
-    console.log("matchedKeywords", matchedKeywords);
-
-    if (matchedKeywords.length === 0) {
-      setIsFetching(false);
-      alert("Sorry, no match found. Please try again.");
+      clear();
       return;
     } else {
-      const key = matchedKeywords[0];
-
       const fetchInstruction = async () => {
         try {
-          const response = await authGet(`/instructions/${key}`);
-          console.log("Instructions", response.data);
-          setInstructionDetail(response.data.instruction);
+          const response = await authPost(`/instructions/`, {
+            input: voiceResult,
+          });
+          const title = response.data.title;
+          const instruction = response.data.instructions;
+          if (instruction === "") {
+            setIsFetching(false);
+            clear();
+            return;
+          }
+          setApiResponse({ title, instruction });
         } catch (error) {
           console.log(error);
         }
       };
-
-      fetchInstruction();
-      setIsFetching(false);
-      setInstructionKey(key);
-      navigation.navigate("Instruction");
+      setIsFetching(true);
+      fetchInstruction().then(() => {
+        navigation.navigate("Instruction");
+        setIsFetching(false);
+      });
     }
   };
   const pressableRef = useRef(null);
@@ -202,7 +172,6 @@ export default function Recorder(props) {
           </Pressable>
         </View>
         {isFetching && <Loader />}
-        <Button title="CLEAR" onPress={clear} />
         <Button title="logout" onPress={logoutHandler} />
         <Button
           title="Go to instructions"
