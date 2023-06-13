@@ -17,8 +17,10 @@ const Tab = createBottomTabNavigator();
 export default function HomeScreen(props) {
   const { logoutHandler } = props;
   const [user, setUser] = useState(null);
-  const [instructionKey, setInstructionKey] = useState(null);
-  const [instructionDetail, setInstructionDetail] = useState(null);
+  const [apiResponse, setApiResponse] = useState({
+    title: "",
+    instruction: "",
+  });
   const Stack = createNativeStackNavigator();
 
   function HomeTabs() {
@@ -30,8 +32,7 @@ export default function HomeScreen(props) {
             <Recorder
               logoutHandler={logoutHandler}
               navigation={navigation}
-              setInstructionKey={setInstructionKey}
-              setInstructionDetail={setInstructionDetail}
+              setApiResponse={setApiResponse}
             />
           )}
         </Tab.Screen>
@@ -68,12 +69,7 @@ export default function HomeScreen(props) {
         />
 
         <Stack.Screen name="Instruction">
-          {() => (
-            <Instruction
-              instructionKey={instructionKey}
-              instructionDetail={instructionDetail}
-            />
-          )}
+          {() => <Instruction apiResponse={apiResponse} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
