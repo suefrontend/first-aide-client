@@ -26,6 +26,7 @@ export default function HomeScreen(props) {
   const Stack = createNativeStackNavigator();
 
   const [bookmark, setBookmark] = useState(null);
+
   const [fontsLoaded, error] = useFonts({
     Poppins_regular: require("../assets/fonts/Poppins_regular.ttf"),
     Poppins_medium: require("../assets/fonts/Poppins_medium.ttf"),
@@ -90,9 +91,9 @@ export default function HomeScreen(props) {
             />
           )}
         </Stack.Screen>
-        <Stack.Screen name="Focus Bookmark">
-          {() => <FocusBookmark />}
-        </Stack.Screen>
+        {/* <Stack.Screen name="Focus Bookmark">
+          {() => <FocusBookmark focusBookmark={focusBookmark} />}
+        </Stack.Screen> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

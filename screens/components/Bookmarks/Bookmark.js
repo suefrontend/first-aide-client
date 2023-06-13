@@ -1,11 +1,14 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet, Modal, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import BookmarkItem from "./BookmarkItem";
 import { authGet } from "../../helpers/authenticatedCalls";
+import FocusBookmark from "./FocusBookmark";
 
-export default function Bookmarks() {
+export default function Bookmark(props) {
   const [allBookmarks, setAllBookmarks] = useState([]);
+  const [focusBookmark, setFocusBookmark] = useState(null);
+  const [clickBookmark, setClickBookmark] = useState(false); // Modal State
 
   useEffect(() => {
     const getBookmarks = async () => {
@@ -19,6 +22,16 @@ export default function Bookmarks() {
     };
     getBookmarks();
   }, []);
+
+  const popUpBookmark = (id) => {
+    setClickBookmark(true);
+    setFocusBookmark(id);
+  };
+
+  const cancelFocusBookmark = () => {
+    setClickBookmark(false);
+    setFocusBookmark(null);
+  };
 
   return (
     <View>
@@ -39,13 +52,38 @@ export default function Bookmarks() {
               data={allBookmarks}
               keyExtractor={(allBookmarks) => allBookmarks.id}
               numColumns={2}
-              renderItem={({ item }) => <BookmarkItem {...item} />}
+              renderItem={(bookmark) => (
+                <BookmarkItem
+                  bookmark={bookmark}
+                  popUpBookmark={popUpBookmark}
+                  cancelFocusBookmark={cancelFocusBookmark}
+                />
+              )}
               columnWrapperStyle={{
                 justifyContent: "space-between",
               }}
             />
           </View>
         </View>
+        {clickBookmark && (
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={clickBookmark}
+            onRequestClose={() => {
+              setClickBookmark(false);
+            }}
+          >
+            {/* <View style={styles.modalContainer}>
+              <Text style={styles.modalText}>Hello World!</Text>
+              <Button
+                onPress={() => setClickBookmark(false)}
+                title="click to close"
+              ></Button>
+            </View> */}
+            <FocusBookmark cancelFocusBookmark={cancelFocusBookmark} />
+          </Modal>
+        )}
       </LinearGradient>
     </View>
   );
@@ -73,5 +111,11 @@ const styles = StyleSheet.create({
       height: 4,
     },
     textShadowRadius: 2,
+  },
+  modalContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });

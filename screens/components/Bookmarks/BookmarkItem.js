@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function BookmarkItem(props) {
-  const { id, instruction, title, users_id } = props;
-  const [icon, setIcon] = useState(title);
+  const { bookmark, popUpBookmark } = props;
+  const [icon, setIcon] = useState(bookmark.title);
 
   const getIcon = () => {
     switch (icon) {
@@ -74,9 +74,10 @@ export default function BookmarkItem(props) {
   };
 
   return (
-    <View
+    <Pressable
       style={styles.card}
       className="bg-white flex items-center justify-center rounded-lg"
+      onPress={() => popUpBookmark(bookmark.id)}
     >
       <View
         className="flex items-center justify-center"
@@ -89,11 +90,11 @@ export default function BookmarkItem(props) {
             source={getIcon()}
           />
           <Text className="uppercase text-sm" style={styles.color}>
-            {title}
+            {bookmark.title}
           </Text>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
