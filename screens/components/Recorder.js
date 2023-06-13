@@ -117,14 +117,21 @@ export default function Recorder(props) {
           });
           const title = response.data.title;
           const instruction = response.data.instructions;
+          if (instruction === "") {
+            setIsFetching(false);
+            clear();
+            return;
+          }
           setApiResponse({ title, instruction });
         } catch (error) {
           console.log(error);
         }
       };
-      fetchInstruction();
-      setIsFetching(false);
-      navigation.navigate("Instruction");
+      setIsFetching(true);
+      fetchInstruction().then(() => {
+        navigation.navigate("Instruction");
+        setIsFetching(false);
+      });
     }
   };
   const pressableRef = useRef(null);
