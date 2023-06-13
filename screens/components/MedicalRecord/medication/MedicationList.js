@@ -26,7 +26,6 @@ export default function MedicationList() {
           placeholderTextColor="#a9a9a9"
           style={{ width: "88%" }}
         />
-
         <Pressable title="Add" className="rounded p-1" style={styles.button}>
           <Icon name="plus" size={20} color="#fff" />
         </Pressable>

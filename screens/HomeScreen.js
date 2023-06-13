@@ -56,7 +56,7 @@ export default function HomeScreen(props) {
         />
         <Tab.Screen
           name="Medical Info"
-          component={MedicalInfo}
+          component={MedicalRecordScreen}
           options={{ headerShown: false }}
         />
         <Tab.Screen

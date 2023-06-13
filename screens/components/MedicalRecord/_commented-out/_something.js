@@ -22,3 +22,12 @@
 {
   /* </SafeAreaView> */
 }
+
+{
+  /* <Text
+            className="text-xl font-bold mb-2 mt-5 pl-4"
+            style={styles.color}
+          >
+            Medications
+          </Text> */
+}

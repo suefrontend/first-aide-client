@@ -13,20 +13,9 @@ import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
 import MedicalInfoTable from "./MedicalInfoTable";
 import MedicalInfoTableSM from "./MedicalInfoTableSM";
+import AllergyList from "./allergy/AllergyList";
 
 export default function MedicalRecordScreen() {
-  const allergies = [
-    {
-      id: 1,
-      allergy: "Peanuts",
-      severity: "Severe",
-    },
-    {
-      id: 2,
-      allergy: "Grass",
-      severity: "Not Severe",
-    },
-  ];
   const medications = [
     { id: 1, name: "Salbutimol Inhaler" },
     { id: 2, name: "Clonazepam" },
@@ -56,14 +45,19 @@ export default function MedicalRecordScreen() {
           <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
             Allergies
           </Text>
-
-          {/**/}
-          <Text
-            className="text-xl font-bold mb-2 mt-5 pl-4"
-            style={styles.color}
-          >
-            Medications
+          <AllergyList />
+        </View>
+        <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
+          <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
+            Allergies
           </Text>
+          <AllergyList />
+        </View>
+        <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
+          <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
+            Allergies
+          </Text>
+          <AllergyList />
         </View>
       </LinearGradient>
     </View>
