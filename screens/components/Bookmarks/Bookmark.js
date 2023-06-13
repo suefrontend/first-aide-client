@@ -23,14 +23,16 @@ export default function Bookmark(props) {
     getBookmarks();
   }, []);
 
-  const popUpBookmark = (id) => {
+  const popUpBookmark = (bookmarkInfo) => {
+    const [id, instruction, title, users_id] = bookmarkInfo;
+    setFocusBookmark([id, instruction, title, users_id]);
     setClickBookmark(true);
-    setFocusBookmark(id);
   };
 
   const cancelFocusBookmark = () => {
     setClickBookmark(false);
     setFocusBookmark(null);
+    return;
   };
 
   return (
@@ -52,9 +54,9 @@ export default function Bookmark(props) {
               data={allBookmarks}
               keyExtractor={(allBookmarks) => allBookmarks.id}
               numColumns={2}
-              renderItem={(bookmark) => (
+              renderItem={({ item }) => (
                 <BookmarkItem
-                  bookmark={bookmark}
+                  {...item}
                   popUpBookmark={popUpBookmark}
                   cancelFocusBookmark={cancelFocusBookmark}
                 />
@@ -74,14 +76,10 @@ export default function Bookmark(props) {
               setClickBookmark(false);
             }}
           >
-            {/* <View style={styles.modalContainer}>
-              <Text style={styles.modalText}>Hello World!</Text>
-              <Button
-                onPress={() => setClickBookmark(false)}
-                title="click to close"
-              ></Button>
-            </View> */}
-            <FocusBookmark cancelFocusBookmark={cancelFocusBookmark} />
+            <FocusBookmark
+              cancelFocusBookmark={cancelFocusBookmark}
+              focusBookmark={focusBookmark}
+            />
           </Modal>
         )}
       </LinearGradient>

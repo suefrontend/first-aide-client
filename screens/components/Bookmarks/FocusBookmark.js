@@ -5,6 +5,8 @@ import Feather from "react-native-vector-icons/Feather";
 
 export default function FocusBookmark(props) {
   const { cancelFocusBookmark, focusBookmark } = props;
+  const [id, instruction, title, users_id] = focusBookmark;
+
   return (
     <View>
       <LinearGradient
@@ -17,14 +19,23 @@ export default function FocusBookmark(props) {
               className="py-6 text-2xl font-bold text-white"
               style={styles.headings}
             >
-              Bookmark
+              {title && title}
+              {!title && "Untitled Bookmark"}
             </Text>
           </View>
         </View>
         <View style={styles.bookmarkInfo}>
-          <Pressable style={{ marginLeft: 10, marginTop: 10 }}>
-            <Feather name="arrow-left-circle" size={30} color="gray" />
-          </Pressable>
+          <View style={styles.innerborder}>
+            <Pressable
+              style={{ marginLeft: 10, marginTop: 10 }}
+              onPress={cancelFocusBookmark}
+            >
+              <Feather name="arrow-left-circle" size={30} color="gray" />
+            </Pressable>
+            <View style={styles.textBox}>
+              <Text style={{ textAlign: "center" }}>{instruction}</Text>
+            </View>
+          </View>
         </View>
       </LinearGradient>
     </View>
@@ -51,5 +62,19 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: "white",
     borderRadius: 10,
+  },
+  textBox: {
+    width: "90%",
+    alignSelf: "center",
+    marginVertical: 50,
+  },
+  innerborder: {
+    alignSelf: "center",
+    marginVertical: 5,
+    width: "97%",
+    borderWidth: 1,
+    borderColor: "#ff8aa6",
+    borderStyle: "solid",
+    borderRadius: 8,
   },
 });

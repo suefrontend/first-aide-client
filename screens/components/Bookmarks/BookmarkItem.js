@@ -3,8 +3,14 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function BookmarkItem(props) {
-  const { bookmark, popUpBookmark } = props;
-  const [icon, setIcon] = useState(bookmark.title);
+  const { id, instruction, title, users_id, popUpBookmark } = props;
+  const [icon, setIcon] = useState(title);
+
+  useEffect(() => {
+    console.log("id:", id);
+    console.log("instruction:", instruction);
+    console.log("title:", title);
+  }, []);
 
   const getIcon = () => {
     switch (icon) {
@@ -77,7 +83,7 @@ export default function BookmarkItem(props) {
     <Pressable
       style={styles.card}
       className="bg-white flex items-center justify-center rounded-lg"
-      onPress={() => popUpBookmark(bookmark.id)}
+      onPress={() => popUpBookmark([id, instruction, title, users_id])}
     >
       <View
         className="flex items-center justify-center"
@@ -90,7 +96,7 @@ export default function BookmarkItem(props) {
             source={getIcon()}
           />
           <Text className="uppercase text-sm" style={styles.color}>
-            {bookmark.title}
+            {title}
           </Text>
         </View>
       </View>

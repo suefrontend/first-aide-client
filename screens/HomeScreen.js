@@ -12,7 +12,6 @@ import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmarks/Bookmark";
 import EmergencyContact from "./components/EmergContacts/EmergencyContact";
 import Instruction from "./components/Instruction";
-import FocusBookmark from "./components/Bookmarks/FocusBookmark";
 
 const Tab = createBottomTabNavigator();
 
@@ -91,9 +90,6 @@ export default function HomeScreen(props) {
             />
           )}
         </Stack.Screen>
-        {/* <Stack.Screen name="Focus Bookmark">
-          {() => <FocusBookmark focusBookmark={focusBookmark} />}
-        </Stack.Screen> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
