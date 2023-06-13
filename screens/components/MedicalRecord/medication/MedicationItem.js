@@ -10,8 +10,25 @@ import {
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
+import { authDelete } from "../../../helpers/authenticatedCalls";
 
-export default function MedicationItem({ id, name }) {
+export default function MedicationItem({ id, name, setMedications }) {
+  const deleteMedications = async (id) => {
+    try {
+      const response = await authDelete(`/medicalRecords/medications`, id);
+      if (response.status === 200) {
+        alert("Medication deleted");
+        setMedications((prev) =>
+          prev.filter((medication) => medication.id !== id)
+        );
+      } else {
+        alert("Oops! Something went wrong. Please try again later.");
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {"name" && (
@@ -22,14 +39,14 @@ export default function MedicationItem({ id, name }) {
                 {name}
               </Text>
             </View>
-            <View>
+            <Pressable onPress={() => deleteMedications(id)}>
               <Icon
                 name="close"
                 size={20}
                 color="#c2c2c2"
                 style={{ marginRight: 10 }}
               />
-            </View>
+            </Pressable>
           </View>
           <View style={styles.borderthin} />
         </>

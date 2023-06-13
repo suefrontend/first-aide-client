@@ -11,26 +11,69 @@ import {
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import MedicationItem from "./MedicationItem";
+import { authPost } from "../../../helpers/authenticatedCalls";
 
 export default function MedicationList(props) {
-  const { medications } = props;
-  console.log("medications", medications);
+  const { medications, setMedications } = props;
+  const [newMedicationName, setMedicationName] = useState(null);
+
+  const addMedication = async (name) => {
+    try {
+      const response = await authPost("/medicalRecords/medications", {
+        name: name,
+      });
+      if (response.data.id) {
+        alert("Medication added");
+        setMedications((prev) => [
+          ...prev,
+          {
+            id: response.data.id,
+            name: name,
+          },
+        ]);
+      } else {
+        alert("Oops! Something went wrong. Please try again later.");
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <View style={styles.borderthick} />
       {medications &&
         medications.length > 0 &&
         medications.map((medication) => (
-          <MedicationItem key={medication.id} {...medication} />
+          <MedicationItem
+            key={medication.id}
+            {...medication}
+            setMedications={setMedications}
+          />
         ))}
       <View className="flex-row items-center justify-between px-3 py-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
-          placeholder="Allergy"
+          placeholder="Medication"
           placeholderTextColor="#a9a9a9"
+          value={newMedicationName}
+          onChangeText={(text) => setMedicationName(text)}
           style={{ width: "88%" }}
         />
-        <Pressable title="Add" className="rounded p-1" style={styles.button}>
+        <Pressable
+          title="Add"
+          className="rounded p-1"
+          style={styles.button}
+          onPress={() => {
+            if (!newMedicationName) {
+              alert("Please provide medication name");
+              return;
+            }
+            addMedication(newMedicationName);
+            setMedicationName(null);
+          }}
+        >
           <Icon name="plus" size={20} color="#fff" />
         </Pressable>
       </View>
