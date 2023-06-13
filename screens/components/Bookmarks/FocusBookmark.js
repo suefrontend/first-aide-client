@@ -1,11 +1,24 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import { authDelete } from "../../helpers/authenticatedCalls";
 import Feather from "react-native-vector-icons/Feather";
 
 export default function FocusBookmark(props) {
   const { cancelFocusBookmark, focusBookmark } = props;
   const [id, instruction, title, users_id] = focusBookmark;
+
+  const deleteBookmark = async () => {
+    try {
+      const response = await authDelete("/bookmarks", id);
+      const data = response.data;
+      console.log("Deleted bookmark:", data);
+      cancelFocusBookmark();
+      alert("Bookmark deleted successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View>
@@ -39,6 +52,7 @@ export default function FocusBookmark(props) {
               title="Add"
               className="mt-4 rounded py-2"
               style={styles.button}
+              onPress={deleteBookmark}
             >
               <Text style={{ color: "white" }}>Delete Bookmark</Text>
             </Pressable>
