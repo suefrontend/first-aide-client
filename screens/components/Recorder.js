@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  Pressable,
-  Animated,
-} from "react-native";
+import { StyleSheet, View, Text, Button, Pressable } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Voice from "@react-native-voice/voice";
@@ -14,7 +7,7 @@ import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Animated from "react-native-reanimated";
 
 export default function Recorder(props) {
   const { logoutHandler, navigation, setApiResponse } = props;
