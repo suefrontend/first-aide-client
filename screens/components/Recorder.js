@@ -235,15 +235,15 @@ export default function Recorder(props) {
           </View>
         </View>
         {/* More Instructions Section */}
-        <View className="mt-11" style={styles.instructions}>
+        {/* <View className="mt-11" style={styles.instructions}> */}
           {/* <Text
             className="text-white text-lg py-1"
             style={[styles.text, styles.textshadow]}
           >
             More Instructions
           </Text> */}
-          <Marquee />
-        </View>
+          {/* <Marquee /> */}
+        {/* </View> */}
       </LinearGradient>
     </View>
   );

@@ -42,6 +42,20 @@ export default function HomeScreen(props) {
       <Tab.Navigator
         screenOptions={{
           tabBarShowLabel: false,
+          tabBarStyle: {
+            backgroundColor: "white",
+            position: "absolute",
+            bottom: 30,
+            marginHorizontal: 20,
+            height: 60,
+            borderRadius: 10,
+            shadowColor: "#000",
+            shadowOpacity: 0.06,
+            shadowOffset: {
+              width: 10,
+              height: 10,
+            },
+          },
         }}
       >
         <Tab.Screen name="Recorder" options={{ headerShown: false }}>
