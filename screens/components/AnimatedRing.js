@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -10,6 +10,8 @@ import Animated, {
 } from "react-native-reanimated";
 
 export default function AnimatedRing({ delay }) {
+  const [isRecording, setIsRecording] = useState(false);
+
   const ring = useSharedValue(0);
 
   const ringStyle = useAnimatedStyle(() => {
@@ -22,7 +24,8 @@ export default function AnimatedRing({ delay }) {
       ],
     };
   });
-  useEffect(() => {
+
+  const onRecording = () => {
     ring.value = withDelay(
       delay,
       withRepeat(
@@ -33,7 +36,11 @@ export default function AnimatedRing({ delay }) {
         false
       )
     );
-  }, []);
+  };
+
+  //   useEffect(() => {
+
+  //   }, []);
   return <Animated.View style={[styles.ring, ringStyle]} />;
 }
 

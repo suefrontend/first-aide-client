@@ -179,6 +179,12 @@ export default function Recorder(props) {
                 onPressIn={handlePressIn}
                 onPressOut={handlePressOut}
               >
+                {!isRecording && (
+                  <>
+                    <View style={styles.ring2} />
+                    <View style={styles.ring1} />
+                  </>
+                )}
                 <AnimatedRing delay={0} />
                 <AnimatedRing delay={1000} />
                 <FontAwesome name="microphone" size={60} style={styles.red} />
@@ -269,5 +275,19 @@ const styles = StyleSheet.create({
   instructions: {
     position: "absolute",
     bottom: 10,
+  },
+  ring1: {
+    position: "absolute",
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  ring2: {
+    position: "absolute",
+    width: 250,
+    height: 250,
+    borderRadius: 140,
+    backgroundColor: "rgba(255,255,255,0.1)",
   },
 });
