@@ -8,6 +8,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
 import Animated from "react-native-reanimated";
+import { FontFamily } from "../../theme";
 
 export default function Recorder(props) {
   const { logoutHandler, navigation, setApiResponse } = props;
@@ -139,8 +140,16 @@ export default function Recorder(props) {
         style={styles.linearGradient}
       >
         <View style={styles.contentBox}>
-          <Text className="text-2xl font-bold text-white">Hello, {name}</Text>
-          <Text className="text-2xl font-bold text-white">
+          <Text
+            className="text-xl font-bold text-white py-3"
+            style={[styles.textshadow]}
+          >
+            Hello, {name}
+          </Text>
+          <Text
+            className="text-4xl font-bold text-white"
+            style={[styles.message, styles.textshadow]}
+          >
             Tell me your symptoms
           </Text>
           <View style={styles.voiceBox}>
@@ -155,14 +164,20 @@ export default function Recorder(props) {
               </Text>
             )}
           </View>
-          <Pressable
-            ref={pressableRef}
-            style={styles.microphoneButton}
-            onPressIn={handlePressIn}
-            onPressOut={handlePressOut}
-          >
-            <FontAwesome name="microphone" size={50} color="red" />
-          </Pressable>
+          <View>
+            <View className="flex-column items-center justify-center">
+              <Pressable
+                ref={pressableRef}
+                style={styles.microphoneButton}
+                onPressIn={handlePressIn}
+                onPressOut={handlePressOut}
+              >
+                <FontAwesome name="microphone" size={50} color="red" />
+              </Pressable>
+              <Animated.View style={[styles.ring1]} />
+              <Animated.View style={[styles.ring2]} />
+            </View>
+          </View>
         </View>
         {isFetching && <Loader />}
         <Button title="logout" onPress={logoutHandler} />
@@ -185,16 +200,30 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  message: {
+    fontWeight: "600",
+    fontFamily: FontFamily.poppinsSemibold,
+    textAlign: "center",
+    lineHeight: 50,
+  },
+  textshadow: {
+    textShadowColor: "rgba(0, 0, 0, 0.15)",
+    textShadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    textShadowRadius: 2,
+  },
   contentBox: {
     marginTop: 100,
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
   },
-  voiceBox: {
-    height: 200,
-    width: "80%",
-  },
+  // voiceBox: {
+  //   height: 200,
+  //   width: "80%",
+  // },
   microphoneButton: {
     width: 120,
     height: 120,
@@ -204,5 +233,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 20,
     zIndex: 3,
+  },
+  ring1: {
+    position: "absolute",
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  ring2: {
+    position: "absolute",
+    width: 280,
+    height: 280,
+    borderRadius: 140,
+    backgroundColor: "rgba(255,255,255,0.1)",
   },
 });
