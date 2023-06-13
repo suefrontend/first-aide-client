@@ -141,14 +141,14 @@ export default function Recorder(props) {
       >
         <View style={styles.contentBox}>
           <Text
-            className="text-xl font-bold text-white py-3"
-            style={[styles.textshadow]}
+            className="text-xl font-bold text-white py-3 mt-6"
+            style={[styles.subtitle, styles.textshadow]}
           >
             Hello, {name}
           </Text>
           <Text
             className="text-4xl font-bold text-white"
-            style={[styles.message, styles.textshadow]}
+            style={[styles.title, styles.textshadow]}
           >
             Tell me your symptoms
           </Text>
@@ -165,26 +165,28 @@ export default function Recorder(props) {
             )}
           </View>
           <View>
-            <View className="flex-column items-center justify-center">
+            <View className="flex-column items-center justify-center py-14">
               <Pressable
                 ref={pressableRef}
                 style={styles.microphoneButton}
                 onPressIn={handlePressIn}
                 onPressOut={handlePressOut}
               >
-                <FontAwesome name="microphone" size={50} color="red" />
+                <FontAwesome name="microphone" size={60} color="red" />
               </Pressable>
               <Animated.View style={[styles.ring1]} />
               <Animated.View style={[styles.ring2]} />
             </View>
           </View>
+          <View className="mt-12">
+            {isFetching && <Loader />}
+            <Button title="logout" onPress={logoutHandler} />
+            <Button
+              title="Go to instructions"
+              onPress={() => navigation.navigate("Instruction")}
+            />
+          </View>
         </View>
-        {isFetching && <Loader />}
-        <Button title="logout" onPress={logoutHandler} />
-        <Button
-          title="Go to instructions"
-          onPress={() => navigation.navigate("Instruction")}
-        />
       </LinearGradient>
     </View>
   );
@@ -192,19 +194,24 @@ export default function Recorder(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    // flex: 1,
+    // alignItems: "center",
+    // justifyContent: "center",
   },
   linearGradient: {
     width: "100%",
     height: "100%",
   },
-  message: {
+  title: {
     fontWeight: "600",
     fontFamily: FontFamily.poppinsSemibold,
     textAlign: "center",
     lineHeight: 50,
+    textTransform:'capitalize'
+  },
+  subtitle: {
+    textAlign: "center",
+    fontFamily: FontFamily.poppinsSemibold,
   },
   textshadow: {
     textShadowColor: "rgba(0, 0, 0, 0.15)",
@@ -215,18 +222,19 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
   contentBox: {
-    marginTop: 100,
+    marginTop: 30,
     width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
+    height: "100%",
+    // alignItems: "center",
+    // justifyContent: "center",
   },
   // voiceBox: {
   //   height: 200,
   //   width: "80%",
   // },
   microphoneButton: {
-    width: 120,
-    height: 120,
+    width: 140,
+    height: 140,
     borderRadius: 120,
     backgroundColor: "white",
     alignItems: "center",
@@ -236,15 +244,15 @@ const styles = StyleSheet.create({
   },
   ring1: {
     position: "absolute",
-    width: 180,
-    height: 180,
+    width: 190,
+    height: 190,
     borderRadius: 90,
-    backgroundColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(255,255,255,0.15)",
   },
   ring2: {
     position: "absolute",
-    width: 280,
-    height: 280,
+    width: 244,
+    height: 244,
     borderRadius: 140,
     backgroundColor: "rgba(255,255,255,0.1)",
   },
