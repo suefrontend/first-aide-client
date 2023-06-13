@@ -22,6 +22,7 @@ export default function HomeScreen(props) {
     instruction: "",
   });
   const Stack = createNativeStackNavigator();
+  const [bookmark, setBookmark] = useState(null);
 
   function HomeTabs() {
     const navigation = useNavigation();
@@ -69,7 +70,13 @@ export default function HomeScreen(props) {
         />
 
         <Stack.Screen name="Instruction">
-          {() => <Instruction apiResponse={apiResponse} />}
+          {() => (
+            <Instruction
+              apiResponse={apiResponse}
+              bookmark={bookmark}
+              setBookmark={setBookmark}
+            />
+          )}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
