@@ -39,7 +39,11 @@ export default function HomeScreen(props) {
   function HomeTabs() {
     const navigation = useNavigation();
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarShowLabel: false,
+        }}
+      >
         <Tab.Screen name="Recorder" options={{ headerShown: false }}>
           {() => (
             <Recorder
