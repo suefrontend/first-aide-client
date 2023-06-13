@@ -66,16 +66,21 @@ export default function Instruction(props) {
                 Abrasions
                 {apiResponse.title}
               </Text>
-              <TouchableHighlight onPress={() => {}}>
-                <View>
-                  <Icon
-                    name={buttonClick ? "bookmark" : "bookmark-o"}
-                    size={30}
-                    color="#fff"
-                    style={[styles.icon]}
-                  />
-                </View>
-              </TouchableHighlight>
+              <Pressable
+                style={{
+                  alignSelf: "flex-end",
+                  marginTop: 50,
+                  marginRight: 20,
+                }}
+                onPress={saveInstruction}
+              >
+                <Icon
+                  name={buttonClick ? "bookmark" : "bookmark-o"}
+                  size={30}
+                  color="#fff"
+                  style={styles.headings}
+                />
+              </Pressable>
             </View>
 
             <ScrollView style={{ height: 500 }}>
