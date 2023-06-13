@@ -1,10 +1,11 @@
 import { StyleSheet, View, Text, Button } from "react-native";
 import React, { useEffect, useState } from "react";
-import { themeColors } from "../theme";
 import { useFonts } from "expo-font";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 import Recorder from "./components/Recorder";
 import MedicalInfo from "./components/MedicalInfo";
@@ -45,20 +46,54 @@ export default function HomeScreen(props) {
           tabBarStyle: {
             backgroundColor: "white",
             position: "absolute",
-            bottom: 30,
+            bottom: 25,
             marginHorizontal: 20,
             height: 60,
-            borderRadius: 10,
+            borderRadius: 8,
             shadowColor: "#000",
-            shadowOpacity: 0.06,
+            shadowOpacity: 0.1,
             shadowOffset: {
-              width: 10,
-              height: 10,
+              width: 4,
+              height: 4,
             },
           },
         }}
       >
-        <Tab.Screen name="Recorder" options={{ headerShown: false }}>
+        <Tab.Screen
+          name="Bookmark"
+          component={Bookmark}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <View style={{ position: "absolute", top: "50%" }}>
+                <Ionicons name="bookmark" size={29} color="#c2c2c2" />
+              </View>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Medical Info"
+          component={MedicalInfo}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <View style={{ position: "absolute", top: "50%" }}>
+                <Icon name="stethoscope" size={30} color="#c2c2c2" />
+              </View>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Recorder"
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <View style={{ position: "absolute", top: "50%" }}>
+                <Icon name="microphone" size={30} color="#c2c2c2" />
+              </View>
+            ),
+          }}
+        >
           {() => (
             <Recorder
               logoutHandler={logoutHandler}
@@ -68,24 +103,28 @@ export default function HomeScreen(props) {
           )}
         </Tab.Screen>
         <Tab.Screen
-          name="Bookmark"
-          component={Bookmark}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="Medical Info"
-          component={MedicalInfo}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
           name="Hospital Info"
           component={HospitalInfo}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <View style={{ position: "absolute", top: "50%" }}>
+                <Icon name="medkit" size={28} color="#c2c2c2" />
+              </View>
+            ),
+          }}
         />
         <Tab.Screen
           name="Emergency Contacts"
           component={EmergencyContact}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <View style={{ position: "absolute", top: "50%" }}>
+                <Icon name="phone" size={30} color="#c2c2c2" />
+              </View>
+            ),
+          }}
         />
       </Tab.Navigator>
     );
