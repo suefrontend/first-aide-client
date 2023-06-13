@@ -9,6 +9,7 @@ import { authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
 import Animated from "react-native-reanimated";
 import { FontFamily } from "../../theme";
+import Marquee from "./Marquee";
 
 export default function Recorder(props) {
   const { logoutHandler, navigation, setApiResponse } = props;
@@ -178,14 +179,28 @@ export default function Recorder(props) {
               <Animated.View style={[styles.ring2]} />
             </View>
           </View>
-          <View className="mt-12">
+          <View style={styles.temp}>
             {isFetching && <Loader />}
-            <Button title="logout" onPress={logoutHandler} />
-            <Button
-              title="Go to instructions"
+            <Pressable onPress={logoutHandler} style={{ borderWidth: 1 }}>
+              <Text>Logout</Text>
+            </Pressable>
+            <Pressable
               onPress={() => navigation.navigate("Instruction")}
-            />
+              style={{ borderWidth: 1 }}
+            >
+              <Text>Instructions</Text>
+            </Pressable>
           </View>
+        </View>
+        {/* More Instructions Section */}
+        <View className="mt-12" style={{ marginLeft: -20 }}>
+          {/* <Text
+            className="text-white text-lg py-1"
+            style={[styles.text, styles.textshadow]}
+          >
+            More Instructions
+          </Text> */}
+          <Marquee />
         </View>
       </LinearGradient>
     </View>
@@ -193,11 +208,6 @@ export default function Recorder(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
   linearGradient: {
     width: "100%",
     height: "100%",
@@ -207,31 +217,31 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsSemibold,
     textAlign: "center",
     lineHeight: 50,
-    textTransform:'capitalize'
+    textTransform: "capitalize",
   },
   subtitle: {
     textAlign: "center",
     fontFamily: FontFamily.poppinsSemibold,
   },
+  text: {
+    fontFamily: FontFamily.poppinsSemibold,
+  },
   textshadow: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
+    textShadowColor: "rgba(0, 0, 0, 0.2)",
     textShadowOffset: {
       width: 0,
-      height: 4,
+      height: 2,
     },
     textShadowRadius: 2,
   },
   contentBox: {
     marginTop: 30,
-    width: "100%",
-    height: "100%",
-    // alignItems: "center",
-    // justifyContent: "center",
   },
-  // voiceBox: {
-  //   height: 200,
-  //   width: "80%",
-  // },
+  temp: {
+    position: "absolute",
+    top: 400,
+    right: 0,
+  },
   microphoneButton: {
     width: 140,
     height: 140,
