@@ -35,6 +35,9 @@ export default function FocusBookmark(props) {
               {title && title}
               {!title && "Untitled Bookmark"}
             </Text>
+            <Pressable style={styles.editButton}>
+              <Text style={{ color: "white" }}>Edit</Text>
+            </Pressable>
           </View>
         </View>
         <View style={styles.bookmarkInfo}>
@@ -43,7 +46,7 @@ export default function FocusBookmark(props) {
               style={{ marginLeft: 10, marginTop: 10 }}
               onPress={cancelFocusBookmark}
             >
-              <Feather name="arrow-left-circle" size={30} color="gray" />
+              <Text style={{ color: "white" }}>Edit</Text>
             </Pressable>
             <View style={styles.textBox}>
               <Text style={{ textAlign: "center" }}>{instruction}</Text>
@@ -72,12 +75,22 @@ const styles = StyleSheet.create({
   contentBox: {
     marginTop: 90,
     width: "100%",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
   },
   linearGradient: {
     width: "100%",
     height: "100%",
     alignItems: "center",
+  },
+  headings: {
+    flex: 2,
+    textShadowColor: "rgba(0, 0, 0, 0.15)",
+    textShadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    textShadowRadius: 2,
   },
   bookmarkInfo: {
     width: "90%",
@@ -106,5 +119,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#FE0944",
     width: "90%",
     marginBottom: 20,
+  },
+  editButton: {
+    width: 50,
+    height: 30,
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 5,
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
