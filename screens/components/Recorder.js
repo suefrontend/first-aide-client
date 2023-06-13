@@ -7,9 +7,17 @@ import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
-import Animated from "react-native-reanimated";
-import { FontFamily } from "../../theme";
+import { FontFamily, ThemeColors } from "../../theme";
 import Marquee from "./Marquee";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withTiming,
+  interpolate,
+} from "react-native-reanimated";
+import AnimatedRing from "./AnimatedRing";
 
 export default function Recorder(props) {
   const { logoutHandler, navigation, setApiResponse } = props;
@@ -173,10 +181,14 @@ export default function Recorder(props) {
                 onPressIn={handlePressIn}
                 onPressOut={handlePressOut}
               >
-                <FontAwesome name="microphone" size={60} color="red" />
+                <FontAwesome name="microphone" size={60} style={styles.red} />
               </Pressable>
-              <Animated.View style={[styles.ring1]} />
-              <Animated.View style={[styles.ring2]} />
+              {/* <Animated.View style={[styles.ring1, ringStyle]} /> */}
+              {/* <Animated.View style={[styles.ring2]} /> */}
+              {/* <View> */}
+                <AnimatedRing delay={0} />
+                <AnimatedRing delay={3000} />
+              {/* </View> */}
             </View>
           </View>
           <View style={styles.temp}>
@@ -193,7 +205,7 @@ export default function Recorder(props) {
           </View>
         </View>
         {/* More Instructions Section */}
-        <View className="mt-12" style={{ marginLeft: -20 }}>
+        <View className="mt-11" style={{ marginLeft: -20 }}>
           {/* <Text
             className="text-white text-lg py-1"
             style={[styles.text, styles.textshadow]}
@@ -234,6 +246,9 @@ const styles = StyleSheet.create({
     },
     textShadowRadius: 2,
   },
+  red: {
+    color: ThemeColors.red,
+  },
   contentBox: {
     marginTop: 30,
   },
@@ -252,18 +267,18 @@ const styles = StyleSheet.create({
     margin: 20,
     zIndex: 3,
   },
-  ring1: {
-    position: "absolute",
-    width: 190,
-    height: 190,
-    borderRadius: 90,
-    backgroundColor: "rgba(255,255,255,0.15)",
-  },
-  ring2: {
-    position: "absolute",
-    width: 244,
-    height: 244,
-    borderRadius: 140,
-    backgroundColor: "rgba(255,255,255,0.1)",
-  },
+  // ring1: {
+  //   position: "absolute",
+  //   width: 190,
+  //   height: 190,
+  //   borderRadius: 90,
+  //   backgroundColor: "rgba(255,255,255,0.15)",
+  // },
+  // ring2: {
+  //   position: "absolute",
+  //   width: 244,
+  //   height: 244,
+  //   borderRadius: 140,
+  //   backgroundColor: "rgba(255,255,255,0.1)",
+  // },
 });
