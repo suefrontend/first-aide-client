@@ -11,21 +11,15 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function MedicalInfoTableSM({ name, allergy, severity }) {
-  console.log("name", name);
+export default function MedicationItem({ id, name }) {
   return (
     <>
-      {"allergy" && (
+      {"name" && (
         <>
           <View className="flex-row py-2 justify-between">
-            <View style={styles.leftrow}>
+            <View>
               <Text className="text-base pl-4" style={styles.color}>
-                {allergy}
-              </Text>
-            </View>
-            <View style={styles.rightrow}>
-              <Text className="text-base" style={styles.color}>
-                {severity}
+                {name}
               </Text>
             </View>
             <View>
