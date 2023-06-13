@@ -21,7 +21,7 @@ export default function Bookmark(props) {
       }
     };
     getBookmarks();
-  }, []);
+  }, [focusBookmark]);
 
   const popUpBookmark = (bookmarkInfo) => {
     const [id, instruction, title, users_id] = bookmarkInfo;

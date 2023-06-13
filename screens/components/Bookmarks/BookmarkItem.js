@@ -6,12 +6,6 @@ export default function BookmarkItem(props) {
   const { id, instruction, title, users_id, popUpBookmark } = props;
   const [icon, setIcon] = useState(title);
 
-  useEffect(() => {
-    console.log("id:", id);
-    console.log("instruction:", instruction);
-    console.log("title:", title);
-  }, []);
-
   const getIcon = () => {
     switch (icon) {
       case "cut":
