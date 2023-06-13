@@ -53,19 +53,19 @@ export default function MedicalRecordScreen() {
               </Text>
             </View>
           </View>
-          <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
+          <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
             <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Allergies
             </Text>
             <AllergyList allergies={allergies} />
           </View>
-          <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
+          <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
             <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Medications
             </Text>
             <MedicationList medications={medications} />
           </View>
-          <View className="bg-white rounded-lg py-3" style={styles.wrapper}>
+          <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
             <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Conditions
             </Text>
@@ -132,5 +132,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 3,
     backgroundColor: "#FE0944",
+  },
+  infoCard: {
+    width: "90%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: 20,
   },
 });
