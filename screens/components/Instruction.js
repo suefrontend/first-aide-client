@@ -81,7 +81,7 @@ export default function Instruction(props) {
             <ScrollView style={{ height: 500 }}>
               {/* Font size too small? text-lg better? */}
               <Text style={[styles.text]} className="text-white text-base mb-2">
-              {apiResponse.instruction}
+                {apiResponse.instruction}
                 Begin with washed hands. Gently clean the area with cool to
                 lukewarm water and mild soap. Remove dirt or other particles
                 from the wound using sterilized tweezers. For a mild scrape
@@ -105,8 +105,14 @@ export default function Instruction(props) {
               </Text>
             </ScrollView>
 
-            <Pressable className="bg-white rounded-md py-2 mt-4" style={styles.objectshadow}>
-              <Text style={styles.button} className="text-center text-lg uppercase">
+            <Pressable
+              className="bg-white rounded-md py-2 mt-4"
+              style={styles.objectshadow}
+            >
+              <Text
+                style={styles.button}
+                className="text-center text-lg uppercase"
+              >
                 Back
               </Text>
             </Pressable>
