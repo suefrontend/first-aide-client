@@ -10,8 +10,24 @@ import {
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
+import { authDelete } from "../../../helpers/authenticatedCalls";
 
-export default function AllergyItem({ id, name, severity }) {
+export default function AllergyItem({ id, name, severity, setAllergies }) {
+  const deleteAllergy = async (id) => {
+    try {
+      const response = await authDelete(`/medicalRecords/allergies`, id);
+      if (response.status === 200) {
+        alert("Allergy deleted");
+        setAllergies((prev) => prev.filter((allergy) => allergy.id !== id));
+      } else {
+        alert("Oops! Something went wrong. Please try again later.");
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <View className="flex-row py-2 justify-between">
@@ -25,14 +41,14 @@ export default function AllergyItem({ id, name, severity }) {
             {severity}
           </Text>
         </View>
-        <View>
+        <Pressable onPress={() => deleteAllergy(id)}>
           <Icon
             name="close"
             size={20}
             color="#c2c2c2"
             style={{ marginRight: 10 }}
           />
-        </View>
+        </Pressable>
       </View>
       <View style={styles.borderthin} />
     </>

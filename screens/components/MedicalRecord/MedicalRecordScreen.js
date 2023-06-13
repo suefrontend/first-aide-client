@@ -57,7 +57,7 @@ export default function MedicalRecordScreen() {
             <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Allergies
             </Text>
-            <AllergyList allergies={allergies} />
+            <AllergyList allergies={allergies} setAllergies={setAllergies} />
           </View>
           <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
             <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>

@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/AntDesign";
 import AllergyItem from "./AllergyItem";
 
 export default function AllergyList(props) {
-  const { allergies } = props;
+  const { allergies, setAllergies } = props;
   console.log("allergies", allergies);
 
   return (
@@ -39,7 +39,11 @@ export default function AllergyList(props) {
       {allergies &&
         allergies.length > 0 &&
         allergies.map((allergy) => (
-          <AllergyItem key={allergy.id} {...allergy} />
+          <AllergyItem
+            key={allergy.id}
+            {...allergy}
+            setAllergies={setAllergies}
+          />
         ))}
       <View className="flex-row items-center justify-between px-3 py-3">
         <TextInput
