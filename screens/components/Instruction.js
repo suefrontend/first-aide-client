@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
+import { FontFamily } from "../../theme";
 
 export default function Instruction(props) {
   const { apiResponse, setBookmark } = props;
@@ -53,49 +54,59 @@ export default function Instruction(props) {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View className="pt-20">
+        <View className="">
           <View style={styles.wrapper}>
             {/* <Text>{instructionKey}</Text>
           <Text>{instructionDetail}</Text> */}
-            <View className="flex-row py-10 justify-between items-center">
+            <View className="flex-row py-14 justify-between items-start">
               <Text
                 className="text-4xl text-white font-bold"
                 style={styles.headings}
               >
-                Abrasions
+                Abrasions Abrasionsabrasionsabrasions
               </Text>
               <TouchableHighlight onPress={() => {}}>
                 <View>
                   <Icon
                     name="bookmark"
-                    size={20}
+                    size={30}
                     color="#fff"
-                    style={styles.headings}
+                    style={[styles.shadow, styles.icon]}
                   />
                 </View>
               </TouchableHighlight>
             </View>
             <SafeAreaView>
               <ScrollView>
-                <Text
-                  style={[styles.headings, styles.text]}
-                  className="text-white text-lg"
-                >
+                {/* Font size too small? text-lg better? */}
+                <Text style={[styles.text]} className="text-white text-base">
                   Begin with washed hands. Gently clean the area with cool to
                   lukewarm water and mild soap. Remove dirt or other particles
                   from the wound using sterilized tweezers. For a mild scrape
                   that’s not bleeding, leave the wound uncovered. If the wound
-                  is bleeding, use a clean cloth or bandage and apply gentle
-                  pressure to the area to stop any bleeding. Cover a wound that
-                  bled with a thin layer of topical antibiotic ointment, like
-                  Bacitracin, or a sterile moisture barrier ointment, like
-                  Aquaphor. Cover it with a clean bandage or gauze. Gently clean
-                  the wound and change the ointment and bandage once per day.
-                  Watch the area for signs of infection, like pain or redness
-                  and swelling. See your doctor if you suspect infection.
+                  egin with washed hands. Gently clean the area with cool to
+                  lukewarm water and mild soap. Remove dirt or other particles
+                  from the wound using sterilized tweezers. For a mild scrape
+                  that’s not bleeding, leave the wound uncovered. If the
+                  woundegin with washed hands. Gently clean the area with cool
+                  to lukewarm water and mild soap. Remove dirt or other
+                  particles from the wound using sterilized tweezers. For a mild
+                  scrape that’s not bleeding, leave the wound uncovered. If the
+                  wound egin with washed hands. Gently clean the area with cool
+                  to lukewarm water and mild soap. Remove dirt or other
+                  particles from the wound using sterilized tweezers. For a mild
+                  scrape that’s not bleeding, leave the wound uncovered. If the
+                  woundegin with washed hands. Gently clean the area with cool
+                  to lukewarm water and mild soap. Remove dirt or other
+                  particles from the wound using sterilized tweezers. For a mild
+                  scrape that’s not bleeding, leave the wound uncovered. If the
+                  wound
                 </Text>
               </ScrollView>
             </SafeAreaView>
+            <Pressable className="bg-white rounded py-3" style={styles.button}>
+              <Text className="text-center">Back</Text>
+            </Pressable>
           </View>
         </View>
       </LinearGradient>
@@ -106,6 +117,7 @@ export default function Instruction(props) {
 const styles = StyleSheet.create({
   wrapper: {
     width: "90%",
+    // height: "100%",
     marginLeft: "auto",
     marginRight: "auto",
   },
@@ -114,14 +126,27 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
+    fontFamily: FontFamily.poppinsSemibold,
+    width: "90%",
+  },
+  shadow: {
     textShadowOffset: {
       width: 0,
       height: 4,
     },
     textShadowRadius: 2,
   },
+  icon: {},
   color: {
     color: "#555",
+  },
+  text: {
+    fontFamily: FontFamily.poppinsSemibold,
+    lineHeight: 28,
+  },
+  button: {
+    // position: "absolute",
+    // bottom: 40,
+    // left: '50%'
   },
 });
