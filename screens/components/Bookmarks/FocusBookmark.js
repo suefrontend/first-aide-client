@@ -1,12 +1,21 @@
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  TextInput,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { authDelete } from "../../helpers/authenticatedCalls";
+import { authPost, authDelete } from "../../helpers/authenticatedCalls";
 import Feather from "react-native-vector-icons/Feather";
 
 export default function FocusBookmark(props) {
   const { cancelFocusBookmark, focusBookmark } = props;
   const [id, instruction, title, users_id] = focusBookmark;
+  const [editTitle, setEditTitle] = useState(false); // Edit Title State
+  const [newTitle, setNewTitle] = useState(null);
 
   const deleteBookmark = async () => {
     try {
@@ -20,6 +29,21 @@ export default function FocusBookmark(props) {
     }
   };
 
+  const editBookmark = async (id, title) => {
+    try {
+      const response = await authPost("/bookmarks/edit", {
+        bookmarkId: id,
+        title: title,
+      });
+      const data = response.data;
+      console.log("Edited bookmark:", data);
+      cancelFocusBookmark();
+      alert("Bookmark edited successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View>
       <LinearGradient
@@ -28,16 +52,40 @@ export default function FocusBookmark(props) {
       >
         <View style={styles.wrapper}>
           <View style={styles.contentBox}>
-            <Text
-              className="py-6 text-2xl font-bold text-white"
-              style={styles.headings}
-            >
-              {title && title}
-              {!title && "Untitled Bookmark"}
-            </Text>
-            <Pressable style={styles.editButton}>
-              <Text style={{ color: "white" }}>Edit</Text>
-            </Pressable>
+            {!editTitle && (
+              <>
+                <Text
+                  className="py-6 text-2xl font-bold text-white"
+                  style={styles.headings}
+                >
+                  {title && title}
+                  {!title && "Untitled Bookmark"}
+                </Text>
+                <Pressable
+                  style={styles.editButton}
+                  onPress={() => setEditTitle(true)}
+                >
+                  <Text style={{ color: "white" }}>Edit</Text>
+                </Pressable>
+              </>
+            )}
+            {editTitle && (
+              <>
+                <TextInput
+                  className="bg-red-200 rounded-md p-3"
+                  style={{ flex: 2, marginRight: 10, marginVertical: 10 }}
+                  placeholder="Edit Title"
+                  placeholderTextColor="#a9a9a9"
+                  onChangeText={(text) => setNewTitle(text)}
+                />
+                <Pressable
+                  style={styles.editButton}
+                  onPress={() => editBookmark(id, newTitle)}
+                >
+                  <Text style={{ color: "white" }}>Send</Text>
+                </Pressable>
+              </>
+            )}
           </View>
         </View>
         <View style={styles.bookmarkInfo}>
