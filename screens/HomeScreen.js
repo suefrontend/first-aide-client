@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import { themeColors } from "../theme";
+import { useFonts } from "expo-font";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -20,6 +21,16 @@ export default function HomeScreen(props) {
   const [instructionKey, setInstructionKey] = useState(null);
   const [instructionDetail, setInstructionDetail] = useState(null);
   const Stack = createNativeStackNavigator();
+  const [hideSplashScreen, setHideSplashScreen] = useState(true);
+  const [fontsLoaded, error] = useFonts({
+    Poppins_regular: require("../assets/fonts/Poppins_regular.ttf"),
+    Poppins_medium: require("../assets/fonts/Poppins_medium.ttf"),
+    Poppins_semibold: require("../assets/fonts/Poppins_semibold.ttf"),
+  });
+
+  if (!fontsLoaded && !error) {
+    return null;
+  }
 
   function HomeTabs() {
     const navigation = useNavigation();
