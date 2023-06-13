@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Modal, View, Text, Button, StyleSheet, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 
 const images = [
   require("../../docs/first-aid-box1.png"),
@@ -10,7 +9,7 @@ const images = [
   require("../../docs/first-aid-box5.png"),
 ];
 
-export default function Loader(props) {
+export default function JustLoader(props) {
   const { toggleLoading } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -26,41 +25,26 @@ export default function Loader(props) {
   }, [currentIndex]);
 
   return (
-    <Modal style={styles.modal}>
-      <View style={styles.centeredContainer}>
-        <LinearGradient
-          colors={["#FE0944", "#FEAE96"]}
-          style={styles.linearGradient}
-        >
-          <View style={styles.animationContainer}>
-            <Image
-              style={{ width: 300, height: 300 }}
-              source={images[currentIndex]}
-              alt="Loading..."
-            />
-          </View>
-          <Text style={styles.loadingText}>Processing...</Text>
-        </LinearGradient>
+    <>
+      <View style={styles.animationContainer}>
+        <Image
+          style={{ width: 300, height: 300 }}
+          source={images[currentIndex]}
+          alt="Loading..."
+        />
       </View>
-    </Modal>
+      <Text style={styles.loadingText}>LOADING...</Text>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  modal: {
-    margin: 0,
-  },
   centeredContainer: {
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",
-  },
-  linearGradient: {
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
+    marginTop: 22,
   },
   loadingText: {
     fontSize: 24,
@@ -70,5 +54,6 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     overflow: "hidden",
+    alignSelf: "center",
   },
 });

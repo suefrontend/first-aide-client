@@ -20,60 +20,72 @@ export default function Register(props) {
   } = props;
   return (
     <>
-      <Text>Please enter your name, email and city</Text>
+      <Text
+        className="text-white text-center mt-10 mb-2 text-base"
+        style={styles.shadowtext}
+      >
+        Please enter your name, email and city
+      </Text>
       <TextInput
-        style={styles.text}
+        className="p-2 mb-3 rounded-md border-2 border-white text-lg"
+        style={styles.input}
         placeholder="name"
         placeholderTextColor="white"
         onChangeText={(text) => nameTypeHandler(text)}
       />
       <TextInput
-        style={styles.text}
+        className="p-2 mb-3 rounded-md border-2 border-white text-lg"
+        style={styles.input}
         placeholder="email"
         placeholderTextColor="white"
         onChangeText={(text) => emailTypeHandler(text)}
       />
       <TextInput
-        style={styles.text}
+        className="p-2 mb-3 rounded-md border-2 border-white text-lg"
+        style={styles.input}
         placeholder="city"
         placeholderTextColor="white"
         onChangeText={(text) => cityTypeHandler(text)}
       />
-      <Pressable style={styles.button} onPress={registerHandler}>
-        <Text style={styles.text}>Sign Up</Text>
+      <Pressable
+        onPress={registerHandler}
+        className="bg-white p-3 rounded mb-4"
+        style={styles.shadowbutton}
+      >
+        <Text className="text-center font-bold text-lg" style={styles.red}>
+          Sign Up
+        </Text>
       </Pressable>
 
-      <Pressable style={styles.button} onPress={switchHandler}>
-        <Text style={styles.text}>Login</Text>
+      <Pressable onPress={switchHandler}>
+        <Text
+          className="text-center text-white underline"
+          style={styles.shadowtext}
+        >
+          Login
+        </Text>
       </Pressable>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   width: "100%",
-  //   height: "100%",
-  // },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 8,
-    paddingVertical: 12,
-    width: 200,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: "black",
+  loginbutton: {
+    color: "#FE0944",
   },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "white",
+  red: {
+    color: "#FE0944",
   },
-  // formContainer: {
-  //   flex: 1,
-  //   flexDirection: "column",
-  // },
+  input: {
+    backgroundColor: "rgba(0,0,0,0.15)",
+    textAlign: "center",
+  },
+  shadowtext: {
+    textShadowColor: "rgba(0, 0, 0, 0.2)",
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 2,
+  },
 });
