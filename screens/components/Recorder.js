@@ -7,7 +7,9 @@ import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
-import Animated from "react-native-reanimated";
+import { FontFamily, ThemeColors } from "../../theme";
+import Marquee from "./Marquee";
+import AnimatedRing from "./AnimatedRing";
 
 export default function Recorder(props) {
   const { logoutHandler, navigation, setApiResponse } = props;
@@ -16,6 +18,12 @@ export default function Recorder(props) {
   const [name, setName] = useState("");
   const [isFetching, setIsFetching] = useState(false); // for loading animation
   const scaleRef = useRef(1);
+
+  let recordingMessage = isRecording ? "Recording..." : "Tell me your symptoms";
+
+  const setRecording = (value) => {
+    setIsRecording(value);
+  };
 
   // "Hello, name"
   const getDecodedName = async () => {
@@ -139,70 +147,177 @@ export default function Recorder(props) {
         style={styles.linearGradient}
       >
         <View style={styles.contentBox}>
-          <Text className="text-2xl font-bold text-white">Hello, {name}</Text>
-          <Text className="text-2xl font-bold text-white">
-            Tell me your symptoms
+          <Text
+            className="text-xl font-bold text-white py-3 mt-6"
+            style={[styles.subtitle, styles.textshadow]}
+          >
+            Hello, {name}
           </Text>
-          <View style={styles.voiceBox}>
-            {isRecording && (
-              <Text className="text-2xl font-bold text-white">
-                Recording...
-              </Text>
-            )}
+          <View style={styles.voicebox}>
+            <Text
+              className="text-4xl font-bold text-white"
+              style={[styles.title, styles.textshadow]}
+            >
+              {recordingMessage}
+            </Text>
             {voiceResult !== "" && (
-              <Text className="text-2xl font-bold text-white">
+              <Text
+                className="text-2xl font-bold text-white text-center"
+                style={[styles.result, styles.textshadow]}
+              >
                 {voiceResult}...
               </Text>
             )}
           </View>
-          <Pressable
-            ref={pressableRef}
-            style={styles.microphoneButton}
-            onPressIn={handlePressIn}
-            onPressOut={handlePressOut}
-          >
-            <FontAwesome name="microphone" size={50} color="red" />
-          </Pressable>
+          <View>
+            <View
+              className="flex-column items-center justify-center py-14"
+              style={styles.mic}
+            >
+              <Pressable
+                ref={pressableRef}
+                style={styles.microphoneButton}
+                onPressIn={() => {
+                  setRecording(true);
+                  handlePressIn();
+                }}
+                onPressOut={() => {
+                  handlePressOut();
+                  setRecording(false);
+                }}
+              >
+                {/* Default two rings */}
+                {!isRecording && (
+                  <>
+                    <View style={styles.ring2} />
+                    <View style={styles.ring1} />
+                  </>
+                )}
+                {isRecording && (
+                  <>
+                    <AnimatedRing
+                      delay={0}
+                      scale={0.5}
+                      isRecording={isRecording}
+                    />
+                    <AnimatedRing
+                      delay={1000}
+                      scale={1}
+                      isRecording={isRecording}
+                    />
+                    <AnimatedRing
+                      delay={2000}
+                      scale={1}
+                      isRecording={isRecording}
+                    />
+                    <AnimatedRing
+                      delay={3000}
+                      scale={1}
+                      isRecording={isRecording}
+                    />
+                  </>
+                )}
+                <FontAwesome name="microphone" size={60} style={styles.red} />
+              </Pressable>
+            </View>
+          </View>
+          <View style={styles.temp}>
+            {isFetching && <Loader />}
+            <Pressable onPress={logoutHandler} style={{ borderWidth: 1 }}>
+              <Text>Logout</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => navigation.navigate("Instruction")}
+              style={{ borderWidth: 1 }}
+            >
+              <Text>Instructions</Text>
+            </Pressable>
+          </View>
         </View>
-        {isFetching && <Loader />}
-        <Button title="logout" onPress={logoutHandler} />
-        <Button
-          title="Go to instructions"
-          onPress={() => navigation.navigate("Instruction")}
-        />
+        {/* More Instructions Section */}
+        <View className="mt-11" style={styles.instructions}>
+          {/* <Text
+            className="text-white text-lg py-1"
+            style={[styles.text, styles.textshadow]}
+          >
+            More Instructions
+          </Text> */}
+          <Marquee />
+        </View>
       </LinearGradient>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   linearGradient: {
     width: "100%",
     height: "100%",
   },
-  contentBox: {
-    marginTop: 100,
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
+  title: {
+    fontWeight: "600",
+    fontFamily: FontFamily.poppinsSemibold,
+    textAlign: "center",
+    lineHeight: 50,
+    textTransform: "capitalize",
   },
-  voiceBox: {
-    height: 200,
-    width: "80%",
+  subtitle: {
+    textAlign: "center",
+    fontFamily: FontFamily.poppinsSemibold,
+  },
+  text: {
+    fontFamily: FontFamily.poppinsSemibold,
+  },
+  textshadow: {
+    textShadowColor: "rgba(0, 0, 0, 0.2)",
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 2,
+  },
+  red: {
+    color: ThemeColors.red,
+  },
+  contentBox: {
+    marginTop: 30,
+  },
+  voicebox: {
+    height: 100,
+  },
+  temp: {
+    position: "absolute",
+    top: 400,
+    right: 0,
   },
   microphoneButton: {
-    width: 120,
-    height: 120,
+    width: 140,
+    height: 140,
     borderRadius: 120,
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
     margin: 20,
     zIndex: 3,
+    position: "absolute",
+    top: 60,
+  },
+  instructions: {
+    position: "absolute",
+    bottom: 10,
+  },
+  ring1: {
+    position: "absolute",
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  ring2: {
+    position: "absolute",
+    width: 250,
+    height: 250,
+    borderRadius: 140,
+    backgroundColor: "rgba(255,255,255,0.1)",
   },
 });
