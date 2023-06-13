@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
-import { FontFamily } from "../../theme";
+import { FontFamily, ThemeColors } from "../../theme";
 
 export default function Instruction(props) {
   const { apiResponse, setBookmark } = props;
@@ -63,49 +63,52 @@ export default function Instruction(props) {
                 className="text-4xl text-white font-bold"
                 style={styles.headings}
               >
-                Abrasions Abrasionsabrasionsabrasions
+                Abrasions
+                {apiResponse.title}
               </Text>
               <TouchableHighlight onPress={() => {}}>
                 <View>
                   <Icon
-                    name="bookmark"
+                    name={buttonClick ? "bookmark" : "bookmark-o"}
                     size={30}
                     color="#fff"
-                    style={[styles.shadow, styles.icon]}
+                    style={[styles.icon]}
                   />
                 </View>
               </TouchableHighlight>
             </View>
-            <SafeAreaView>
-              <ScrollView>
-                {/* Font size too small? text-lg better? */}
-                <Text style={[styles.text]} className="text-white text-base">
-                  Begin with washed hands. Gently clean the area with cool to
-                  lukewarm water and mild soap. Remove dirt or other particles
-                  from the wound using sterilized tweezers. For a mild scrape
-                  that’s not bleeding, leave the wound uncovered. If the wound
-                  egin with washed hands. Gently clean the area with cool to
-                  lukewarm water and mild soap. Remove dirt or other particles
-                  from the wound using sterilized tweezers. For a mild scrape
-                  that’s not bleeding, leave the wound uncovered. If the
-                  woundegin with washed hands. Gently clean the area with cool
-                  to lukewarm water and mild soap. Remove dirt or other
-                  particles from the wound using sterilized tweezers. For a mild
-                  scrape that’s not bleeding, leave the wound uncovered. If the
-                  wound egin with washed hands. Gently clean the area with cool
-                  to lukewarm water and mild soap. Remove dirt or other
-                  particles from the wound using sterilized tweezers. For a mild
-                  scrape that’s not bleeding, leave the wound uncovered. If the
-                  woundegin with washed hands. Gently clean the area with cool
-                  to lukewarm water and mild soap. Remove dirt or other
-                  particles from the wound using sterilized tweezers. For a mild
-                  scrape that’s not bleeding, leave the wound uncovered. If the
-                  wound
-                </Text>
-              </ScrollView>
-            </SafeAreaView>
-            <Pressable className="bg-white rounded py-3" style={styles.button}>
-              <Text className="text-center">Back</Text>
+
+            <ScrollView style={{ height: 500 }}>
+              {/* Font size too small? text-lg better? */}
+              <Text style={[styles.text]} className="text-white text-base mb-2">
+              {apiResponse.instruction}
+                Begin with washed hands. Gently clean the area with cool to
+                lukewarm water and mild soap. Remove dirt or other particles
+                from the wound using sterilized tweezers. For a mild scrape
+                that’s not bleeding, leave the wound uncovered. If the wound
+                egin with washed hands. Gently clean the area with cool to
+                lukewarm water and mild soap. Remove dirt or other particles
+                from the wound using sterilized tweezers. For a mild scrape
+                that’s not bleeding, leave the wound uncovered. If the woundegin
+                with washed hands. Gently clean the area with cool to lukewarm
+                water and mild soap. Remove dirt or other particles from the
+                wound using sterilized tweezers. For a mild scrape that’s not
+                bleeding, leave the wound uncovered. If the wound egin with
+                washed hands. Gently clean the area with cool to lukewarm water
+                and mild soap. Remove dirt or other particles from the wound
+                using sterilized tweezers. For a mild scrape that’s not
+                bleeding, leave the wound uncovered. If the woundegin with
+                washed hands. Gently clean the area with cool to lukewarm water
+                and mild soap. Remove dirt or other particles from the wound
+                using sterilized tweezers. For a mild scrape that’s not
+                bleeding, leave the wound uncovered. If the wound
+              </Text>
+            </ScrollView>
+
+            <Pressable className="bg-white rounded-md py-2 mt-4" style={styles.objectshadow}>
+              <Text style={styles.button} className="text-center text-lg uppercase">
+                Back
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -129,14 +132,23 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsSemibold,
     width: "90%",
   },
-  shadow: {
+  textshadow: {
     textShadowOffset: {
       width: 0,
       height: 4,
     },
     textShadowRadius: 2,
   },
-  icon: {},
+  objectshadow: {
+    elevation: 4,
+    shadowRadius: 2,
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 1,
+      height: 2,
+    },
+    shadowColor: "rgba(0, 0, 0, 0.2)",
+  },
   color: {
     color: "#555",
   },
@@ -145,8 +157,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
   },
   button: {
-    // position: "absolute",
-    // bottom: 40,
-    // left: '50%'
+    color: ThemeColors.red,
+    fontFamily: FontFamily.poppinsSemibold,
   },
 });
