@@ -14,14 +14,15 @@ import MedicationItem from "./MedicationItem";
 
 export default function MedicationList(props) {
   const { medications } = props;
+  console.log("medications", medications);
   return (
     <>
       <View style={styles.borderthick} />
-      {/* <FlatList
-        data={medications}
-        keyExtractor={(medication) => medication.id}
-        renderItem={({ item }) => <MedicationItem {...item} />}
-      /> */}
+      {medications &&
+        medications.length > 0 &&
+        medications.map((medication) => (
+          <MedicationItem key={medication.id} {...medication} />
+        ))}
       <View className="flex-row items-center justify-between px-3 py-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
