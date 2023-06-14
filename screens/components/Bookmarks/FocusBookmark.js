@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { authPost, authDelete } from "../../helpers/authenticatedCalls";
 import Feather from "react-native-vector-icons/Feather";
-import SpeechRecognitionComponent from "../Text-To-Speech/SpeechRecognitionComponent";
+// import SpeechRecognitionComponent from "../Text-To-Speech/SpeechRecognitionComponent";
 
 export default function FocusBookmark(props) {
   const { cancelFocusBookmark, focusBookmark } = props;
@@ -98,7 +98,7 @@ export default function FocusBookmark(props) {
               <Feather name="arrow-left-circle" size={30} color="gray" />
             </Pressable>
             <View style={styles.textBox}>
-              <SpeechRecognitionComponent onSpeechBoundary={instruction} />
+              {/* <SpeechRecognitionComponent onSpeechBoundary={instruction} /> */}
               <Text style={{ textAlign: "center" }}>{instruction}</Text>
             </View>
             <Pressable

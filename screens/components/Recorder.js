@@ -1,13 +1,13 @@
 import { StyleSheet, View, Text, Button, Pressable } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import Voice from "@react-native-voice/voice";
 import { getToken, removeToken } from "../helpers/tokenStorage";
 import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
 import { FontFamily, ThemeColors } from "../../theme";
+import SpeechVoice from "./SpeechVoice";
 import Marquee from "./Marquee";
 import AnimatedRing from "./AnimatedRing";
 
@@ -36,58 +36,10 @@ export default function Recorder(props) {
     }
   };
 
-  const onSpeechStart = (e) => {
-    console.log("onSpeechStart: ", e);
-  };
-
-  const onSpeechEnd = (e) => {
-    console.log("onSpeechEnd: ", e);
-  };
-
-  const onSpeechError = (e) => {
-    console.log("onSpeechError: ", e);
-  };
-
-  const onSpeechResults = (e) => {
-    console.log("onSpeechResults: ", e);
-    const result = e.value[0];
-    setVoiceResult(result);
-  };
-
-  const clear = () => {
-    setVoiceResult("");
-  };
-
   useEffect(() => {
-    clear();
+    setVoiceResult("");
     getDecodedName();
-    Voice.onSpeechStart = onSpeechStart;
-    Voice.onSpeechEnd = onSpeechEnd;
-    Voice.onSpeechError = onSpeechError;
-    Voice.onSpeechResults = onSpeechResults;
-    return () => {
-      Voice.destroy().then(Voice.removeAllListeners);
-    };
   }, []);
-
-  const recordHandler = async () => {
-    console.log("Recording...");
-    setIsRecording(true);
-    try {
-      await Voice.start("en-US");
-    } catch (e) {
-      console.error("error:", e);
-    }
-  };
-
-  const stopRecordingHandler = async () => {
-    try {
-      await Voice.stop();
-      setIsRecording(false);
-    } catch (e) {
-      console.error("error:", e);
-    }
-  };
 
   // Microphone Button Handlers
   const handlePressIn = () => {
@@ -95,14 +47,14 @@ export default function Recorder(props) {
     pressableRef.current.setNativeProps({
       style: { transform: [{ scale: scaleRef.current }] },
     });
-    recordHandler();
+    setRecording(true);
   };
   const handlePressOut = () => {
     scaleRef.current = 1;
     pressableRef.current.setNativeProps({
       style: { transform: [{ scale: scaleRef.current }] },
     });
-    stopRecordingHandler();
+    setRecording(false);
     setIsFetching(true);
     console.log("Voice Result", voiceResult);
 
@@ -177,14 +129,8 @@ export default function Recorder(props) {
               <Pressable
                 ref={pressableRef}
                 style={styles.microphoneButton}
-                onPressIn={() => {
-                  setRecording(true);
-                  handlePressIn();
-                }}
-                onPressOut={() => {
-                  handlePressOut();
-                  setRecording(false);
-                }}
+                onPressIn={handlePressIn}
+                onPressOut={handlePressOut}
               >
                 {/* Default two rings */}
                 {!isRecording && (
@@ -234,6 +180,12 @@ export default function Recorder(props) {
             </Pressable>
           </View>
         </View>
+        {isRecording && (
+          <SpeechVoice
+            setVoiceResult={setVoiceResult}
+            setIsRecording={setIsRecording}
+          />
+        )}
         {/* More Instructions Section */}
         <View className="mt-11" style={styles.instructions}>
           {/* <Text
