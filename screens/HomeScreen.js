@@ -65,6 +65,7 @@ export default function HomeScreen(props) {
             tabBarShowLabel: false,
             tabBarStyle: {
               backgroundColor: "white",
+             // backgroundColor: "transparent",
               position: "absolute",
               bottom: 25,
               marginHorizontal: 20,
@@ -223,7 +224,7 @@ export default function HomeScreen(props) {
           style={{
             width: getWidth() - 20,
             height: 2,
-            backgroundColor: ThemeColors.red,
+            //backgroundColor: ThemeColors.red,
             position: "absolute",
             bottom: 85,
             left: 50,

@@ -50,7 +50,7 @@ export default function EmergContactForm(props) {
       <Pressable
         title="Add"
         className="mt-4 rounded py-2"
-        style={styles.button}
+        style={[styles.button]}
         onPress={addContactHandler}
       >
         <Text>
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 3,
     backgroundColor: "#FE0944",
+    padding: 12
   },
   cross: {
     alignSelf: "flex-end",
