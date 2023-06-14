@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import { LinearGradient } from "expo-linear-gradient";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function BookmarkItem(props) {
   const { id, instruction, title, users_id, popUpBookmark } = props;
@@ -80,19 +80,18 @@ export default function BookmarkItem(props) {
       onPress={() => popUpBookmark([id, instruction, title, users_id])}
     >
       <View
-        className="flex items-center justify-center"
-        style={styles.innerborder}
+        className="flex-row items-center"
+        // style={[styles.innerborder, { borderWidth: 1 }]}
+        style={{ borderWidth: 1 }}
       >
-        <View className="flex items-center ">
-          <Image
-            style={{ width: 68, height: 64, marginBottom: 24 }}
-            contentFit="cover"
-            source={getIcon()}
-          />
-          <Text className="uppercase text-sm" style={styles.color}>
-            {title}
-          </Text>
-        </View>
+        <Image
+          style={{ width: 68, height: 64 }}
+          contentFit="cover"
+          source={getIcon()}
+        />
+        <Text className="uppercase text-sm" style={styles.color}>
+          {title}
+        </Text>
       </View>
     </Pressable>
   );
@@ -111,15 +110,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#FE0944",
   },
   card: {
-    width: 160,
-    height: 160,
+    width: "100%",
+    height: "100%",
   },
-  color: {
-    color: "#555",
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
   },
   innerborder: {
-    width: 152,
-    height: 152,
+    width: "98%",
+    height: "93%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",

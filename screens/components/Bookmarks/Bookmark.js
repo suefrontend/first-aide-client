@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import BookmarkItem from "./BookmarkItem";
 import { authGet } from "../../helpers/authenticatedCalls";
 import FocusBookmark from "./FocusBookmark";
+import { FontFamily } from "../../../theme";
 
 export default function Bookmark(props) {
   const [allBookmarks, setAllBookmarks] = useState([]);
@@ -44,7 +45,7 @@ export default function Bookmark(props) {
         <View style={styles.wrapper}>
           <View style={styles.contentBox}>
             <Text
-              className="py-6 text-2xl font-bold text-white"
+              className="py-4 text-2xl font-bold text-white"
               style={styles.headings}
             >
               Bookmarks
@@ -53,7 +54,6 @@ export default function Bookmark(props) {
             <FlatList
               data={allBookmarks}
               keyExtractor={(allBookmarks) => allBookmarks.id}
-              numColumns={2}
               renderItem={({ item }) => (
                 <BookmarkItem
                   {...item}
@@ -61,9 +61,6 @@ export default function Bookmark(props) {
                   cancelFocusBookmark={cancelFocusBookmark}
                 />
               )}
-              columnWrapperStyle={{
-                justifyContent: "space-between",
-              }}
             />
           </View>
         </View>
@@ -109,6 +106,7 @@ const styles = StyleSheet.create({
       height: 4,
     },
     textShadowRadius: 2,
+    fontFamily: FontFamily.poppinsSemibold,
   },
   modalContainer: {
     flex: 1,
