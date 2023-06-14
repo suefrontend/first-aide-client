@@ -1,7 +1,6 @@
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function EmergencyContactItem({
   id,
@@ -45,12 +44,12 @@ export default function EmergencyContactItem({
           </View>
         </View>
         <View>
-          <Text className="text-lg mb-1" style={[styles.red]}>
+          <Text className="text-xl mb-1" style={styles.primarycolor}>
             {name}
           </Text>
           <View className="flex-row">
             <Icon name="phone" size={20} color="#c2c2c2" />
-            <Text className="ml-1" style={[styles.text]}>
+            <Text className="ml-1" style={styles.color}>
               {phone}
             </Text>
           </View>
@@ -75,19 +74,19 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   labelbg: {
-    backgroundColor: ThemeColors.pinkbg,
+    backgroundColor: "#FFECF0",
   },
   labeltext: {
-    color: ThemeColors.pinklabeltext,
-    fontFamily: FontFamily.poppinsMedium,
+    color: "#ff8aa6",
   },
-  red: {
-    color: ThemeColors.red,
-    fontFamily: FontFamily.poppinsMedium,
+  primarycolor: {
+    color: "#FE0944",
   },
-  text: {
-    color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsMedium,
+  color: {
+    color: "#555",
+  },
+  bg: {
+    backgroundColor: "#FE0944",
   },
   inputsmall: {
     width: "48%",
@@ -99,6 +98,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: ThemeColors.red,
+    backgroundColor: "#FE0944",
   },
 });

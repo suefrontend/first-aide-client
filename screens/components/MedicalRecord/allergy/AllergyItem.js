@@ -11,7 +11,6 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
 import { authDelete } from "../../../helpers/authenticatedCalls";
-import { FontFamily, ThemeColors } from "../../../../theme";
 
 export default function AllergyItem({ id, name, severity, setAllergies }) {
   const deleteAllergy = async (id) => {
@@ -33,12 +32,12 @@ export default function AllergyItem({ id, name, severity, setAllergies }) {
     <>
       <View className="flex-row py-2 justify-between">
         <View style={styles.leftrow}>
-          <Text className="text-base pl-4" style={styles.text}>
+          <Text className="text-base pl-4" style={styles.color}>
             {name}
           </Text>
         </View>
         <View style={styles.rightrow}>
-          <Text className="text-base" style={styles.text}>
+          <Text className="text-base" style={styles.color}>
             {severity}
           </Text>
         </View>
@@ -73,9 +72,11 @@ const styles = StyleSheet.create({
     },
     textShadowRadius: 2,
   },
-  text: {
-    color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsMedium,
+  bg: {
+    backgroundColor: "#FE0944",
+  },
+  color: {
+    color: "#555",
   },
   borderthick: {
     height: 2,
@@ -102,6 +103,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: ThemeColors.red,
+    backgroundColor: "#FE0944",
   },
 });
