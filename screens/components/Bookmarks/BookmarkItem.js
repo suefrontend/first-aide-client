@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     width: "97%",
     height: 98,
     borderWidth: 1,
-    borderColor: "#ff8aa6",
+    borderColor: ThemeColors.pinklabeltext,
     borderStyle: "solid",
     borderRadius: 6,
   },
