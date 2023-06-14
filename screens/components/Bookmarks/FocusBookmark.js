@@ -65,7 +65,7 @@ export default function FocusBookmark(props) {
                     width: "100%",
                   }}
                 >
-                  <Text className="text-3xl text-white" style={styles.heading}>
+                  <Text className="text-3xl text-white mt-3" style={styles.heading}>
                     {title && title}
                     {!title && "Untitled Bookmark"}
                   </Text>
@@ -73,39 +73,43 @@ export default function FocusBookmark(props) {
                     style={styles.editButton}
                     onPress={() => setEditTitle(true)}
                   >
-                    <Text style={{ color: "white" }}>Edit</Text>
+                    <Text style={styles.font} className="text-white">
+                      Edit
+                    </Text>
                   </Pressable>
                 </View>
               </>
             )}
             {editTitle && (
               <>
-                <TextInput
-                  className="bg-red-200 rounded-md p-3"
-                  style={{ flex: 2, marginRight: 10, marginVertical: 10 }}
-                  placeholder="Edit Title"
-                  placeholderTextColor="#a9a9a9"
-                  onChangeText={(text) => setNewTitle(text)}
-                />
-                <Pressable
-                  style={styles.editButton}
-                  onPress={() => editBookmark(id, newTitle)}
-                >
-                  <Text style={{ color: "white" }}>Send</Text>
-                </Pressable>
+                <View className="flex-row w-full mb-6">
+                  <TextInput
+                    style={[styles.text, { flex: 2 }]}
+                    className="bg-white rounded-md px-3 py-3 text-lg leading-7 mr-2"
+                    placeholder="Edit Title"
+                    placeholderTextColor="#a9a9a9"
+                    onChangeText={(text) => setNewTitle(text)}
+                  />
+                  <Pressable
+                    style={styles.editButton}
+                    onPress={() => editBookmark(id, newTitle)}
+                    className="bg-white"
+                  >
+                    <Text style={[styles.font, styles.red]}>Send</Text>
+                  </Pressable>
+                </View>
               </>
             )}
           </View>
         </View>
         <View style={styles.bookmarkInfo}>
           <View style={styles.innerborder}>
-            <Pressable style={{}} onPress={cancelFocusBookmark}>
-              {/* <Feather name="closecircleo" size={30} color="gray" /> */}
-              <AntIcon
-                name="closecircleo"
+            <Pressable onPress={cancelFocusBookmark}>
+              <Icon
+                name="close"
                 size={30}
-                color="#c2c2c2"
-                style={{ position: "absolute", right: 8, top: 8 }}
+                color={ThemeColors.lightgray}
+                style={{ position: "absolute", right: 10, top: 10 }}
               />
             </Pressable>
             <View style={styles.textBox}>
@@ -157,6 +161,9 @@ const styles = StyleSheet.create({
     color: ThemeColors.text,
     fontFamily: FontFamily.poppinsMedium,
   },
+  red: {
+    color: ThemeColors.red,
+  },
   font: {
     fontFamily: FontFamily.poppinsSemibold,
   },
@@ -164,12 +171,16 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: "white",
     borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    elevation: 3,
   },
   textBox: {
     width: "90%",
     alignSelf: "center",
     paddingTop: 60,
-    paddingBottom: 20
+    paddingBottom: 20,
   },
   innerborder: {
     alignSelf: "center",
@@ -191,7 +202,7 @@ const styles = StyleSheet.create({
   },
   editButton: {
     width: 50,
-    height: 30,
+    height: 54,
     borderColor: "white",
     borderWidth: 1,
     borderRadius: 5,
