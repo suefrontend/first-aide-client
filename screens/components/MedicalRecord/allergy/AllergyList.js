@@ -55,7 +55,7 @@ export default function AllergyList(props) {
           </Text>
         </View>
         <View style={styles.rightrow}>
-          <Text className="ml-1" style={styles.text}>
+          <Text className="ml-2" style={styles.text}>
             Severity
           </Text>
         </View>
@@ -81,17 +81,15 @@ export default function AllergyList(props) {
       <View className="flex-row items-center justify-between px-3 py-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
-          style={styles.inputsmall}
+          style={[styles.inputsmall, styles.text]}
           placeholder="Allergy"
-          placeholderTextColor="#a9a9a9"
           value={newAllergyName}
           onChangeText={(e) => setNewAllergyName(e)}
         />
         <TextInput
           className="bg-gray-200 rounded p-2"
-          style={styles.inputsmall}
+          style={[styles.inputsmall, styles.text]}
           placeholder="Severity"
-          placeholderTextColor="#a9a9a9"
           value={newAllergySeverity}
           onChangeText={(e) => setNewAllergySeverity(e)}
         />
@@ -120,14 +118,14 @@ const styles = StyleSheet.create({
   borderthick: {
     height: 2,
     borderTopWidth: 2,
-    borderColor: "#e6e6e6",
+    borderColor: ThemeColors.grayborder,
     borderStyle: "solid",
     width: "100%",
   },
   borderthin: {
     height: 1,
     borderTopWidth: 1,
-    borderColor: "#e6e6e6",
+    borderColor: ThemeColors.grayborder,
     borderStyle: "solid",
     width: "100%",
   },

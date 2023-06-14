@@ -47,7 +47,7 @@ export default function AllergyItem({ id, name, severity, setAllergies }) {
             name="close"
             size={20}
             color="#c2c2c2"
-            style={{ marginRight: 10 }}
+            style={{ marginRight: 16 }}
           />
         </Pressable>
       </View>
@@ -80,21 +80,21 @@ const styles = StyleSheet.create({
   borderthick: {
     height: 2,
     borderTopWidth: 2,
-    borderColor: "#e6e6e6",
+    borderColor: ThemeColors.grayborder,
     borderStyle: "solid",
     width: "100%",
   },
   borderthin: {
     height: 1,
     borderTopWidth: 1,
-    borderColor: "#e6e6e6",
+    borderColor: ThemeColors.grayborder,
     borderStyle: "solid",
     width: "100%",
   },
   leftrow: {
-    width: 80,
+    width: 152,
   },
-  rightrow: { width: 90 },
+  rightrow: { width: 147, },
   inputsmall: {
     width: "43%",
   },
