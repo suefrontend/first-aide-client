@@ -10,6 +10,9 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { authPost, authDelete } from "../../helpers/authenticatedCalls";
 import Feather from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/FontAwesome";
+import AntIcon from "react-native-vector-icons/AntDesign";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function FocusBookmark(props) {
   const { cancelFocusBookmark, focusBookmark } = props;
@@ -54,50 +57,71 @@ export default function FocusBookmark(props) {
           <View style={styles.contentBox}>
             {!editTitle && (
               <>
-                <Text
-                  className="py-6 text-2xl font-bold text-white"
-                  style={styles.headings}
+                <View
+                  className="flex-row justify-between pb-6"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
                 >
-                  {title && title}
-                  {!title && "Untitled Bookmark"}
-                </Text>
-                <Pressable
-                  style={styles.editButton}
-                  onPress={() => setEditTitle(true)}
-                >
-                  <Text style={{ color: "white" }}>Edit</Text>
-                </Pressable>
+                  <Text
+                    className="text-3xl text-white mt-3"
+                    style={[styles.heading, { width: "80%" }]}
+                  >
+                    {title && title}
+                    {!title && "Untitled Bookmark"}Test test
+                  </Text>
+                  <Pressable
+                    style={styles.editButton}
+                    onPress={() => setEditTitle(true)}
+                  >
+                    <Text style={styles.font} className="text-white">
+                      Edit
+                    </Text>
+                  </Pressable>
+                </View>
               </>
             )}
             {editTitle && (
               <>
-                <TextInput
-                  className="bg-red-200 rounded-md p-3"
-                  style={{ flex: 2, marginRight: 10, marginVertical: 10 }}
-                  placeholder="Edit Title"
-                  placeholderTextColor="#a9a9a9"
-                  onChangeText={(text) => setNewTitle(text)}
-                />
-                <Pressable
-                  style={styles.editButton}
-                  onPress={() => editBookmark(id, newTitle)}
-                >
-                  <Text style={{ color: "white" }}>Send</Text>
-                </Pressable>
+                <View className="flex-row w-full mb-6">
+                  <TextInput
+                    style={[styles.text, { flex: 2 }]}
+                    className="bg-white rounded-md px-3 py-3 text-lg leading-7 mr-2"
+                    placeholder="Edit Title"
+                    placeholderTextColor="#a9a9a9"
+                    onChangeText={(text) => setNewTitle(text)}
+                  />
+                  <Pressable
+                    style={styles.editButton}
+                    onPress={() => editBookmark(id, newTitle)}
+                    className="bg-white"
+                  >
+                    <Text style={[styles.font, styles.red]}>Send</Text>
+                  </Pressable>
+                </View>
               </>
             )}
           </View>
         </View>
         <View style={styles.bookmarkInfo}>
           <View style={styles.innerborder}>
-            <Pressable
-              style={{ marginLeft: 10, marginTop: 10 }}
-              onPress={cancelFocusBookmark}
-            >
-              <Feather name="arrow-left-circle" size={30} color="gray" />
+            <Pressable onPress={cancelFocusBookmark}>
+              <Icon
+                name="close"
+                size={30}
+                color={ThemeColors.lightgray}
+                style={{ marginLeft: "auto", marginRight: 6, marginTop: 6 }}
+              />
             </Pressable>
             <View style={styles.textBox}>
-              <Text style={{ textAlign: "center" }}>{instruction}</Text>
+              <Text
+                className="text-xl text-center leading-8"
+                style={styles.text}
+              >
+                {instruction}
+              </Text>
             </View>
             <Pressable
               title="Add"
@@ -105,7 +129,9 @@ export default function FocusBookmark(props) {
               style={styles.button}
               onPress={deleteBookmark}
             >
-              <Text style={{ color: "white" }}>Delete Bookmark</Text>
+              <Text className="text-white text-lg" style={styles.font}>
+                Delete Bookmark
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -131,24 +157,33 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
   },
-  headings: {
-    flex: 2,
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
+  heading: {
+    fontFamily: FontFamily.poppinsSemibold,
+  },
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
+  },
+  red: {
+    color: ThemeColors.red,
+  },
+  font: {
+    fontFamily: FontFamily.poppinsSemibold,
   },
   bookmarkInfo: {
     width: "90%",
     backgroundColor: "white",
     borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    elevation: 3,
   },
   textBox: {
     width: "90%",
     alignSelf: "center",
-    marginVertical: 50,
+    paddingTop: 30,
+    paddingBottom: 20,
   },
   innerborder: {
     alignSelf: "center",
@@ -164,13 +199,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: "#FE0944",
+    backgroundColor: ThemeColors.red,
     width: "90%",
     marginBottom: 20,
   },
   editButton: {
     width: 50,
-    height: 30,
+    height: 54,
     borderColor: "white",
     borderWidth: 1,
     borderRadius: 5,

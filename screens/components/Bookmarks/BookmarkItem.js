@@ -75,22 +75,19 @@ export default function BookmarkItem(props) {
 
   return (
     <Pressable
-      style={styles.card}
-      className="bg-white flex items-center justify-center rounded-lg"
+      style={[styles.card]}
+      className="bg-white flex items-center justify-center rounded-lg mb-2"
       onPress={() => popUpBookmark([id, instruction, title, users_id])}
     >
-      <View
-        className="flex-row items-center"
-        // style={[styles.innerborder, { borderWidth: 1 }]}
-        style={{ borderWidth: 1 }}
-      >
+      <View className="flex-row items-center" style={styles.innerborder}>
         <Image
-          style={{ width: 68, height: 64 }}
+          style={{ width: 50, height: 40 }}
           contentFit="cover"
           source={getIcon()}
+          className="mx-2"
         />
-        <Text className="uppercase text-sm" style={styles.color}>
-          {title}
+        <Text style={[styles.text, { width: "78%" }]} className="text-lg">
+          {title}Stopping a nose blee
         </Text>
       </View>
     </Pressable>
@@ -98,31 +95,24 @@ export default function BookmarkItem(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginLeft: "auto",
-    marginRight: "auto",
-    shadowColor: "#000",
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.3,
-    elevation: 3,
-  },
-  bg: {
-    backgroundColor: "#FE0944",
-  },
   card: {
     width: "100%",
-    height: "100%",
+    height: 110,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    elevation: 3,
   },
   text: {
     color: ThemeColors.text,
     fontFamily: FontFamily.poppinsMedium,
   },
   innerborder: {
-    width: "98%",
-    height: "93%",
+    width: "97%",
+    height: 98,
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",
-    borderRadius: 8,
+    borderRadius: 6,
   },
 });
