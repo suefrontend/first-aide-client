@@ -5,6 +5,7 @@ import BookmarkItem from "./BookmarkItem";
 import { authGet } from "../../helpers/authenticatedCalls";
 import FocusBookmark from "./FocusBookmark";
 import { FontFamily } from "../../../theme";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function Bookmark(props) {
   const [allBookmarks, setAllBookmarks] = useState([]);
@@ -42,10 +43,11 @@ export default function Bookmark(props) {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View style={[styles.wrapper, { borderWidth: 1 }]} >
+        <View style={[styles.wrapper, { borderColor: "rgba(255,255,255,0.2" }]}>
           <View style={styles.contentBox}>
+            <Icon name="ellipsis-h" size={30} color="#fff" />
             <Text
-              className="text-2xl font-bold text-white"
+              className="text-2xl font-bold text-white pt-4 pb-4"
               style={styles.headings}
             >
               Bookmarks
@@ -93,19 +95,13 @@ const styles = StyleSheet.create({
   },
   contentBox: {
     width: "100%",
-    height: '100%',
+    height: "100%",
   },
   linearGradient: {
     width: "100%",
     height: "100%",
   },
   headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
     fontFamily: FontFamily.poppinsSemibold,
   },
   modalContainer: {
