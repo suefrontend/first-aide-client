@@ -16,6 +16,7 @@ import AllergyList from "./allergy/AllergyList";
 import { authGet } from "../../helpers/authenticatedCalls";
 import MedicationList from "./medication/MedicationList";
 import ConditionList from "./condition/ConditionList";
+import { FontFamily } from "../../../theme";
 
 export default function MedicalRecordScreen() {
   const [allergies, setAllergies] = useState({});
@@ -46,7 +47,7 @@ export default function MedicalRecordScreen() {
           <View style={styles.wrapper}>
             <View style={styles.titleBox}>
               <Text
-                className="py-6 text-2xl font-bold text-white"
+                className="py-4 text-2xl font-bold text-white"
                 style={styles.headings}
               >
                 Medical Record
@@ -99,12 +100,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
+    fontFamily: FontFamily.poppinsSemibold,
   },
   bg: {
     backgroundColor: "#FE0944",
