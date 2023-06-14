@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { authPost, authDelete } from "../../helpers/authenticatedCalls";
 import Feather from "react-native-vector-icons/Feather";
+import { ThemeColors } from "../../../theme";
 
 export default function FocusBookmark(props) {
   const { cancelFocusBookmark, focusBookmark } = props;
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     width: "97%",
     borderWidth: 1,
-    borderColor: "#ff8aa6",
+    borderColor: ThemeColors.pinklabeltext,
     borderStyle: "solid",
     borderRadius: 8,
   },
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: "#FE0944",
+    backgroundColor: ThemeColors.red,
     width: "90%",
     marginBottom: 20,
   },

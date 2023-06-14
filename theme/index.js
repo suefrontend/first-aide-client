@@ -4,6 +4,7 @@ export const ThemeColors = {
   pinkbg: "#ffecf0",
   pinklabeltext: "#ff8aa6",
   lightgray: "#c2c2c2",
+  grayborder: "#e6e6e6",
 };
 export const FontFamily = {
   poppinsRegular: "Poppins_regular",

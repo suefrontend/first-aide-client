@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   borderthick: {
     height: 2,
     borderTopWidth: 2,
-    borderColor: ThemeColors.lightgray,
+    borderColor: ThemeColors.grayborder,
     borderStyle: "solid",
     width: "100%",
   },
