@@ -11,7 +11,7 @@ import MedicalRecordScreen from "./components/MedicalRecord/MedicalRecordScreen"
 import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmarks/Bookmark";
 import EmergencyContact from "./components/EmergContacts/EmergencyContact";
-import Instruction from "./components/Instruction";
+import Instruction from "./Instruction";
 
 const Tab = createBottomTabNavigator();
 

@@ -10,29 +10,38 @@ import {
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { authPost } from "../helpers/authenticatedCalls";
-import TextToSpeechScreen from "./Text-To-Speech/TextToSpeechScreen";
-import { FontFamily, ThemeColors } from "../../theme";
+import { authPost } from "./helpers/authenticatedCalls";
+import TextToSpeechScreen from "./components/Text-To-Speech/TextToSpeechScreen";
+import { FontFamily, ThemeColors } from "../theme";
 
 export default function Instruction(props) {
-  const { apiResponse, setBookmark } = props;
-  const [buttonClick, setButtonClick] = useState(false);
+  const {
+    setShowInstruction,
+    instructionText,
+    setInstructionText,
+    bookmark,
+    setBookmark,
+  } = props;
+  const [buttonClick, setButtonClick] = useState(false); // Bookmark button state
 
   const saveInstruction = () => {
     if (!buttonClick) {
       setButtonClick(true);
-      if (apiResponse.instruction === "" || apiResponse.instruction === null) {
+      if (
+        instructionText.instruction === "" ||
+        instructionText.instruction === null
+      ) {
         alert("No instruction to save");
         setButtonClick(false);
         return;
       }
 
-      setBookmark(apiResponse);
-      console.log(apiResponse);
+      setBookmark(instructionText);
+      console.log(instructionText);
 
       const addBookmark = async () => {
         try {
-          const response = await authPost("/bookmarks/", apiResponse);
+          const response = await authPost("/bookmarks/", instructionText);
         } catch (error) {
           console.log(error);
         }
@@ -49,6 +58,11 @@ export default function Instruction(props) {
     }
   };
 
+  const dummy = {
+    title: "Instruction",
+    instruction: "Hello, this is text.",
+  };
+
   return (
     <View>
       <LinearGradient
@@ -62,7 +76,8 @@ export default function Instruction(props) {
                 className="text-4xl text-white font-bold"
                 style={styles.headings}
               >
-                {apiResponse.title}
+                {/* {instructionText.title ? instructionText.title : "Instruction"} */}
+                {dummy.title}
               </Text>
 
               <Pressable
@@ -84,13 +99,16 @@ export default function Instruction(props) {
 
             <ScrollView style={{ height: 500 }}>
               <Text style={[styles.text]} className="text-white text-base mb-2">
-                {apiResponse.instruction}
+                {/* {instructionText.instruction}
+                 */}
+                {dummy.instruction}
               </Text>
 
               <Pressable
                 className="bg-white rounded-md py-2 mt-4"
                 style={styles.objectshadow}
                 marginBottom={20}
+                onPress={() => setShowInstruction(false)}
               >
                 <Text
                   style={styles.button}
@@ -102,7 +120,7 @@ export default function Instruction(props) {
             </ScrollView>
           </View>
         </View>
-        <TextToSpeechScreen instructions={apiResponse.instruction} />
+        <TextToSpeechScreen instructions={dummy.instruction} />
       </LinearGradient>
     </View>
   );
@@ -119,7 +137,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   headings: {
-    fontFamily: FontFamily.poppinsSemibold,
+    // fontFamily: FontFamily.poppinsSemibold,
     width: "90%",
   },
   textshadow: {
@@ -143,11 +161,11 @@ const styles = StyleSheet.create({
     color: "#555",
   },
   text: {
-    fontFamily: FontFamily.poppinsSemibold,
+    // fontFamily: FontFamily.poppinsSemibold,
     lineHeight: 28,
   },
   button: {
     color: ThemeColors.red,
-    fontFamily: FontFamily.poppinsSemibold,
+    // fontFamily: FontFamily.poppinsSemibold,
   },
 });

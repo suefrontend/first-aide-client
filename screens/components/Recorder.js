@@ -226,12 +226,6 @@ export default function Recorder(props) {
             <Pressable onPress={logoutHandler} style={{ borderWidth: 1 }}>
               <Text>Logout</Text>
             </Pressable>
-            <Pressable
-              onPress={() => navigation.navigate("Instruction")}
-              style={{ borderWidth: 1 }}
-            >
-              <Text>Instructions</Text>
-            </Pressable>
           </View>
         </View>
         {/* More Instructions Section */}
