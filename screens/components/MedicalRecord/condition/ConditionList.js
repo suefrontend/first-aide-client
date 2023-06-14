@@ -54,7 +54,7 @@ export default function ConditionList(props) {
           />
         ))}
 
-      <View className="flex-row items-center justify-between px-3 py-3">
+      <View className="flex-row items-center justify-between px-3 pt-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
           placeholder="Condition"

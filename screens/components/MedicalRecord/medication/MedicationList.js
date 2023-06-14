@@ -53,7 +53,7 @@ export default function MedicationList(props) {
             setMedications={setMedications}
           />
         ))}
-      <View className="flex-row items-center justify-between px-3 py-3">
+      <View className="flex-row items-center justify-between px-3 pt-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
           placeholder="Medication"

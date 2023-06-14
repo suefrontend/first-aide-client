@@ -48,14 +48,14 @@ export default function AllergyList(props) {
   return (
     <>
       <View style={styles.borderthick} />
-      <View className="flex-row py-1 justify-between">
+      <View className="flex-row py-1 justify-between bg-gray-100">
         <View style={styles.leftrow}>
-          <Text className="pl-4" style={styles.text}>
+          <Text className="pl-4" style={styles.th}>
             Allergy
           </Text>
         </View>
         <View style={styles.rightrow}>
-          <Text className="ml-2" style={styles.text}>
+          <Text className="ml-2" style={styles.th}>
             Severity
           </Text>
         </View>
@@ -63,7 +63,7 @@ export default function AllergyList(props) {
           <Icon
             name="close"
             size={20}
-            color="#ffffff"
+            color="rgb(243 244 246)"
             // style={{ marginRight: 6 }}
           />
         </View>
@@ -78,7 +78,7 @@ export default function AllergyList(props) {
             setAllergies={setAllergies}
           />
         ))}
-      <View className="flex-row items-center justify-between px-3 py-3">
+      <View className="flex-row items-center justify-between px-3 pt-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
           style={[styles.inputsmall, styles.text]}
@@ -141,6 +141,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 3,
     backgroundColor: ThemeColors.red,
+  },
+  th: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsSemibold,
   },
   text: {
     color: ThemeColors.text,

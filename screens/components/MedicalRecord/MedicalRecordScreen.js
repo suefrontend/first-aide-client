@@ -58,7 +58,10 @@ export default function MedicalRecordScreen() {
             className="bg-white rounded-lg py-3 mb-2"
             style={styles.infoCard}
           >
-            <Text className="text-lg font-bold mb-2 pl-4" style={styles.text}>
+            <Text
+              className="text-lg mb-2 pl-4"
+              style={styles.cardtitle}
+            >
               Allergies
             </Text>
             <AllergyList allergies={allergies} setAllergies={setAllergies} />
@@ -67,7 +70,10 @@ export default function MedicalRecordScreen() {
             className="bg-white rounded-lg py-3 mb-2"
             style={styles.infoCard}
           >
-            <Text className="text-lg font-bold mb-2 pl-4" style={styles.text}>
+            <Text
+              className="text-lg mb-2 pl-4"
+              style={styles.cardtitle}
+            >
               Medications
             </Text>
             <MedicationList
@@ -76,7 +82,10 @@ export default function MedicalRecordScreen() {
             />
           </View>
           <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
-            <Text className="text-lg font-bold mb-2 pl-4" style={styles.text}>
+            <Text
+              className="text-lg mb-2 pl-4"
+              style={styles.cardtitle}
+            >
               Conditions
             </Text>
             <ConditionList
@@ -114,8 +123,8 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
     fontFamily: FontFamily.poppinsSemibold,
   },
-  text: {
-    fontFamily: FontFamily.poppinsMedium,
+  cardtitle: {
+    fontFamily: FontFamily.poppinsSemibold,
     color: ThemeColors.text,
   },
   borderthick: {

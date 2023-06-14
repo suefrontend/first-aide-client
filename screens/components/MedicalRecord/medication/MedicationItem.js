@@ -45,7 +45,7 @@ export default function MedicationItem({ id, name, setMedications }) {
                 name="close"
                 size={20}
                 color="#c2c2c2"
-                style={{ marginRight: 10 }}
+                style={{ marginRight: 16 }}
               />
             </Pressable>
           </View>
