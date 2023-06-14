@@ -1,31 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Speech from 'expo-speech';
-
-export default function SpeechRecognitionComponent({ onSpeechBoundary }) {
+export default function SpeechRecognitionComponent({ onSpeechBoundary, instruction }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [spokenText, setSpokenText] = useState('');
-  const [instruction, setInstruction] = useState('');
+  
 
-  useEffect(() => {
-    const fetchInstructions = async () => {
-      try {
-        const response = await fetch('http://localhost:8000/instructions/instruction');
-        const data = await response.json();
+ 
+  // useEffect(() => {
+  //   const fetchInstructions = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:8000/instructions', {
+  //         method: 'POST', 
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: { input: 'instruction'}
+  //       });
 
-        if (response.ok) {
-          const { instruction } = data;
-          setInstruction(instruction);
-        } else {
-          console.error('An error occurred:', data.error);
-        }
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
-    };
+  //       const data = await response.json();
 
-    fetchInstructions();
-  }, []);
+  //       if (response.ok) {
+  //         const { instruction } = data;
+  //         setInstruction(instruction);
+  //       } else {
+  //         console.error('An error occurred:', data.error);
+  //       }
+  //     } catch (error) {
+  //       console.error('An error occurred:', error);
+  //     }
+  //   };
+
+  //   fetchInstructions();
+  // }, []);
 
   const speak = async () => {
     setIsSpeaking(true);
@@ -54,9 +61,15 @@ export default function SpeechRecognitionComponent({ onSpeechBoundary }) {
     onSpeechBoundary(event);
   };
 
+  useEffect(() => {
+    if (instruction) {  
+      speak();
+    }
+  }, [instruction]);
+
   return (
     <View style={styles.container}>
-      <Button title="Press to hear some words" onPress={speak} disabled={isSpeaking} />
+      {/* <Button title="Press to hear some words" onPress={speak} disabled={isSpeaking} /> */}
       <View style={styles.spokenTextContainer}>
         <Text style={styles.spokenText}>{spokenText}</Text>
       </View>

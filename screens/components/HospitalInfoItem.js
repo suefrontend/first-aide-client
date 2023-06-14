@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconEn from "react-native-vector-icons/Entypo";
 
-export default function HospitaInfoItem({ name, address, phone, hours }) {
+export default function HospitalInfoItem({ name, address, phone, hours }) {
   return (
     <View>
       <View className="rounded-lg bg-white py-3 px-4 mb-4" style={styles.card}>

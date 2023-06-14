@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import SpeechRecognitionComponent from "./components/SpeechRecognition";
 import SpokenTextComponent from "./components/SpokenText";
-
+import { instruction } from "./components/Instruction";
 export default function TextToSpeechScreen() {
   const [spokenText, setSpokenText] = useState("");
 
@@ -15,7 +15,7 @@ export default function TextToSpeechScreen() {
 
   return (
     <View style={styles.container}>
-      <SpeechRecognitionComponent onSpeechBoundary={handleSpeechBoundary} />
+      <SpeechRecognitionComponent onSpeechBoundary={handleSpeechBoundary} instructions={instruction}/>
       <SpokenTextComponent spokenText={spokenText} />
     </View>
   );
