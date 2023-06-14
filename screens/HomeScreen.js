@@ -147,7 +147,8 @@ export default function HomeScreen(props) {
                   <Icon
                     name="microphone"
                     size={30}
-                    color={focused ? ThemeColors.red : "#fff"}
+                    color="#fff"
+                    style={{ marginLeft: "auto", marginRight: "auto" }}
                   />
                 </View>
               ),
