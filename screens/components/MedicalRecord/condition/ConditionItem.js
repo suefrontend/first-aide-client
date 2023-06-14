@@ -10,9 +10,25 @@ import {
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
+import { authDelete } from "../../../helpers/authenticatedCalls";
 
-export default function ConditionItem({ name, allergy, severity }) {
-  console.log("name", name);
+export default function ConditionItem({ id, name, setConditions }) {
+  const deleteCondition = async (id) => {
+    try {
+      const response = await authDelete(`/medicalRecords/conditions`, id);
+      if (response.status === 200) {
+        alert("Condition deleted");
+        setConditions((prev) =>
+          prev.filter((condition) => condition.id !== id)
+        );
+      } else {
+        alert("Oops! Something went wrong. Please try again later.");
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       {"name" && (
@@ -23,14 +39,14 @@ export default function ConditionItem({ name, allergy, severity }) {
                 {name}
               </Text>
             </View>
-            <View>
+            <Pressable onPress={() => deleteCondition(id)}>
               <Icon
                 name="close"
                 size={20}
                 color="#c2c2c2"
                 style={{ marginRight: 10 }}
               />
-            </View>
+            </Pressable>
           </View>
           <View style={styles.borderthin} />
         </>

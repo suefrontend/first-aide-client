@@ -72,7 +72,10 @@ export default function MedicalRecordScreen() {
             <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Conditions
             </Text>
-            <ConditionList conditions={conditions} />
+            <ConditionList
+              conditions={conditions}
+              setConditions={setConditions}
+            />
           </View>
         </ScrollView>
       </LinearGradient>
