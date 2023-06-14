@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
-import { FontFamily } from "../../theme";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconEn from "react-native-vector-icons/Entypo";
+import { FontFamily, ThemeColors } from "../../theme";
 
 export default function HospitaInfoItem({ name, address, phone, hours }) {
   return (
     <View>
       <View className="rounded-lg bg-white py-3 px-4 mb-2" style={styles.card}>
-        <Text className="text-lg" style={[styles.text, styles.gray]}>
+        <Text className="text-lg" style={styles.text}>
           {name}
         </Text>
 
@@ -19,7 +19,7 @@ export default function HospitaInfoItem({ name, address, phone, hours }) {
               color="#c2c2c2"
               style={{ marginLeft: -5 }}
             />
-            <Text style={[styles.text, styles.gray]} className="mr-5">
+            <Text style={styles.text} className="mr-5">
               {address}
             </Text>
           </View>
@@ -30,12 +30,12 @@ export default function HospitaInfoItem({ name, address, phone, hours }) {
               color="#c2c2c2"
               style={{ marginRight: 2 }}
             />
-            <Text style={[styles.text, styles.gray]}>{phone}</Text>
+            <Text style={styles.text}>{phone}</Text>
           </View>
         </View>
 
         <View className="rounded px-2 py-1 mt-2" style={styles.labelbg}>
-          <Text style={[styles.labeltext, styles.text]}>{hours}</Text>
+          <Text style={styles.labeltext}>{hours}</Text>
         </View>
       </View>
     </View>
@@ -50,15 +50,14 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   labelbg: {
-    backgroundColor: "#FFECF0",
+    backgroundColor: ThemeColors.pinkbg,
   },
   labeltext: {
-    color: "#ff8aa6",
+    color: ThemeColors.pinklabeltext,
+    fontFamily: FontFamily.poppinsMedium,
   },
-  primarycolor: {
-    color: "#FE0944",
-  },
-  gray: {
-    color: "#696969",
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
   },
 });

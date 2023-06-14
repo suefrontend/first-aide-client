@@ -201,10 +201,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headings: {
+    textShadowColor: "rgba(0, 0, 0, 0.15)",
+    textShadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    textShadowRadius: 2,
     fontFamily: FontFamily.poppinsSemibold,
-  },
-  color: {
-    color: "#555",
   },
   card: {
     width: "100%",

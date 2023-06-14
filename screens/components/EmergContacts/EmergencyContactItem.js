@@ -1,7 +1,7 @@
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { FontFamily } from "../../../theme";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function EmergencyContactItem({
   id,
@@ -45,12 +45,12 @@ export default function EmergencyContactItem({
           </View>
         </View>
         <View>
-          <Text className="text-lg mb-1" style={styles.red}>
+          <Text className="text-lg mb-1" style={[styles.red]}>
             {name}
           </Text>
           <View className="flex-row">
             <Icon name="phone" size={20} color="#c2c2c2" />
-            <Text className="ml-1" style={styles.gray}>
+            <Text className="ml-1" style={[styles.text]}>
               {phone}
             </Text>
           </View>
@@ -75,19 +75,19 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   labelbg: {
-    backgroundColor: "#FFECF0",
+    backgroundColor: ThemeColors.pinkbg,
   },
   labeltext: {
-    color: "#ff8aa6",
+    color: ThemeColors.pinklabeltext,
+    fontFamily: FontFamily.poppinsMedium,
   },
   red: {
-    color: "#FE0944",
+    color: ThemeColors.red,
+    fontFamily: FontFamily.poppinsMedium,
   },
-  gray: {
-    color: "#696969",
-  },
-  bg: {
-    backgroundColor: "#FE0944",
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
   },
   inputsmall: {
     width: "48%",
@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: "#FE0944",
+    backgroundColor: ThemeColors.red,
   },
 });

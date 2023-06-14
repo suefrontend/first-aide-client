@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getToken } from "../helpers/tokenStorage";
 import { authGet } from "../helpers/authenticatedCalls";
-import { FontFamily } from "../../theme";
+import { FontFamily, ThemeColors } from "../../theme";
 
 export default function HospitalInfo() {
   // const hospitals = [
@@ -90,6 +90,16 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   headings: {
+    textShadowColor: "rgba(0, 0, 0, 0.15)",
+    textShadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    textShadowRadius: 2,
     fontFamily: FontFamily.poppinsSemibold,
+  },
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
   },
 });
