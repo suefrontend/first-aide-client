@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
+import SpeechRecognitionComponent from "./Text-To-Speech/Text-to-Speech";
 
 export default function Instruction(props) {
   const { apiResponse, setBookmark } = props;
@@ -79,6 +80,7 @@ export default function Instruction(props) {
               </Text>
             </View>
             <SafeAreaView>
+              <SpeechRecognitionComponent onSpeechBoundary={apiResponse.instruction} instruction={apiResponse.instruction} />
               <ScrollView>
                 <Text
                   style={[styles.headings, styles.text]}
