@@ -7,6 +7,7 @@ import {
   TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function Login(props) {
   const { loginHandler, emailTypeHandler } = props;
@@ -21,9 +22,9 @@ export default function Login(props) {
       </Text>
       <TextInput
         className="p-2 mb-3 rounded-md border-2 border-white text-lg"
-        style={styles.input}
+        style={[styles.input, styles.text]}
         placeholder="Email"
-        placeholderTextColor="white"
+        placeholderTextColor="rgba(255, 255, 255, 0.6)"
         clearTextOnFocus={true}
         onChangeText={(text) => emailTypeHandler(text)}
       />
@@ -32,10 +33,7 @@ export default function Login(props) {
         onPress={loginHandler}
         style={styles.shadowbutton}
       >
-        <Text
-          className="text-center font-bold text-lg"
-          style={styles.red}
-        >
+        <Text className="text-center font-bold text-lg" style={styles.red}>
           Login
         </Text>
       </Pressable>
@@ -45,7 +43,8 @@ export default function Login(props) {
 
 const styles = StyleSheet.create({
   red: {
-    color: "#FE0944",
+    color: ThemeColors.red,
+    fontFamily: FontFamily.poppinsSemibold,
   },
   shadowbutton: {
     shadowColor: "#171717",
@@ -56,6 +55,7 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: "rgba(0,0,0,0.15)",
     textAlign: "center",
+    fontFamily: FontFamily.poppinsRegular,
   },
   shadowtext: {
     textShadowColor: "rgba(0, 0, 0, 0.2)",
@@ -64,5 +64,10 @@ const styles = StyleSheet.create({
       height: 2,
     },
     textShadowRadius: 2,
+    fontFamily: FontFamily.poppinsMedium,
+  },
+  text: {
+    color: "#fff",
+    fontFamily: FontFamily.poppinsRegular,
   },
 });
