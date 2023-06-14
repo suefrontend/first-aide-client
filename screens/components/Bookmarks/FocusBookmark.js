@@ -65,9 +65,12 @@ export default function FocusBookmark(props) {
                     width: "100%",
                   }}
                 >
-                  <Text className="text-3xl text-white mt-3" style={styles.heading}>
+                  <Text
+                    className="text-3xl text-white mt-3"
+                    style={[styles.heading, { width: "80%" }]}
+                  >
                     {title && title}
-                    {!title && "Untitled Bookmark"}
+                    {!title && "Untitled Bookmark"}Test test
                   </Text>
                   <Pressable
                     style={styles.editButton}
@@ -109,7 +112,7 @@ export default function FocusBookmark(props) {
                 name="close"
                 size={30}
                 color={ThemeColors.lightgray}
-                style={{ position: "absolute", right: 10, top: 10 }}
+                style={{ marginLeft: "auto", marginRight: 6, marginTop: 6 }}
               />
             </Pressable>
             <View style={styles.textBox}>
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
   textBox: {
     width: "90%",
     alignSelf: "center",
-    paddingTop: 60,
+    paddingTop: 30,
     paddingBottom: 20,
   },
   innerborder: {
