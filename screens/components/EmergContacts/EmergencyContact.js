@@ -110,7 +110,7 @@ export default function EmergencyContact() {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View style={[styles.wrapper, { borderWidth: 1 }]}>
+        <View style={styles.wrapper}>
           <View style={styles.contentBox}>
             <Icon name="dots-two-horizontal" size={30} color="#fff" />
             <Text
@@ -201,12 +201,6 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
     fontFamily: FontFamily.poppinsSemibold,
   },
   card: {

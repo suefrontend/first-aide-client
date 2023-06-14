@@ -43,7 +43,7 @@ export default function Bookmark(props) {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View style={[styles.wrapper, { borderColor: "rgba(255,255,255,0.2" }]}>
+        <View style={styles.wrapper}>
           <View style={styles.contentBox}>
             <Icon name="dots-two-horizontal" size={30} color="#fff" />
             <Text
