@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { FontFamily } from "../../../theme";
 import EmergencyContactItem from "./EmergencyContactItem";
 import EmergContactForm from "./EmergContactForm";
 import {
@@ -113,7 +113,7 @@ export default function EmergencyContact() {
           <View style={styles.wrapper}>
             <View style={styles.contentBox}>
               <Text
-                className="py-6 text-2xl font-bold text-white"
+                className="py-4 text-2xl font-bold text-white"
                 style={styles.headings}
               >
                 Emergency Contacts
@@ -201,12 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
+    fontFamily: FontFamily.poppinsSemibold,
   },
   color: {
     color: "#555",

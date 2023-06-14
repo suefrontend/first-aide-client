@@ -1,6 +1,7 @@
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { FontFamily } from "../../../theme";
 
 export default function EmergencyContactItem({
   id,
@@ -44,12 +45,12 @@ export default function EmergencyContactItem({
           </View>
         </View>
         <View>
-          <Text className="text-xl mb-1" style={styles.primarycolor}>
+          <Text className="text-lg mb-1" style={styles.red}>
             {name}
           </Text>
           <View className="flex-row">
             <Icon name="phone" size={20} color="#c2c2c2" />
-            <Text className="ml-1" style={styles.color}>
+            <Text className="ml-1" style={styles.gray}>
               {phone}
             </Text>
           </View>
@@ -79,11 +80,11 @@ const styles = StyleSheet.create({
   labeltext: {
     color: "#ff8aa6",
   },
-  primarycolor: {
+  red: {
     color: "#FE0944",
   },
-  color: {
-    color: "#555",
+  gray: {
+    color: "#696969",
   },
   bg: {
     backgroundColor: "#FE0944",
