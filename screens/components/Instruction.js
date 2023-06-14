@@ -82,7 +82,7 @@ export default function Instruction(props) {
               </Pressable>
             </View>
 
-            <ScrollView style={{ height: 460 }}>
+            <ScrollView style={{ height: 500 }}>
               {/* Font size too small? text-lg better? */}
               <Text style={[styles.text]} className="text-white text-lg mb-2">
                 {apiResponse.instruction}

@@ -43,17 +43,17 @@ export default function MedicalRecordScreen() {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <ScrollView>
-          <View style={styles.wrapper}>
-            <View style={styles.titleBox}>
-              <Text
-                className="py-4 text-2xl font-bold text-white"
-                style={styles.headings}
-              >
-                Medical Record
-              </Text>
-            </View>
+        <View style={styles.wrapper}>
+          <View style={styles.titleBox}>
+            <Text
+              className="py-4 text-2xl font-bold text-white"
+              style={styles.headings}
+            >
+              Medical Record
+            </Text>
           </View>
+        </View>
+        <ScrollView>
           <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
             <Text className="text-lg font-bold mb-2 pl-4" style={styles.text}>
               Allergies
