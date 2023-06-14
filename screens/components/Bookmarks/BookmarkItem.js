@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import { LinearGradient } from "expo-linear-gradient";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function BookmarkItem(props) {
   const { id, instruction, title, users_id, popUpBookmark } = props;
@@ -80,49 +80,40 @@ export default function BookmarkItem(props) {
       onPress={() => popUpBookmark([id, instruction, title, users_id])}
     >
       <View
-        className="flex items-center justify-center"
+        className="flex-row items-center px-4 py-6"
         style={styles.innerborder}
       >
-        <View className="flex items-center ">
-          <Image
-            style={{ width: 68, height: 64, marginBottom: 24 }}
-            contentFit="cover"
-            source={getIcon()}
-          />
-          <Text className="uppercase text-sm" style={styles.color}>
-            {title}
-          </Text>
-        </View>
+        <Image
+          style={{ width: 50, height: 50 }}
+          contentFit="cover"
+          source={getIcon()}
+        />
+        <Text style={styles.text} className="text-base ml-2">
+          {title}
+        </Text>
       </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginLeft: "auto",
-    marginRight: "auto",
+  card: {
+    width: "100%",
     shadowColor: "#000",
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
     elevation: 3,
   },
-  bg: {
-    backgroundColor: "#FE0944",
-  },
-  card: {
-    width: 160,
-    height: 160,
-  },
-  color: {
-    color: "#555",
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
   },
   innerborder: {
-    width: 152,
-    height: 152,
+    width: "98%",
+    height: "90%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",
-    borderRadius: 8,
+    borderRadius: 6,
   },
 });
