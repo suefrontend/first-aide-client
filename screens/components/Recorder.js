@@ -148,7 +148,7 @@ export default function Recorder(props) {
       >
         <View style={styles.contentBox}>
           <Text
-            className="text-xl font-bold text-white pt-14 pb-3"
+            className="text-xl font-bold text-white pt-14 mt-4 pb-3"
             style={[styles.subtitle, styles.textshadow]}
           >
             Hello, {name}
