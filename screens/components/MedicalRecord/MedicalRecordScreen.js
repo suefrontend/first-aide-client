@@ -54,13 +54,19 @@ export default function MedicalRecordScreen() {
           </View>
         </View>
         <ScrollView>
-          <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
+          <View
+            className="bg-white rounded-lg py-3 mb-2"
+            style={styles.infoCard}
+          >
             <Text className="text-lg font-bold mb-2 pl-4" style={styles.text}>
               Allergies
             </Text>
             <AllergyList allergies={allergies} setAllergies={setAllergies} />
           </View>
-          <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
+          <View
+            className="bg-white rounded-lg py-3 mb-2"
+            style={styles.infoCard}
+          >
             <Text className="text-lg font-bold mb-2 pl-4" style={styles.text}>
               Medications
             </Text>
@@ -143,6 +149,9 @@ const styles = StyleSheet.create({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    elevation: 3,
   },
 });
