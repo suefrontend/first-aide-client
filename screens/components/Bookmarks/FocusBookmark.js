@@ -10,6 +10,9 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { authPost, authDelete } from "../../helpers/authenticatedCalls";
 import Feather from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/FontAwesome";
+import AntIcon from "react-native-vector-icons/AntDesign";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function FocusBookmark(props) {
   const { cancelFocusBookmark, focusBookmark } = props;
@@ -54,19 +57,25 @@ export default function FocusBookmark(props) {
           <View style={styles.contentBox}>
             {!editTitle && (
               <>
-                <Text
-                  className="py-6 text-2xl font-bold text-white"
-                  style={styles.headings}
+                <View
+                  className="flex-row justify-between pb-6"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
                 >
-                  {title && title}
-                  {!title && "Untitled Bookmark"}
-                </Text>
-                <Pressable
-                  style={styles.editButton}
-                  onPress={() => setEditTitle(true)}
-                >
-                  <Text style={{ color: "white" }}>Edit</Text>
-                </Pressable>
+                  <Text className="text-3xl text-white" style={styles.heading}>
+                    {title && title}
+                    {!title && "Untitled Bookmark"}
+                  </Text>
+                  <Pressable
+                    style={styles.editButton}
+                    onPress={() => setEditTitle(true)}
+                  >
+                    <Text style={{ color: "white" }}>Edit</Text>
+                  </Pressable>
+                </View>
               </>
             )}
             {editTitle && (
@@ -90,14 +99,22 @@ export default function FocusBookmark(props) {
         </View>
         <View style={styles.bookmarkInfo}>
           <View style={styles.innerborder}>
-            <Pressable
-              style={{ marginLeft: 10, marginTop: 10 }}
-              onPress={cancelFocusBookmark}
-            >
-              <Feather name="arrow-left-circle" size={30} color="gray" />
+            <Pressable style={{}} onPress={cancelFocusBookmark}>
+              {/* <Feather name="closecircleo" size={30} color="gray" /> */}
+              <AntIcon
+                name="closecircleo"
+                size={30}
+                color="#c2c2c2"
+                style={{ position: "absolute", right: 8, top: 8 }}
+              />
             </Pressable>
             <View style={styles.textBox}>
-              <Text style={{ textAlign: "center" }}>{instruction}</Text>
+              <Text
+                className="text-xl text-center leading-8"
+                style={styles.text}
+              >
+                {instruction}
+              </Text>
             </View>
             <Pressable
               title="Add"
@@ -105,7 +122,9 @@ export default function FocusBookmark(props) {
               style={styles.button}
               onPress={deleteBookmark}
             >
-              <Text style={{ color: "white" }}>Delete Bookmark</Text>
+              <Text className="text-white text-lg" style={styles.font}>
+                Delete Bookmark
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -131,14 +150,15 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "center",
   },
-  headings: {
-    flex: 2,
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
+  heading: {
+    fontFamily: FontFamily.poppinsSemibold,
+  },
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
+  },
+  font: {
+    fontFamily: FontFamily.poppinsSemibold,
   },
   bookmarkInfo: {
     width: "90%",
@@ -148,7 +168,8 @@ const styles = StyleSheet.create({
   textBox: {
     width: "90%",
     alignSelf: "center",
-    marginVertical: 50,
+    paddingTop: 60,
+    paddingBottom: 20
   },
   innerborder: {
     alignSelf: "center",
@@ -164,7 +185,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: "#FE0944",
+    backgroundColor: ThemeColors.red,
     width: "90%",
     marginBottom: 20,
   },
