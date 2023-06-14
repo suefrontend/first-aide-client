@@ -148,7 +148,7 @@ export default function Recorder(props) {
       >
         <View style={styles.contentBox}>
           <Text
-            className="text-xl font-bold text-white py-3 mt-6"
+            className="text-xl font-bold text-white pt-14 pb-3"
             style={[styles.subtitle, styles.textshadow]}
           >
             Hello, {name}
@@ -235,13 +235,10 @@ export default function Recorder(props) {
           </View>
         </View>
         {/* More Instructions Section */}
-        <View className="mt-11" style={styles.instructions}>
-          {/* <Text
-            className="text-white text-lg py-1"
-            style={[styles.text, styles.textshadow]}
-          >
+        <View className="mt-11 pl-4" style={styles.instructions}>
+          <Text className="text-white text-xl py-2" style={[styles.headings]}>
             More Instructions
-          </Text> */}
+          </Text>
           <Marquee />
         </View>
       </LinearGradient>
@@ -275,6 +272,15 @@ const styles = StyleSheet.create({
       height: 2,
     },
     textShadowRadius: 2,
+  },
+  headings: {
+    textShadowColor: "rgba(0, 0, 0, 0.3)",
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 2,
+    fontFamily: FontFamily.poppinsMedium,
   },
   red: {
     color: ThemeColors.red,
