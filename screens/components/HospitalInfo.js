@@ -7,6 +7,7 @@ import axios from "axios";
 import { getToken } from "../helpers/tokenStorage";
 import { authGet } from "../helpers/authenticatedCalls";
 import { FontFamily, ThemeColors } from "../../theme";
+import Icon from "react-native-vector-icons/Entypo";
 
 export default function HospitalInfo() {
   // const hospitals = [
@@ -44,19 +45,21 @@ export default function HospitalInfo() {
   }, []);
 
   return (
-    <View>
+    <View className="flex-1 items-center justify-center">
       <LinearGradient
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View style={styles.wrapper}>
+        <View style={[styles.wrapper, { borderWidth: 1 }]}>
           <View style={styles.contentBox}>
+            <Icon name="dots-two-horizontal" size={30} color="#fff" />
             <Text
-              className="py-4 text-2xl font-bold text-white"
+              className="text-2xl font-bold text-white pt-6 pb-3"
               style={styles.headings}
             >
               Hospitals
             </Text>
+
             {hospitals === null && <JustLoader />}
             {hospitals && hospitals.length > 0 && (
               <>
@@ -76,14 +79,14 @@ export default function HospitalInfo() {
 
 const styles = StyleSheet.create({
   wrapper: {
+    marginTop: 50, // Margin from screen top
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
   },
   contentBox: {
-    marginTop: 90,
     width: "100%",
-    justifyContent: "center",
+    height: "100%",
   },
   linearGradient: {
     width: "100%",

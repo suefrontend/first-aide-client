@@ -10,7 +10,7 @@ import {
   SectionList,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import Icon from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
 import { LinearGradient } from "expo-linear-gradient";
 import AllergyList from "./allergy/AllergyList";
 import { authGet } from "../../helpers/authenticatedCalls";
@@ -38,53 +38,62 @@ export default function MedicalRecordScreen() {
   }, []);
 
   return (
-    <View>
+    <View className="flex-1 items-center justify-center">
       <LinearGradient
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View style={styles.wrapper}>
-          <View style={styles.titleBox}>
+        <View style={[styles.wrapper, { borderWidth: 1 }]}>
+          <View style={styles.contentBox}>
+            <Entypo name="dots-two-horizontal" size={30} color="#fff" />
             <Text
-              className="py-4 text-2xl font-bold text-white"
+              className="text-2xl font-bold text-white pt-6 pb-3"
               style={styles.headings}
             >
               Medical Record
             </Text>
+            <View>
+              <ScrollView>
+                <View
+                  className="bg-white rounded-lg py-3 mb-2 w-full"
+                  style={styles.infoCard}
+                >
+                  <Text className="text-lg mb-2 pl-4" style={styles.cardtitle}>
+                    Allergies
+                  </Text>
+                  <AllergyList
+                    allergies={allergies}
+                    setAllergies={setAllergies}
+                  />
+                </View>
+                <View
+                  className="bg-white rounded-lg py-3 mb-2  w-full"
+                  style={styles.infoCard}
+                >
+                  <Text className="text-lg mb-2 pl-4" style={styles.cardtitle}>
+                    Medications
+                  </Text>
+                  <MedicationList
+                    medications={medications}
+                    setMedications={setMedications}
+                  />
+                </View>
+                <View
+                  className="bg-white rounded-lg py-3  w-full"
+                  style={styles.infoCard}
+                >
+                  <Text className="text-lg mb-2 pl-4" style={styles.cardtitle}>
+                    Conditions
+                  </Text>
+                  <ConditionList
+                    conditions={conditions}
+                    setConditions={setConditions}
+                  />
+                </View>
+              </ScrollView>
+            </View>
           </View>
         </View>
-        <ScrollView>
-          <View
-            className="bg-white rounded-lg py-3 mb-2"
-            style={styles.infoCard}
-          >
-            <Text className="text-lg mb-2 pl-4" style={styles.cardtitle}>
-              Allergies
-            </Text>
-            <AllergyList allergies={allergies} setAllergies={setAllergies} />
-          </View>
-          <View
-            className="bg-white rounded-lg py-3 mb-2"
-            style={styles.infoCard}
-          >
-            <Text className="text-lg mb-2 pl-4" style={styles.cardtitle}>
-              Medications
-            </Text>
-            <MedicationList
-              medications={medications}
-              setMedications={setMedications}
-            />
-          </View>
-          <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
-            <Text className="text-lg mb-2 pl-4" style={styles.cardtitle}>
-              Conditions
-            </Text>
-            <ConditionList
-              conditions={conditions}
-              setConditions={setConditions}
-            />
-          </View>
-        </ScrollView>
       </LinearGradient>
     </View>
   );
@@ -92,14 +101,14 @@ export default function MedicalRecordScreen() {
 
 const styles = StyleSheet.create({
   wrapper: {
+    marginTop: 50, // Margin from screen top
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
   },
-  titleBox: {
-    marginTop: 90,
+  contentBox: {
     width: "100%",
-    justifyContent: "center",
+    height: "100%",
   },
   linearGradient: {
     width: "100%",
@@ -132,7 +141,7 @@ const styles = StyleSheet.create({
     backgroundColor: ThemeColors.red,
   },
   infoCard: {
-    width: "90%",
+    // width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
     shadowColor: "#000",
