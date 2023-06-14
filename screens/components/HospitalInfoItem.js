@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useEffect, useState } from "react";
+import { FontFamily } from "../../theme";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconEn from "react-native-vector-icons/Entypo";
 
 export default function HospitaInfoItem({ name, address, phone, hours }) {
   return (
     <View>
-      <View className="rounded-lg bg-white py-3 px-4 mb-4" style={styles.card}>
-        <Text className="text-xl" style={styles.color}>
+      <View className="rounded-lg bg-white py-3 px-4 mb-2" style={styles.card}>
+        <Text className="text-lg" style={[styles.text, styles.gray]}>
           {name}
         </Text>
 
@@ -19,7 +19,7 @@ export default function HospitaInfoItem({ name, address, phone, hours }) {
               color="#c2c2c2"
               style={{ marginLeft: -5 }}
             />
-            <Text style={styles.color} className="mr-5">
+            <Text style={[styles.text, styles.gray]} className="mr-5">
               {address}
             </Text>
           </View>
@@ -30,12 +30,12 @@ export default function HospitaInfoItem({ name, address, phone, hours }) {
               color="#c2c2c2"
               style={{ marginRight: 2 }}
             />
-            <Text style={styles.color}>{phone}</Text>
+            <Text style={[styles.text, styles.gray]}>{phone}</Text>
           </View>
         </View>
 
         <View className="rounded px-2 py-1 mt-2" style={styles.labelbg}>
-          <Text style={styles.labeltext}>{hours}</Text>
+          <Text style={[styles.labeltext, styles.text]}>{hours}</Text>
         </View>
       </View>
     </View>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   primarycolor: {
     color: "#FE0944",
   },
-  color: {
-    color: "#555",
+  gray: {
+    color: "#696969",
   },
 });
