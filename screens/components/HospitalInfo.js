@@ -43,15 +43,15 @@ export default function HospitalInfo() {
   }, []);
 
   return (
-    <View>
+    <View className="flex-1 items-center justify-center">
       <LinearGradient
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View style={styles.wrapper}>
+        <View style={[styles.wrapper, { borderWidth: 1 }]}>
           <View style={styles.contentBox}>
             <Text
-              className="py-6 text-2xl font-bold text-white"
+              className="text-2xl font-bold text-white"
               style={styles.headings}
             >
               Hospitals
@@ -75,14 +75,14 @@ export default function HospitalInfo() {
 
 const styles = StyleSheet.create({
   wrapper: {
+    marginTop: 50, // Margin from screen top
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
   },
   contentBox: {
-    marginTop: 90,
     width: "100%",
-    justifyContent: "center",
+    height: "100%",
   },
   linearGradient: {
     width: "100%",

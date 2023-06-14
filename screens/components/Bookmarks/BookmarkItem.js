@@ -75,18 +75,19 @@ export default function BookmarkItem(props) {
 
   return (
     <Pressable
-      style={styles.card}
-      className="bg-white flex items-center justify-center rounded-lg"
+      style={[styles.card]}
+      className="bg-white flex items-center justify-center rounded-lg mb-2"
       onPress={() => popUpBookmark([id, instruction, title, users_id])}
     >
       <View className="flex-row items-center" style={styles.innerborder}>
         <Image
-          style={{ width: 50, height: 50 }}
+          style={{ width: 50, height: 40 }}
           contentFit="cover"
           source={getIcon()}
+          className="mx-2"
         />
-        <Text style={styles.text} className="text-base ml-2">
-          {title}
+        <Text style={[styles.text, { width: "78%" }]} className="text-lg">
+          {title}Stopping a nose blee
         </Text>
       </View>
     </Pressable>
@@ -96,6 +97,7 @@ export default function BookmarkItem(props) {
 const styles = StyleSheet.create({
   card: {
     width: "100%",
+    height: 110,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
   },
   innerborder: {
     width: "97%",
-    height: "90%",
+    height: 98,
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",
