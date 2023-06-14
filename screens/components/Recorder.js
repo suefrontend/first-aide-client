@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
   headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.3)",
+    textShadowColor: "rgba(0, 0, 0, 0.2)",
     textShadowOffset: {
       width: 0,
       height: 2,
