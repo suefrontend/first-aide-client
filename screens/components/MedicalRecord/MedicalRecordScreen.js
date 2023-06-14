@@ -63,13 +63,19 @@ export default function MedicalRecordScreen() {
             <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Medications
             </Text>
-            <MedicationList medications={medications} />
+            <MedicationList
+              medications={medications}
+              setMedications={setMedications}
+            />
           </View>
           <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
             <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Conditions
             </Text>
-            <ConditionList conditions={conditions} />
+            <ConditionList
+              conditions={conditions}
+              setConditions={setConditions}
+            />
           </View>
         </ScrollView>
       </LinearGradient>
