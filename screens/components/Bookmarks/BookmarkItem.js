@@ -79,10 +79,7 @@ export default function BookmarkItem(props) {
       className="bg-white flex items-center justify-center rounded-lg"
       onPress={() => popUpBookmark([id, instruction, title, users_id])}
     >
-      <View
-        className="flex-row items-center px-4 py-6"
-        style={styles.innerborder}
-      >
+      <View className="flex-row items-center" style={styles.innerborder}>
         <Image
           style={{ width: 50, height: 50 }}
           contentFit="cover"
@@ -109,7 +106,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsMedium,
   },
   innerborder: {
-    width: "98%",
+    width: "97%",
     height: "90%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
