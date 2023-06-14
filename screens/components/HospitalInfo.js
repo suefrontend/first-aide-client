@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getToken } from "../helpers/tokenStorage";
 import { authGet } from "../helpers/authenticatedCalls";
-import { FontFamily, ThemeColors } from "../../theme";
 
 export default function HospitalInfo() {
   // const hospitals = [
@@ -52,7 +51,7 @@ export default function HospitalInfo() {
         <View style={styles.wrapper}>
           <View style={styles.contentBox}>
             <Text
-              className="py-4 text-2xl font-bold text-white"
+              className="py-6 text-2xl font-bold text-white"
               style={styles.headings}
             >
               Hospitals
@@ -96,10 +95,5 @@ const styles = StyleSheet.create({
       height: 4,
     },
     textShadowRadius: 2,
-    fontFamily: FontFamily.poppinsSemibold,
-  },
-  text: {
-    color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsMedium,
   },
 });

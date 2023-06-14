@@ -9,7 +9,6 @@ import {
 import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function Register(props) {
   const {
@@ -29,28 +28,29 @@ export default function Register(props) {
       </Text>
       <TextInput
         className="p-2 mb-3 rounded-md border-2 border-white text-lg"
-        style={[styles.input, styles.text]}
-        placeholderTextColor="rgba(255, 255, 255, 0.6)"
-        placeholder="Name"
+        style={styles.input}
+        placeholder="name"
+        placeholderTextColor="white"
         onChangeText={(text) => nameTypeHandler(text)}
       />
       <TextInput
         className="p-2 mb-3 rounded-md border-2 border-white text-lg"
-        style={[styles.input, styles.text]}
-        placeholderTextColor="rgba(255, 255, 255, 0.6)"
-        placeholder="Email"
+        style={styles.input}
+        placeholder="email"
+        placeholderTextColor="white"
         onChangeText={(text) => emailTypeHandler(text)}
       />
       <TextInput
         className="p-2 mb-3 rounded-md border-2 border-white text-lg"
-        style={[styles.input]}
-        placeholder="City"
-        placeholderTextColor="rgba(255, 255, 255, 0.6)"
+        style={styles.input}
+        placeholder="city"
+        placeholderTextColor="white"
         onChangeText={(text) => cityTypeHandler(text)}
       />
       <Pressable
         onPress={registerHandler}
         className="bg-white p-3 rounded mb-4"
+        style={styles.shadowbutton}
       >
         <Text className="text-center font-bold text-lg" style={styles.red}>
           Sign Up
@@ -70,14 +70,15 @@ export default function Register(props) {
 }
 
 const styles = StyleSheet.create({
+  loginbutton: {
+    color: "#FE0944",
+  },
   red: {
-    color: ThemeColors.red,
-    fontFamily: FontFamily.poppinsSemibold,
+    color: "#FE0944",
   },
   input: {
     backgroundColor: "rgba(0,0,0,0.15)",
     textAlign: "center",
-    fontFamily: FontFamily.poppinsRegular,
   },
   shadowtext: {
     textShadowColor: "rgba(0, 0, 0, 0.2)",
@@ -86,10 +87,5 @@ const styles = StyleSheet.create({
       height: 2,
     },
     textShadowRadius: 2,
-    fontFamily: FontFamily.poppinsMedium,
-  },
-  text: {
-    color: "#fff",
-    fontFamily: FontFamily.poppinsRegular,
   },
 });

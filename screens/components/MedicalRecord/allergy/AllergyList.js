@@ -12,7 +12,6 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import AllergyItem from "./AllergyItem";
 import { authPost } from "../../../helpers/authenticatedCalls";
-import { FontFamily, ThemeColors } from "../../../../theme";
 
 export default function AllergyList(props) {
   const { allergies, setAllergies } = props;
@@ -50,14 +49,10 @@ export default function AllergyList(props) {
       <View style={styles.borderthick} />
       <View className="flex-row py-1 justify-between">
         <View style={styles.leftrow}>
-          <Text className="pl-4" style={styles.text}>
-            Allergy
-          </Text>
+          <Text className="pl-4">Allergy</Text>
         </View>
         <View style={styles.rightrow}>
-          <Text className="ml-1" style={styles.text}>
-            Severity
-          </Text>
+          <Text className="ml-1">Severity</Text>
         </View>
         <View className="pr-4">
           <Icon
@@ -143,9 +138,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 3,
     backgroundColor: "#FE0944",
-  },
-  text: {
-    color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsMedium,
   },
 });

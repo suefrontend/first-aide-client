@@ -67,24 +67,25 @@ export default function Instruction(props) {
                 {apiResponse.title}
               </Text>
               <Pressable
-                // style={{
-                //   alignSelf: "flex-end",
-                //   marginTop: 50,
-                //   marginRight: 20,
-                // }}
+                style={{
+                  alignSelf: "flex-end",
+                  marginTop: 50,
+                  marginRight: 20,
+                }}
                 onPress={saveInstruction}
               >
                 <Icon
                   name={buttonClick ? "bookmark" : "bookmark-o"}
-                  size={32}
+                  size={30}
                   color="#fff"
+                  style={styles.headings}
                 />
               </Pressable>
             </View>
 
             <ScrollView style={{ height: 500 }}>
               {/* Font size too small? text-lg better? */}
-              <Text style={[styles.text]} className="text-white text-lg mb-2">
+              <Text style={[styles.text]} className="text-white text-base mb-2">
                 {apiResponse.instruction}
                 Begin with washed hands. Gently clean the area with cool to
                 lukewarm water and mild soap. Remove dirt or other particles
@@ -115,7 +116,7 @@ export default function Instruction(props) {
             >
               <Text
                 style={styles.button}
-                className="text-center text-lg"
+                className="text-center text-lg uppercase"
               >
                 Back
               </Text>
@@ -159,8 +160,11 @@ const styles = StyleSheet.create({
     },
     shadowColor: "rgba(0, 0, 0, 0.2)",
   },
+  color: {
+    color: "#555",
+  },
   text: {
-    fontFamily: FontFamily.poppinsMedium,
+    fontFamily: FontFamily.poppinsSemibold,
     lineHeight: 28,
   },
   button: {

@@ -11,7 +11,6 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import { LinearGradient } from "expo-linear-gradient";
 import { authDelete } from "../../../helpers/authenticatedCalls";
-import { FontFamily, ThemeColors } from "../../../../theme";
 
 export default function MedicationItem({ id, name, setMedications }) {
   const deleteMedications = async (id) => {
@@ -36,7 +35,7 @@ export default function MedicationItem({ id, name, setMedications }) {
         <>
           <View className="flex-row py-2 justify-between">
             <View>
-              <Text className="text-base pl-4" style={styles.text}>
+              <Text className="text-base pl-4" style={styles.color}>
                 {name}
               </Text>
             </View>
@@ -62,14 +61,35 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
   },
-  text: {
-    color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsMedium,
+  linearGradient: {
+    width: "100%",
+    height: "100%",
+  },
+  headings: {
+    textShadowColor: "rgba(0, 0, 0, 0.15)",
+    textShadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    textShadowRadius: 2,
+  },
+  bg: {
+    backgroundColor: "#FE0944",
+  },
+  color: {
+    color: "#555",
+  },
+  borderthick: {
+    height: 2,
+    borderTopWidth: 2,
+    borderColor: "#e6e6e6",
+    borderStyle: "solid",
+    width: "100%",
   },
   borderthin: {
     height: 1,
     borderTopWidth: 1,
-    borderColor: ThemeColors.grayborder,
+    borderColor: "#e6e6e6",
     borderStyle: "solid",
     width: "100%",
   },
@@ -84,6 +104,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: ThemeColors.red,
+    backgroundColor: "#FE0944",
   },
 });

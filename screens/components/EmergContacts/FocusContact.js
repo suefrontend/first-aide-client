@@ -10,7 +10,6 @@ import {
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { authGet } from "../../helpers/authenticatedCalls";
-import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function FocusContact(props) {
   const { focusContact, cancelFocus, deleteContactHandler } = props;
@@ -80,12 +79,12 @@ export default function FocusContact(props) {
           </View>
         </View>
         <View>
-          <Text className="text-xl mb-1" style={styles.red}>
+          <Text className="text-xl mb-1" style={styles.primarycolor}>
             {focusPerson.name}
           </Text>
           <View className="flex-row">
-            <Icon name="phone" size={20} color={ThemeColors.lightgray} />
-            <Text className="ml-1" style={styles.text}>
+            <Icon name="phone" size={20} color="#c2c2c2" />
+            <Text className="ml-1" style={styles.color}>
               {focusPerson.phone}
             </Text>
           </View>
@@ -97,13 +96,11 @@ export default function FocusContact(props) {
       </View>
       <Pressable
         title="Add"
-        className="mt-4 rounded py-2 items-center justify-center"
+        className="mt-4 rounded py-2"
         style={styles.button}
         onPress={() => deleteContactHandler(focusPerson.id)}
       >
-        <Text className="text-white" style={styles.font}>
-          Delete Contact
-        </Text>
+        <Text style={{ color: "white" }}>Delete Contact</Text>
       </Pressable>
     </View>
   );
@@ -123,29 +120,28 @@ const styles = StyleSheet.create({
     width: "48%",
   },
   button: {
+    alignItems: "center",
+    justifyContent: "center",
     elevation: 3,
-    backgroundColor: ThemeColors.red,
+    backgroundColor: "#FE0944",
   },
   cross: {
     alignSelf: "flex-end",
   },
   labelbg: {
-    backgroundColor: ThemeColors.pinkbg,
+    backgroundColor: "#FFECF0",
   },
   labeltext: {
-    color: ThemeColors.pinklabeltext,
-    fontFamily: FontFamily.poppinsMedium,
+    color: "#ff8aa6",
   },
-  red: {
-    color: ThemeColors.red,
-    fontFamily: FontFamily.poppinsMedium,
+  primarycolor: {
+    color: "#FE0944",
   },
-  text: {
-    color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsMedium,
+  color: {
+    color: "#555",
   },
-  font: {
-    fontFamily: FontFamily.poppinsSemibold,
+  bg: {
+    backgroundColor: "#FE0944",
   },
   buttonlarge: {
     width: "100%",

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { FontFamily, ThemeColors } from "../../theme";
+import { FontFamily } from "../../theme";
 
 export default function MarqueeItem({ keyword }) {
   const [icon, setIcon] = useState(keyword);
@@ -23,9 +23,8 @@ export default function MarqueeItem({ keyword }) {
 
   return (
     <View
-      // style={{borderWidth: 1}}
       style={styles.card}
-      className="bg-white flex items-center justify-center rounded-lg mr-2 mb-2"
+      className="bg-white flex items-center justify-center rounded-lg mr-2"
     >
       <View style={styles.innerborder} className="flex-row items-center">
         <Image
@@ -44,21 +43,21 @@ export default function MarqueeItem({ keyword }) {
 const styles = StyleSheet.create({
   card: {
     width: 130,
-    height: 77,
+    height: 64,
     shadowColor: "#000",
     shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.3,
     elevation: 3,
   },
   text: {
-    color: ThemeColors.text,
+    color: "#555",
     fontFamily: FontFamily.poppinsRegular,
   },
   innerborder: {
     width: 124,
-    height: 72,
+    height: 58,
     borderWidth: 1,
-    borderColor: ThemeColors.pinklabeltext,
+    borderColor: "#ff8aa6",
     borderStyle: "solid",
     borderRadius: 6,
   },

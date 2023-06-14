@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import { FontFamily, ThemeColors } from "../../../theme";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function BookmarkItem(props) {
   const { id, instruction, title, users_id, popUpBookmark } = props;
@@ -89,7 +89,7 @@ export default function BookmarkItem(props) {
             contentFit="cover"
             source={getIcon()}
           />
-          <Text className="uppercase text-sm" style={styles.text}>
+          <Text className="uppercase text-sm" style={styles.color}>
             {title}
           </Text>
         </View>
@@ -107,19 +107,21 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     elevation: 3,
   },
+  bg: {
+    backgroundColor: "#FE0944",
+  },
   card: {
     width: 160,
     height: 160,
   },
-  text: {
-    color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsMedium,
+  color: {
+    color: "#555",
   },
   innerborder: {
     width: 152,
     height: 152,
     borderWidth: 1,
-    borderColor: ThemeColors.pinklabeltext,
+    borderColor: "#ff8aa6",
     borderStyle: "solid",
     borderRadius: 8,
   },

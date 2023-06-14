@@ -16,7 +16,6 @@ import AllergyList from "./allergy/AllergyList";
 import { authGet } from "../../helpers/authenticatedCalls";
 import MedicationList from "./medication/MedicationList";
 import ConditionList from "./condition/ConditionList";
-import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function MedicalRecordScreen() {
   const [allergies, setAllergies] = useState({});
@@ -47,7 +46,7 @@ export default function MedicalRecordScreen() {
           <View style={styles.wrapper}>
             <View style={styles.titleBox}>
               <Text
-                className="py-4 text-2xl font-bold text-white"
+                className="py-6 text-2xl font-bold text-white"
                 style={styles.headings}
               >
                 Medical Record
@@ -55,19 +54,13 @@ export default function MedicalRecordScreen() {
             </View>
           </View>
           <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
-            <Text
-              className="text-lg font-bold mb-2 pl-4"
-              style={styles.text}
-            >
+            <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Allergies
             </Text>
             <AllergyList allergies={allergies} setAllergies={setAllergies} />
           </View>
           <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
-            <Text
-              className="text-lg font-bold mb-2 pl-4"
-              style={styles.text}
-            >
+            <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Medications
             </Text>
             <MedicationList
@@ -76,10 +69,7 @@ export default function MedicalRecordScreen() {
             />
           </View>
           <View className="bg-white rounded-lg py-3" style={styles.infoCard}>
-            <Text
-              className="text-lg font-bold mb-2 pl-4"
-              style={styles.text}
-            >
+            <Text className="text-xl font-bold mb-2 pl-4" style={styles.color}>
               Conditions
             </Text>
             <ConditionList
@@ -115,23 +105,24 @@ const styles = StyleSheet.create({
       height: 4,
     },
     textShadowRadius: 2,
-    fontFamily: FontFamily.poppinsSemibold,
   },
-  text: {
-    fontFamily: FontFamily.poppinsMedium,
-    color: ThemeColors.text,
+  bg: {
+    backgroundColor: "#FE0944",
+  },
+  color: {
+    color: "#555",
   },
   borderthick: {
     height: 2,
     borderTopWidth: 2,
-    borderColor: ThemeColors.lightgray,
+    borderColor: "#e6e6e6",
     borderStyle: "solid",
     width: "100%",
   },
   borderthin: {
     height: 1,
     borderTopWidth: 1,
-    borderColor: ThemeColors.lightgray,
+    borderColor: "#e6e6e6",
     borderStyle: "solid",
     width: "100%",
   },
@@ -146,7 +137,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: ThemeColors.red,
+    backgroundColor: "#FE0944",
   },
   infoCard: {
     width: "90%",

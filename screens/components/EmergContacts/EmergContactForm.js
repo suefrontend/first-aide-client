@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function EmergContactForm(props) {
   const {
@@ -23,26 +22,28 @@ export default function EmergContactForm(props) {
       <Pressable style={styles.cross} onPress={() => setShowForm(false)}>
         <Icon name="close" size={20} color="#c2c2c2" />
       </Pressable>
-      <Text className="mb-4 text-lg" style={styles.heading}>
+      <Text className="mb-4 text-lg font-bold" style={styles.color}>
         Add New Contact
       </Text>
       <TextInput
         className="bg-gray-200 py-3 px-3 rounded-md"
         placeholder="Name"
-        style={styles.text}
+        placeholderTextColor="#a9a9a9"
         onChangeText={nameTypeHandler}
       />
       <View className="flex-row mt-3 justify-between">
         <TextInput
           className="bg-gray-200 rounded p-3"
-          style={[styles.inputsmall, styles.text]}
+          style={styles.inputsmall}
           placeholder="Phone number"
+          placeholderTextColor="#a9a9a9"
           onChangeText={phoneTypeHandler}
         />
         <TextInput
           className="bg-gray-200 rounded p-3"
-          style={[styles.inputsmall, styles.text]}
+          style={styles.inputsmall}
           placeholder="Relationship"
+          placeholderTextColor="#a9a9a9"
           onChangeText={relationshipTypeHandler}
         />
       </View>
@@ -77,17 +78,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: ThemeColors.red,
+    backgroundColor: "#FE0944",
   },
   cross: {
     alignSelf: "flex-end",
-  },
-  heading: {
-    fontFamily: FontFamily.poppinsSemibold,
-    color: ThemeColors.text,
-  },
-  text: {
-    color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsMedium,
   },
 });
