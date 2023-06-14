@@ -1,43 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Speech from 'expo-speech';
-export default function SpeechRecognitionComponent({ onSpeechBoundary, instruction }) {
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import * as Speech from "expo-speech";
+export default function SpeechRecognitionComponent({
+  onSpeechBoundary,
+  instructions,
+}) {
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [spokenText, setSpokenText] = useState('');
-  
-
- 
-  // useEffect(() => {
-  //   const fetchInstructions = async () => {
-  //     try {
-  //       const response = await fetch('http://localhost:8000/instructions', {
-  //         method: 'POST', 
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: { input: 'instruction'}
-  //       });
-
-  //       const data = await response.json();
-
-  //       if (response.ok) {
-  //         const { instruction } = data;
-  //         setInstruction(instruction);
-  //       } else {
-  //         console.error('An error occurred:', data.error);
-  //       }
-  //     } catch (error) {
-  //       console.error('An error occurred:', error);
-  //     }
-  //   };
-
-  //   fetchInstructions();
-  // }, []);
+  const [spokenText, setSpokenText] = useState("");
 
   const speak = async () => {
     setIsSpeaking(true);
 
-    await Speech.speak(instruction, {
+    await Speech.speak(instructions, {
       rate: 0.8,
       onStart: handleSpeechStart,
       onDone: handleSpeechDone,
@@ -47,29 +21,28 @@ export default function SpeechRecognitionComponent({ onSpeechBoundary, instructi
 
   const handleSpeechStart = () => {
     setIsSpeaking(true);
-    setSpokenText(instruction);
+    setSpokenText(instructions);
   };
 
   const handleSpeechDone = () => {
     setIsSpeaking(false);
-    setSpokenText('');
+    setSpokenText("");
   };
 
   const handleSpeechBoundary = (event) => {
     const { charIndex } = event;
-    setSpokenText(instruction.slice(0, charIndex));
+    setSpokenText(instructions.slice(0, charIndex));
     onSpeechBoundary(event);
   };
 
   useEffect(() => {
-    if (instruction) {  
+    if (instructions) {
       speak();
     }
-  }, [instruction]);
+  }, [instructions]);
 
   return (
     <View style={styles.container}>
-      {/* <Button title="Press to hear some words" onPress={speak} disabled={isSpeaking} /> */}
       <View style={styles.spokenTextContainer}>
         <Text style={styles.spokenText}>{spokenText}</Text>
       </View>
@@ -80,16 +53,16 @@ export default function SpeechRecognitionComponent({ onSpeechBoundary, instructi
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   spokenTextContainer: {
     marginTop: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   spokenText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     lineHeight: 24,
   },
 });

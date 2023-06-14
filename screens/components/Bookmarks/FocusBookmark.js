@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { authPost, authDelete } from "../../helpers/authenticatedCalls";
 import Feather from "react-native-vector-icons/Feather";
-import SpeechRecognitionComponent from "../Text-To-Speech/Text-to-Speech";
+import SpeechRecognitionComponent from "../Text-To-Speech/SpeechRecognitionComponent";
 
 export default function FocusBookmark(props) {
   const { cancelFocusBookmark, focusBookmark } = props;
