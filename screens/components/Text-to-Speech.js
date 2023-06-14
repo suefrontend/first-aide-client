@@ -10,7 +10,14 @@ export default function SpeechRecognitionComponent({ onSpeechBoundary }) {
   useEffect(() => {
     const fetchInstructions = async () => {
       try {
-        const response = await fetch('http://localhost:8000/instructions/instruction');
+        const response = await fetch('http://localhost:8000/instructions', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: { input: 'instruction'}
+        });
+
         const data = await response.json();
 
         if (response.ok) {
