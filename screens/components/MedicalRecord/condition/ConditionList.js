@@ -56,7 +56,7 @@ export default function ConditionList(props) {
       <View className="flex-row items-center justify-between px-3 py-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
-          placeholder="Allergy"
+          placeholder="Condition"
           placeholderTextColor="#a9a9a9"
           value={newConditionName}
           onChangeText={(text) => setNewConditionName(text)}
