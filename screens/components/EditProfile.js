@@ -14,8 +14,53 @@ import Feather from "react-native-vector-icons/Feather";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Entypo from "react-native-vector-icons/Entypo";
 import { FontFamily, ThemeColors } from "../../theme";
+import { authGet, authPost } from "../helpers/authenticatedCalls";
 
 export default function EditProfile({ navigation }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+
+  const nameTypeHandler = (text) => {
+    setName(text);
+  };
+  const emailTypeHandler = (text) => {
+    setEmail(text);
+  };
+  const cityTypeHandler = (text) => {
+    setCity(text);
+  };
+
+  useEffect(() => {
+    const getCurrentProfile = async () => {
+      try {
+        const response = await authGet("/users");
+        const data = response.data;
+        setName(data.username);
+        setEmail(data.email);
+        setCity(data.city);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCurrentProfile();
+  }, []);
+
+  const submitHandler = async () => {
+    try {
+      const response = await authPost("/users", {
+        username: name,
+        email: email,
+        city: city,
+      });
+      const data = response.data;
+      console.log("Edited profile:", data);
+      alert("Profile edited successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View>
       <LinearGradient
@@ -47,7 +92,7 @@ export default function EditProfile({ navigation }) {
                   <TextInput
                     className="p-2 mb-3 rounded-md border-2 border-white text-lg"
                     style={styles.input}
-                    placeholder="name"
+                    placeholder={name}
                     placeholderTextColor="white"
                     onChangeText={(text) => nameTypeHandler(text)}
                   />
@@ -60,7 +105,7 @@ export default function EditProfile({ navigation }) {
                   <TextInput
                     className="p-2 mb-3 rounded-md border-2 border-white text-lg"
                     style={styles.input}
-                    placeholder="email"
+                    placeholder={email}
                     placeholderTextColor="white"
                     onChangeText={(text) => emailTypeHandler(text)}
                   />
@@ -73,7 +118,7 @@ export default function EditProfile({ navigation }) {
                   <TextInput
                     className="p-2 mb-3 rounded-md border-2 border-white text-lg"
                     style={styles.input}
-                    placeholder="city"
+                    placeholder={city}
                     placeholderTextColor="white"
                     onChangeText={(text) => cityTypeHandler(text)}
                   />
@@ -82,6 +127,7 @@ export default function EditProfile({ navigation }) {
                 <Pressable
                   className="mt-4 rounded py-2"
                   style={styles.submitButton}
+                  onPress={() => submitHandler()}
                 >
                   <Text className="text-white text-lg" style={styles.font}>
                     Submit
