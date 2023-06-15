@@ -237,7 +237,7 @@ export default function Recorder(props) {
         {/* More Instructions Section */}
         <View className="mt-11 pl-4" style={styles.instructions}>
           <Text className="text-white text-xl py-2" style={[styles.headings]}>
-            More Instructions
+            Your Bookmarks
           </Text>
           <Marquee />
         </View>

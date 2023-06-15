@@ -70,7 +70,7 @@ export default function FocusBookmark(props) {
                     style={[styles.heading, { width: "80%" }]}
                   >
                     {title && title}
-                    {!title && "Untitled Bookmark"}Test test
+                    {!title && "Untitled Bookmark"}
                   </Text>
                   <Pressable
                     style={styles.editButton}

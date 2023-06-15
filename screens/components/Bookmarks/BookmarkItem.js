@@ -87,7 +87,7 @@ export default function BookmarkItem(props) {
           className="mx-2"
         />
         <Text style={[styles.text, { width: "78%" }]} className="text-lg">
-          {title}Stopping a nose blee
+          {title}
         </Text>
       </View>
     </Pressable>
