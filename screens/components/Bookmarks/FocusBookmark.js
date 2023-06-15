@@ -122,7 +122,7 @@ export default function FocusBookmark(props) {
                   className="text-lg text-center leading-8"
                   style={styles.text}
                 >
-                  {instruction}
+                  {instruction}{" "}
                 </Text>
               </View>
             </ScrollView>
