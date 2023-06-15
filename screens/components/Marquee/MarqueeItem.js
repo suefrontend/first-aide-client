@@ -29,9 +29,8 @@ export default function MarqueeItem({
 
   return (
     <Pressable
-      // style={{borderWidth: 1}}
       style={styles.card}
-      className="bg-white flex items-center justify-center rounded-lg mr-2 mb-2"
+      className="bg-white flex items-center justify-center rounded-lg mr-3 mb-2"
       onPress={() => clickMarqueeHandler(title, instruction)}
     >
       <View style={styles.innerborder} className="flex-row items-center">
@@ -40,7 +39,10 @@ export default function MarqueeItem({
           contentFit="cover"
           source={getIcon()}
         />
-        <Text className="capitalize text-sm" style={styles.text}>
+        <Text
+          className="capitalize text-sm"
+          style={[styles.text, { width: "71%", lineHeight: 19 }]}
+        >
           {title}
         </Text>
       </View>
@@ -53,8 +55,8 @@ const styles = StyleSheet.create({
     width: 130,
     height: 77,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.15,
     elevation: 3,
   },
   text: {

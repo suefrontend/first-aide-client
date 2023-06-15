@@ -6,6 +6,7 @@ import {
   TextInput,
   Pressable,
   Image,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -17,16 +18,34 @@ export default function FocusMarquee(props) {
     props;
   return (
     <>
-      <View className="rounded-lg bg-white py-4 px-4 mt-5" style={styles.card}>
-        <Pressable style={styles.cross} onPress={cancelFocusMarquee}>
-          <Icon name="close" size={20} color="#c2c2c2" />
-        </Pressable>
-        <View className="flex-row justify-between items-center">
-          <View>
-            <Text>{focusMarqueeTitle}</Text>
-            <Text>{focusMarqueeInstruction}</Text>
+      <View className="rounded-lg bg-white mt-5" style={styles.card}>
+        {/* <View className="flex-row justify-between items-center"> */}
+        <ScrollView>
+          {/* <View style={styles.wrapperSecond}> */}
+          <View style={styles.innerborder}>
+            <Pressable style={styles.cross} onPress={cancelFocusMarquee}>
+              <Icon name="close" size={20} color="#c2c2c2" style={{marginRight: 2, marginTop: 2}} />
+            </Pressable>
+            <View style={styles.bookmarkInfo} className="px-4 pt-4 pb-5">
+              <Text
+                className="text-3xl pb-6 capitalize"
+                style={[styles.heading]}
+              >
+                {focusMarqueeTitle}
+              </Text>
+              <View style={[styles.textBox]}>
+                <Text
+                  className="text-lg text-center leading-8"
+                  style={styles.text}
+                >
+                  {focusMarqueeInstruction}
+                </Text>
+              </View>
+            </View>
           </View>
-        </View>
+          {/* </View> */}
+        </ScrollView>
+        {/* </View> */}
       </View>
     </>
   );
@@ -37,13 +56,10 @@ const styles = StyleSheet.create({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3,
-    elevation: 3,
   },
-  inputsmall: {
-    width: "48%",
+  wrapperSecond: {
+    width: "100%",
+    marginBottom: 200,
   },
   button: {
     elevation: 3,
@@ -51,13 +67,6 @@ const styles = StyleSheet.create({
   },
   cross: {
     alignSelf: "flex-end",
-  },
-  labelbg: {
-    backgroundColor: ThemeColors.pinkbg,
-  },
-  labeltext: {
-    color: ThemeColors.pinklabeltext,
-    fontFamily: FontFamily.poppinsMedium,
   },
   red: {
     color: ThemeColors.red,
@@ -67,8 +76,20 @@ const styles = StyleSheet.create({
     color: ThemeColors.text,
     fontFamily: FontFamily.poppinsMedium,
   },
-  font: {
+  heading: {
     fontFamily: FontFamily.poppinsSemibold,
+    textAlign: "center",
+    color: ThemeColors.text,
+  },
+  innerborder: {
+    alignSelf: "center",
+    marginVertical: 5,
+    width: "97%",
+    maxHeight: "98.5%",
+    borderWidth: 1,
+    borderColor: "#ff8aa6",
+    borderStyle: "solid",
+    borderRadius: 8,
   },
   buttonlarge: {
     width: "100%",
