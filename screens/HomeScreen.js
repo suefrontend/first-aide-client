@@ -12,6 +12,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ThemeColors } from "../theme";
 
@@ -53,7 +54,7 @@ export default function HomeScreen(props) {
     function getWidth() {
       let width = Dimensions.get("window").width;
 
-      width = width - 80;
+      width = width - 50;
 
       return width / 5;
     }
@@ -64,20 +65,19 @@ export default function HomeScreen(props) {
           screenOptions={{
             tabBarShowLabel: false,
             tabBarStyle: {
-              backgroundColor: "white",
-             // backgroundColor: "transparent",
-              position: "absolute",
-              bottom: 25,
-              marginHorizontal: 20,
-              paddingHorizontal: 20,
-              height: 60,
-              borderRadius: 8,
-              shadowColor: "#000",
-              shadowOpacity: 0.1,
-              shadowOffset: {
-                width: 4,
-                height: 4,
-              },
+              // backgroundColor: "white",
+              // position: "absolute",
+              // bottom: 25,
+              // marginHorizontal: 20,
+              // paddingHorizontal: 20,
+              height: 80,
+              // borderRadius: 8,
+              // shadowColor: "#000",
+              // shadowOpacity: 0.1,
+              // shadowOffset: {
+              //   width: 4,
+              //   height: 4,
+              // },
             },
           }}
         >
@@ -87,11 +87,11 @@ export default function HomeScreen(props) {
             options={{
               headerShown: false,
               tabBarIcon: ({ focused }) => (
-                <View style={{ position: "absolute", top: "50%" }}>
-                  <Ionicons
+                <View style={{ position: "absolute", top: "30%" }}>
+                  <Entypo
                     name="bookmark"
-                    size={29}
-                    color={focused ? ThemeColors.red : "#c2c2c2"}
+                    size={26}
+                    color={focused ? ThemeColors.red : ThemeColors.navicon}
                   />
                 </View>
               ),
@@ -111,11 +111,11 @@ export default function HomeScreen(props) {
             options={{
               headerShown: false,
               tabBarIcon: ({ focused }) => (
-                <View style={{ position: "absolute", top: "50%" }}>
+                <View style={{ position: "absolute", top: "30%" }}>
                   <Icon
                     name="stethoscope"
-                    size={30}
-                    color={focused ? ThemeColors.red : "#c2c2c2"}
+                    size={26}
+                    color={focused ? ThemeColors.red : ThemeColors.navicon}
                   />
                 </View>
               ),
@@ -136,19 +136,21 @@ export default function HomeScreen(props) {
               tabBarIcon: ({ focused }) => (
                 <View
                   style={{
+                    position: "absolute",
+                    top: "18%",
                     width: 50,
                     height: 50,
-                    backgroundColor: ThemeColors.red,
+                    // backgroundColor: ThemeColors.navicon,
                     borderRadius: 25,
                     justifyContent: "center",
                     alignContent: "center",
-                    marginBottom: 30,
+                    // marginBottom: 30,
                   }}
                 >
                   <Icon
                     name="microphone"
-                    size={30}
-                    color="#fff"
+                    size={40}
+                    color={focused ? ThemeColors.red : ThemeColors.navicon}
                     style={{ marginLeft: "auto", marginRight: "auto" }}
                   />
                 </View>
@@ -157,7 +159,7 @@ export default function HomeScreen(props) {
             listeners={({ navigation, route }) => ({
               tabPress: (e) => {
                 Animated.spring(tabOffsetValue, {
-                  toValue: getWidth() * 2,
+                  toValue: getWidth() * 2 + 18,
                   useNativeDriver: true,
                 }).start();
               },
@@ -177,11 +179,11 @@ export default function HomeScreen(props) {
             options={{
               headerShown: false,
               tabBarIcon: ({ focused }) => (
-                <View style={{ position: "absolute", top: "50%" }}>
+                <View style={{ position: "absolute", top: "30%" }}>
                   <Icon
                     name="medkit"
-                    size={28}
-                    color={focused ? ThemeColors.red : "#c2c2c2"}
+                    size={26}
+                    color={focused ? ThemeColors.red : ThemeColors.navicon}
                   />
                 </View>
               ),
@@ -189,7 +191,7 @@ export default function HomeScreen(props) {
             listeners={({ navigation, route }) => ({
               tabPress: (e) => {
                 Animated.spring(tabOffsetValue, {
-                  toValue: getWidth() * 3,
+                  toValue: getWidth() * 3 + 26,
                   useNativeDriver: true,
                 }).start();
               },
@@ -201,11 +203,11 @@ export default function HomeScreen(props) {
             options={{
               headerShown: false,
               tabBarIcon: ({ focused }) => (
-                <View style={{ position: "absolute", top: "50%" }}>
+                <View style={{ position: "absolute", top: "30%" }}>
                   <Icon
                     name="phone"
-                    size={30}
-                    color={focused ? ThemeColors.red : "#c2c2c2"}
+                    size={26}
+                    color={focused ? ThemeColors.red : ThemeColors.navicon}
                   />
                 </View>
               ),
@@ -213,7 +215,7 @@ export default function HomeScreen(props) {
             listeners={({ navigation, route }) => ({
               tabPress: (e) => {
                 Animated.spring(tabOffsetValue, {
-                  toValue: getWidth() * 4,
+                  toValue: getWidth() * 4 + 36,
                   useNativeDriver: true,
                 }).start();
               },
@@ -224,10 +226,10 @@ export default function HomeScreen(props) {
           style={{
             width: getWidth() - 20,
             height: 2,
-            //backgroundColor: ThemeColors.red,
+            backgroundColor: ThemeColors.red,
             position: "absolute",
-            bottom: 85,
-            left: 50,
+            bottom: 80,
+            left: 17,
             borderRadius: 50,
             transform: [{ translateX: tabOffsetValue }],
           }}
