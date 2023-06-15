@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Voice from "@react-native-voice/voice";
 import { getToken, removeToken } from "../helpers/tokenStorage";
-import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { authGet, authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
@@ -30,17 +29,6 @@ export default function Recorder(props) {
     setIsRecording(value);
   };
 
-  // "Hello, name"
-  const getDecodedName = async () => {
-    try {
-      const token = await getToken();
-      const decoded = jwt_decode(token);
-      setName(decoded.name);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const onSpeechStart = (e) => {
     console.log("onSpeechStart: ", e);
   };
@@ -65,11 +53,22 @@ export default function Recorder(props) {
 
   useEffect(() => {
     clear();
-    getDecodedName();
     Voice.onSpeechStart = onSpeechStart;
     Voice.onSpeechEnd = onSpeechEnd;
     Voice.onSpeechError = onSpeechError;
     Voice.onSpeechResults = onSpeechResults;
+
+    const getCurrentName = async () => {
+      try {
+        const response = await authGet("/users");
+        const data = response.data;
+        setName(data.username);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCurrentName();
 
     const getMarqueeItems = async () => {
       try {
