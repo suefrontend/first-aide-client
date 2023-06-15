@@ -12,7 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { authPost, authDelete } from "../../helpers/authenticatedCalls";
 import Feather from "react-native-vector-icons/Feather";
 import Icon from "react-native-vector-icons/FontAwesome";
-import AntIcon from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
 import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function FocusBookmark(props) {
@@ -67,7 +67,7 @@ export default function FocusBookmark(props) {
                   }}
                 >
                   <Text
-                    className="text-3xl text-white mt-3"
+                    className="text-3xl text-white mt-3 capitalize"
                     style={[styles.heading, { width: "80%" }]}
                   >
                     {title && title}
@@ -106,36 +106,40 @@ export default function FocusBookmark(props) {
             )}
           </View>
         </View>
-        <ScrollView>
-          <View style={styles.bookmarkInfo}>
-            <View style={styles.innerborder}>
-              <Pressable onPress={cancelFocusBookmark}>
-                <Icon
-                  name="close"
-                  size={30}
-                  color={ThemeColors.lightgray}
-                  style={{ marginLeft: "auto", marginRight: 6, marginTop: 6 }}
-                />
-              </Pressable>
-              <View style={styles.textBox}>
+
+      <ScrollView>
+        <View style={styles.bookmarkInfo}>
+          <View style={styles.innerborder}>
+            <Pressable onPress={cancelFocusBookmark}>
+              <Entypo
+                name="circle-with-cross"
+                size={30}
+                color={ThemeColors.lightgray}
+                style={{ marginLeft: "auto", marginRight: 6, marginTop: 12 }}
+              />
+            </Pressable>
+
+              <View style={[styles.textBox]}>
                 <Text
-                  className="text-xl text-center leading-8"
+                  className="text-lg text-center leading-8"
+
+
+        
+
                   style={styles.text}
                 >
                   {instruction}
                 </Text>
               </View>
-              <Pressable
-                title="Add"
-                className="mt-4 rounded py-2"
-                style={styles.button}
-                onPress={deleteBookmark}
-              >
-                <Text className="text-white text-lg" style={styles.font}>
-                  Delete Bookmark
-                </Text>
-              </Pressable>
-            </View>
+            <Pressable
+              className="mt-4 rounded py-2"
+              style={styles.button}
+              onPress={deleteBookmark}
+            >
+              <Text className="text-white text-lg" style={styles.font}>
+                Delete Bookmark
+              </Text>
+            </Pressable>
           </View>
         </ScrollView>
       </LinearGradient>
@@ -175,6 +179,7 @@ const styles = StyleSheet.create({
   },
   bookmarkInfo: {
     width: "100%",
+
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
@@ -186,13 +191,14 @@ const styles = StyleSheet.create({
   textBox: {
     width: "90%",
     alignSelf: "center",
-    paddingTop: 30,
-    paddingBottom: 20,
+    paddingTop: 8,
+    paddingBottom: 10,
   },
   innerborder: {
     alignSelf: "center",
     marginVertical: 5,
     width: "97%",
+    maxHeight: "98.5%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",
@@ -205,7 +211,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: ThemeColors.red,
     width: "90%",
-    marginBottom: 20,
+    marginBottom: 15,
   },
   editButton: {
     width: 50,
