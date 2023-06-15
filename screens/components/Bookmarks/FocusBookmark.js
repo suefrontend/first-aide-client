@@ -122,7 +122,7 @@ export default function FocusBookmark(props) {
                   className="text-lg text-center leading-8"
                   style={styles.text}
                 >
-                  {instruction}{" "}
+                  {instruction}
                 </Text>
               </View>
             </ScrollView>
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   },
   bookmarkInfo: {
     width: "90%",
-    height: "76%",
+    maxHeight: "76%",
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
@@ -185,13 +185,14 @@ const styles = StyleSheet.create({
   textBox: {
     width: "90%",
     alignSelf: "center",
-    paddingTop: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   innerborder: {
     alignSelf: "center",
     marginVertical: 5,
     width: "97%",
-    height: "98.5%",
+    maxHeight: "98.5%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",
