@@ -59,7 +59,7 @@ export default function HomeScreen(props) {
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Disclaimer</Text>
         </Pressable>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={logoutHandler}>
           <Text style={styles.buttonText}>Log Out</Text>
         </Pressable>
       </View>
