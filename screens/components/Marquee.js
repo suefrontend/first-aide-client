@@ -1,18 +1,14 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import MarqueeItem from "./MarqueeItem";
 
-export default function Marquee() {
-  const bookmarks = [
-    { users_id: 1, keyword: "choking", instruction: "", bookmarked: true },
-    { users_id: 1, keyword: "abrasions", instruction: "", bookmarked: true },
-    { users_id: 1, keyword: "nodebleed", instruction: "", bookmarked: true },
-  ];
+export default function Marquee(props) {
+  const { marqueeItems } = props;
 
   return (
     <FlatList
-      data={bookmarks}
-      keyExtractor={(bookmarks) => bookmarks.id}
-      numColumns={3}
+      horizontal={true}
+      data={marqueeItems}
+      keyExtractor={(marqueeItem) => marqueeItem.id}
       renderItem={({ item }) => <MarqueeItem {...item} />}
     />
   );

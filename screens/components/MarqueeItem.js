@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { FontFamily, ThemeColors } from "../../theme";
 
-export default function MarqueeItem({ keyword }) {
-  const [icon, setIcon] = useState(keyword);
+export default function MarqueeItem({ id, instruction, title, users_id }) {
+  const [icon, setIcon] = useState(title);
   const getIcon = () => {
     switch (icon) {
       case "abrasions":
@@ -34,7 +34,7 @@ export default function MarqueeItem({ keyword }) {
           source={getIcon()}
         />
         <Text className="capitalize text-sm" style={styles.text}>
-          {keyword}
+          {title}
         </Text>
       </View>
     </View>

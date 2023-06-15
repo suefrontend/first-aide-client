@@ -5,7 +5,7 @@ import Voice from "@react-native-voice/voice";
 import { getToken, removeToken } from "../helpers/tokenStorage";
 import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { authPost } from "../helpers/authenticatedCalls";
+import { authGet, authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
 import { FontFamily, ThemeColors } from "../../theme";
 import Marquee from "./Marquee";
@@ -16,6 +16,7 @@ export default function Recorder(props) {
   const [voiceResult, setVoiceResult] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
+  const [marqueeItems, setMarqueeItems] = useState([]);
   const [isFetching, setIsFetching] = useState(false); // for loading animation
   const scaleRef = useRef(1);
 
@@ -65,6 +66,19 @@ export default function Recorder(props) {
     Voice.onSpeechEnd = onSpeechEnd;
     Voice.onSpeechError = onSpeechError;
     Voice.onSpeechResults = onSpeechResults;
+
+    const getMarqueeItems = async () => {
+      try {
+        const response = await authGet("/bookmarks/");
+        setMarqueeItems(response.data);
+        console.log(marqueeItems);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getMarqueeItems();
+
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
     };
@@ -239,7 +253,7 @@ export default function Recorder(props) {
           <Text className="text-white text-xl py-2" style={[styles.headings]}>
             Your Bookmarks
           </Text>
-          <Marquee />
+          <Marquee marqueeItems={marqueeItems} />
         </View>
       </LinearGradient>
     </View>
