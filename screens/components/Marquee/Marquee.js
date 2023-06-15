@@ -13,7 +13,7 @@ export default function Marquee(props) {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const newIndex = Math.floor(offset._value) + 1;
+      const newIndex = (offset._value + 1) % marqueeItems.length;
       carouselRef.current.scrollToIndex({ index: newIndex, animated: true });
       console.log("new index", newIndex);
     }, 1000);

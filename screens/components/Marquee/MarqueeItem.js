@@ -39,7 +39,10 @@ export default function MarqueeItem({
           contentFit="cover"
           source={getIcon()}
         />
-        <Text className="capitalize text-sm" style={styles.text}>
+        <Text
+          className="capitalize text-sm"
+          style={[styles.text, { width: "71%", lineHeight: 19 }]}
+        >
           {title}
         </Text>
       </View>
