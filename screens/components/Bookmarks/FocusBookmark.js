@@ -113,7 +113,7 @@ export default function FocusBookmark(props) {
                 name="circle-with-cross"
                 size={30}
                 color={ThemeColors.lightgray}
-                style={{ marginLeft: "auto", marginRight: 6, marginTop: 7 }}
+                style={{ marginLeft: "auto", marginRight: 6, marginTop: 12 }}
               />
             </Pressable>
             <ScrollView>
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   textBox: {
     width: "90%",
     alignSelf: "center",
-    paddingTop: 10,
+    paddingTop: 8,
     paddingBottom: 10,
   },
   innerborder: {
