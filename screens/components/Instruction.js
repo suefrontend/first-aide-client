@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     // height: "100%",
     marginLeft: "auto",
     marginRight: "auto",
+    marginTop: 90,
   },
   linearGradient: {
     width: "100%",

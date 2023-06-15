@@ -246,7 +246,7 @@ export default function HomeScreen(props) {
           component={HomeTabs}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Instruction">
+        <Stack.Screen name="Instruction" options={{ headerShown: false }}>
           {() => (
             <Instruction
               apiResponse={apiResponse}
