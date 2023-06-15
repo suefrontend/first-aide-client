@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import ConditionItem from "./ConditionItem";
 import { authPost } from "../../../helpers/authenticatedCalls";
+import { FontFamily, ThemeColors } from "../../../../theme";
 
 export default function ConditionList(props) {
   const { conditions, setConditions } = props;
@@ -53,14 +54,13 @@ export default function ConditionList(props) {
           />
         ))}
 
-      <View className="flex-row items-center justify-between px-3 py-3">
+      <View className="flex-row items-center justify-between px-3 pt-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
           placeholder="Condition"
-          placeholderTextColor="#a9a9a9"
           value={newConditionName}
           onChangeText={(text) => setNewConditionName(text)}
-          style={{ width: "88%" }}
+          style={[{ width: "88%" }, styles.text]}
         />
         <Pressable
           title="Add"
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   borderthick: {
     height: 2,
     borderTopWidth: 2,
-    borderColor: "#e6e6e6",
+    borderColor: ThemeColors.grayborder,
     borderStyle: "solid",
     width: "100%",
   },
@@ -94,6 +94,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: "#FE0944",
+    backgroundColor: ThemeColors.red,
+  },
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsRegular,
   },
 });

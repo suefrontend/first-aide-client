@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
 import MedicationItem from "./MedicationItem";
 import { authPost } from "../../../helpers/authenticatedCalls";
+import { FontFamily, ThemeColors } from "../../../../theme";
 
 export default function MedicationList(props) {
   const { medications, setMedications } = props;
@@ -52,14 +53,13 @@ export default function MedicationList(props) {
             setMedications={setMedications}
           />
         ))}
-      <View className="flex-row items-center justify-between px-3 py-3">
+      <View className="flex-row items-center justify-between px-3 pt-3">
         <TextInput
           className="bg-gray-200 rounded p-2"
           placeholder="Medication"
-          placeholderTextColor="#a9a9a9"
           value={newMedicationName}
           onChangeText={(text) => setMedicationName(text)}
-          style={{ width: "88%" }}
+          style={[{ width: "88%" }, styles.text]}
         />
         <Pressable
           title="Add"
@@ -85,14 +85,7 @@ const styles = StyleSheet.create({
   borderthick: {
     height: 2,
     borderTopWidth: 2,
-    borderColor: "#e6e6e6",
-    borderStyle: "solid",
-    width: "100%",
-  },
-  borderthin: {
-    height: 1,
-    borderTopWidth: 1,
-    borderColor: "#e6e6e6",
+    borderColor: ThemeColors.grayborder,
     borderStyle: "solid",
     width: "100%",
   },
@@ -107,6 +100,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: "#FE0944",
+    backgroundColor: ThemeColors.red,
+  },
+  text: {
+    fontFamily: FontFamily.poppinsMedium,
+    color: ThemeColors.text,
   },
 });

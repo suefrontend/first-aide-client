@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/AntDesign";
-import { LinearGradient } from "expo-linear-gradient";
 import { authDelete } from "../../../helpers/authenticatedCalls";
+import { FontFamily, ThemeColors } from "../../../../theme";
 
 export default function ConditionItem({ id, name, setConditions }) {
   const deleteCondition = async (id) => {
@@ -35,7 +35,7 @@ export default function ConditionItem({ id, name, setConditions }) {
         <>
           <View className="flex-row py-2 justify-between">
             <View>
-              <Text className="text-base pl-4" style={styles.color}>
+              <Text className="text-base pl-4" style={styles.text}>
                 {name}
               </Text>
             </View>
@@ -44,7 +44,7 @@ export default function ConditionItem({ id, name, setConditions }) {
                 name="close"
                 size={20}
                 color="#c2c2c2"
-                style={{ marginRight: 10 }}
+                style={{ marginRight: 16 }}
               />
             </Pressable>
           </View>
@@ -61,35 +61,14 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
   },
-  linearGradient: {
-    width: "100%",
-    height: "100%",
-  },
-  headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
-  },
-  bg: {
-    backgroundColor: "#FE0944",
-  },
-  color: {
-    color: "#555",
-  },
-  borderthick: {
-    height: 2,
-    borderTopWidth: 2,
-    borderColor: "#e6e6e6",
-    borderStyle: "solid",
-    width: "100%",
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
   },
   borderthin: {
     height: 1,
     borderTopWidth: 1,
-    borderColor: "#e6e6e6",
+    borderColor: ThemeColors.grayborder,
     borderStyle: "solid",
     width: "100%",
   },
@@ -104,6 +83,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: "#FE0944",
+    backgroundColor: ThemeColors.red,
   },
 });
