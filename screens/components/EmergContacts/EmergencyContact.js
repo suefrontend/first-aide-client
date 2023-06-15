@@ -24,7 +24,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Icon from "react-native-vector-icons/Entypo";
 import FocusContact from "./FocusContact";
 
-export default function EmergencyContact() {
+export default function EmergencyContact({ navigation }) {
   const [contacts, setContacts] = useState([]);
   const [person, setPerson] = useState({
     id: "",
@@ -112,7 +112,9 @@ export default function EmergencyContact() {
       >
         <View style={styles.wrapper}>
           <View style={styles.contentBox}>
-            <Icon name="dots-two-horizontal" size={30} color="#fff" />
+            <Pressable onPress={() => navigation.openDrawer()}>
+              <Icon name="dots-two-horizontal" size={30} color="#fff" />
+            </Pressable>
             <Text
               className="text-2xl font-bold text-white pt-6 pb-3"
               style={styles.headings}
