@@ -108,34 +108,41 @@ export default function FocusBookmark(props) {
         </View>
 
         <ScrollView>
-          <View style={styles.bookmarkInfo}>
-            <View style={styles.innerborder}>
-              <Pressable onPress={cancelFocusBookmark}>
-                <Entypo
-                  name="circle-with-cross"
-                  size={30}
-                  color={ThemeColors.lightgray}
-                  style={{ marginLeft: "auto", marginRight: 6, marginTop: 12 }}
-                />
-              </Pressable>
+          <View style={styles.wrapperSecond}>
+            <View style={styles.bookmarkInfo}>
+              <View style={styles.innerborder}>
+                <Pressable onPress={cancelFocusBookmark}>
+                  <Entypo
+                    name="circle-with-cross"
+                    size={30}
+                    color={ThemeColors.lightgray}
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: 6,
+                      marginTop: 12,
+                    }}
+                  />
+                </Pressable>
 
-              <View style={[styles.textBox]}>
-                <Text
-                  className="text-lg text-center leading-8"
-                  style={styles.text}
+                <View style={[styles.textBox]}>
+                  <Text
+                    className="text-lg text-center leading-8"
+                    style={styles.text}
+                  >
+                    {instruction}
+                  </Text>
+                </View>
+
+                <Pressable
+                  className="mt-4 rounded py-2"
+                  style={styles.button}
+                  onPress={deleteBookmark}
                 >
-                  {instruction}
-                </Text>
+                  <Text className="text-white text-lg" style={styles.font}>
+                    Delete Bookmark
+                  </Text>
+                </Pressable>
               </View>
-              <Pressable
-                className="mt-4 rounded py-2"
-                style={styles.button}
-                onPress={deleteBookmark}
-              >
-                <Text className="text-white text-lg" style={styles.font}>
-                  Delete Bookmark
-                </Text>
-              </Pressable>
             </View>
           </View>
         </ScrollView>
@@ -149,6 +156,10 @@ const styles = StyleSheet.create({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
+  },
+  wrapperSecond: {
+    width: "100%",
+    marginBottom: 200,
   },
   contentBox: {
     marginTop: 90,
@@ -176,14 +187,12 @@ const styles = StyleSheet.create({
   },
   bookmarkInfo: {
     width: "100%",
-
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 3,
-    marginBottom: 200,
   },
   textBox: {
     width: "90%",
@@ -195,7 +204,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginVertical: 5,
     width: "97%",
-    maxHeight: "98.5%",
+    // maxHeight: "98.5%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",
