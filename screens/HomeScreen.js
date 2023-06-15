@@ -24,6 +24,7 @@ import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmarks/Bookmark";
 import EmergencyContact from "./components/EmergContacts/EmergencyContact";
 import Instruction from "./components/Instruction";
+import Disclaimer from "./components/Disclaimer";
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -56,7 +57,10 @@ export default function HomeScreen(props) {
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>Edit Profile</Text>
         </Pressable>
-        <Pressable style={styles.button}>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate("Disclaimer")}
+        >
           <Text style={styles.buttonText}>Disclaimer</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={logoutHandler}>
@@ -306,6 +310,11 @@ export default function HomeScreen(props) {
             />
           )}
         </Stack.Screen>
+        <Stack.Screen
+          name="Disclaimer"
+          component={Disclaimer}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
