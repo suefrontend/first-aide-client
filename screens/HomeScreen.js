@@ -48,7 +48,6 @@ export default function HomeScreen(props) {
 
   function HomeTabs() {
     const navigation = useNavigation();
-
     const tabOffsetValue = useRef(new Animated.Value(0)).current;
 
     function getWidth() {
@@ -238,6 +237,7 @@ export default function HomeScreen(props) {
       </>
     );
   }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -246,7 +246,6 @@ export default function HomeScreen(props) {
           component={HomeTabs}
           options={{ headerShown: false }}
         />
-
         <Stack.Screen name="Instruction">
           {() => (
             <Instruction

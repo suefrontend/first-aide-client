@@ -12,8 +12,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { authPost } from "../helpers/authenticatedCalls";
 import { FontFamily, ThemeColors } from "../../theme";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Instruction(props) {
+  const navigation = useNavigation();
   const { apiResponse, setBookmark } = props;
   const [buttonClick, setButtonClick] = useState(false);
 
@@ -112,6 +114,9 @@ export default function Instruction(props) {
             <Pressable
               className="bg-white rounded-md py-2 mt-4"
               style={styles.objectshadow}
+              onPress={() => {
+                navigation.goBack();
+              }}
             >
               <Text style={styles.button} className="text-center text-lg">
                 Back
