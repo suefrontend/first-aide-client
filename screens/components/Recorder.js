@@ -1,21 +1,26 @@
-import { StyleSheet, View, Text, Button, Pressable } from "react-native";
+import { StyleSheet, View, Text, Button, Pressable, Modal } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Voice from "@react-native-voice/voice";
 import { getToken, removeToken } from "../helpers/tokenStorage";
 import jwt_decode from "jwt-decode";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { authPost } from "../helpers/authenticatedCalls";
+import { authGet, authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
 import { FontFamily, ThemeColors } from "../../theme";
-import Marquee from "./Marquee";
+import Marquee from "./Marquee/Marquee";
 import AnimatedRing from "./AnimatedRing";
+import FocusMarquee from "./Marquee/FocusMarquee";
 
 export default function Recorder(props) {
   const { logoutHandler, navigation, setApiResponse } = props;
   const [voiceResult, setVoiceResult] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
+  const [marqueeItems, setMarqueeItems] = useState([]);
+  const [focusMarqueeTitle, setFocusMarqueeTitle] = useState(null); // View 1 marquee item
+  const [focusMarqueeInstruction, setFocusMarqueeInstruction] = useState(null); // View 1 marquee item
+  const [clickMarquee, setClickMarquee] = useState(false); // Modal State
   const [isFetching, setIsFetching] = useState(false); // for loading animation
   const scaleRef = useRef(1);
 
@@ -65,6 +70,19 @@ export default function Recorder(props) {
     Voice.onSpeechEnd = onSpeechEnd;
     Voice.onSpeechError = onSpeechError;
     Voice.onSpeechResults = onSpeechResults;
+
+    const getMarqueeItems = async () => {
+      try {
+        const response = await authGet("/bookmarks/");
+        setMarqueeItems(response.data);
+        console.log(marqueeItems);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getMarqueeItems();
+
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
     };
@@ -136,6 +154,18 @@ export default function Recorder(props) {
     }
   };
   const pressableRef = useRef(null);
+
+  const clickMarqueeHandler = (title, instruction) => {
+    setFocusMarqueeTitle(title);
+    setFocusMarqueeInstruction(instruction);
+    setClickMarquee(true);
+  };
+
+  const cancelFocusMarquee = () => {
+    setClickMarquee(false);
+    setFocusMarqueeTitle(null);
+    setFocusMarqueeInstruction(null);
+  };
 
   return (
     <View
@@ -239,8 +269,32 @@ export default function Recorder(props) {
           <Text className="text-white text-xl py-2" style={[styles.headings]}>
             Your Bookmarks
           </Text>
-          <Marquee />
+          <Marquee
+            marqueeItems={marqueeItems}
+            clickMarqueeHandler={clickMarqueeHandler}
+          />
         </View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={clickMarquee}
+          onRequestClose={() => setClickMarquee(false)}
+        >
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+            }}
+          >
+            <FocusMarquee
+              focusMarqueeTitle={focusMarqueeTitle}
+              focusMarqueeInstruction={focusMarqueeInstruction}
+              cancelFocusMarquee={cancelFocusMarquee}
+            />
+          </View>
+        </Modal>
       </LinearGradient>
     </View>
   );
@@ -325,5 +379,11 @@ const styles = StyleSheet.create({
     height: 250,
     borderRadius: 140,
     backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  modalContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });

@@ -106,6 +106,8 @@ export default function FocusBookmark(props) {
             )}
           </View>
         </View>
+
+      <ScrollView>
         <View style={styles.bookmarkInfo}>
           <View style={styles.innerborder}>
             <Pressable onPress={cancelFocusBookmark}>
@@ -116,16 +118,19 @@ export default function FocusBookmark(props) {
                 style={{ marginLeft: "auto", marginRight: 6, marginTop: 12 }}
               />
             </Pressable>
-            <ScrollView>
+
               <View style={[styles.textBox]}>
                 <Text
                   className="text-lg text-center leading-8"
+
+
+        
+
                   style={styles.text}
                 >
                   {instruction}
                 </Text>
               </View>
-            </ScrollView>
             <Pressable
               className="mt-4 rounded py-2"
               style={styles.button}
@@ -136,7 +141,7 @@ export default function FocusBookmark(props) {
               </Text>
             </Pressable>
           </View>
-        </View>
+        </ScrollView>
       </LinearGradient>
     </View>
   );
@@ -173,14 +178,15 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsSemibold,
   },
   bookmarkInfo: {
-    width: "90%",
-    maxHeight: "76%",
+    width: "100%",
+
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 3,
+    marginBottom: 200,
   },
   textBox: {
     width: "90%",
