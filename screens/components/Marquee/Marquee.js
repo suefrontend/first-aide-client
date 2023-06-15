@@ -1,29 +1,11 @@
-import React, { useRef, useEffect } from "react";
-import { View, Text, FlatList, StyleSheet, Animated } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import MarqueeItem from "./MarqueeItem";
-
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 export default function Marquee(props) {
   const { marqueeItems, clickMarqueeHandler } = props;
-  // const ref = useRef(null);
-
-  const offset = new Animated.Value(0);
-  const carouselRef = React.useRef();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const newIndex = (offset._value + 1) % marqueeItems.length;
-      carouselRef.current.scrollToIndex({ index: newIndex, animated: true });
-      console.log("new index", newIndex);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   return (
-    <AnimatedFlatList
-      ref={carouselRef}
+    <FlatList
       horizontal={true}
       data={marqueeItems}
       keyExtractor={(marqueeItem) => marqueeItem.id}
