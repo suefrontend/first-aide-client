@@ -13,50 +13,20 @@ import { authGet } from "../../helpers/authenticatedCalls";
 import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function FocusMarquee(props) {
-  useEffect(() => {
-    // const getFocusPerson = async () => {
-    //   try {
-    //     const response = await authGet(`/emergencyContacts/${focusContact}`);
-    //     const data = response.data;
-    //     console.log("Focus contact:", data);
-    //     setFocusPerson(data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // getFocusPerson();
-  }, []);
-
+  const { cancelFocusMarquee, focusMarqueeTitle, focusMarqueeInstruction } =
+    props;
   return (
     <>
       <View className="rounded-lg bg-white py-4 px-4 mt-5" style={styles.card}>
-        <Pressable style={styles.cross}>
+        <Pressable style={styles.cross} onPress={cancelFocusMarquee}>
           <Icon name="close" size={20} color="#c2c2c2" />
         </Pressable>
         <View className="flex-row justify-between items-center">
           <View>
-            <View
-              className="h-100 w-100 bg-black round-full"
-              style={{
-                width: 50,
-                height: 50,
-                borderRadius: 50,
-                backgroundColor: "#e3e3e3",
-                position: "relative",
-              }}
-            ></View>
+            <Text>{focusMarqueeTitle}</Text>
+            <Text>{focusMarqueeInstruction}</Text>
           </View>
         </View>
-        <Pressable
-          title="Add"
-          className="mt-4 rounded py-2 items-center justify-center"
-          style={styles.button}
-          onPress={() => deleteContactHandler(focusPerson.id)}
-        >
-          <Text className="text-white" style={styles.font}>
-            Delete Contact
-          </Text>
-        </Pressable>
       </View>
     </>
   );

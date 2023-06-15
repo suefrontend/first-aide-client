@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { FontFamily, ThemeColors } from "../../../theme";
 
-export default function MarqueeItem({ id, instruction, title, users_id }) {
+export default function MarqueeItem({
+  id,
+  instruction,
+  title,
+  users_id,
+  clickMarqueeHandler,
+}) {
   const [icon, setIcon] = useState(title);
   const getIcon = () => {
     switch (icon) {
@@ -22,10 +28,11 @@ export default function MarqueeItem({ id, instruction, title, users_id }) {
   };
 
   return (
-    <View
+    <Pressable
       // style={{borderWidth: 1}}
       style={styles.card}
       className="bg-white flex items-center justify-center rounded-lg mr-2 mb-2"
+      onPress={() => clickMarqueeHandler(title, instruction)}
     >
       <View style={styles.innerborder} className="flex-row items-center">
         <Image
@@ -37,7 +44,7 @@ export default function MarqueeItem({ id, instruction, title, users_id }) {
           {title}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 

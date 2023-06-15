@@ -18,8 +18,9 @@ export default function Recorder(props) {
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
   const [marqueeItems, setMarqueeItems] = useState([]);
-  const [focusMarquee, setFocusMarquee] = useState(null); // View 1 marquee item
-  const [clickMarquee, setClickMarquee] = useState(true); // Modal State
+  const [focusMarqueeTitle, setFocusMarqueeTitle] = useState(null); // View 1 marquee item
+  const [focusMarqueeInstruction, setFocusMarqueeInstruction] = useState(null); // View 1 marquee item
+  const [clickMarquee, setClickMarquee] = useState(false); // Modal State
   const [isFetching, setIsFetching] = useState(false); // for loading animation
   const scaleRef = useRef(1);
 
@@ -154,6 +155,18 @@ export default function Recorder(props) {
   };
   const pressableRef = useRef(null);
 
+  const clickMarqueeHandler = (title, instruction) => {
+    setFocusMarqueeTitle(title);
+    setFocusMarqueeInstruction(instruction);
+    setClickMarquee(true);
+  };
+
+  const cancelFocusMarquee = () => {
+    setClickMarquee(false);
+    setFocusMarqueeTitle(null);
+    setFocusMarqueeInstruction(null);
+  };
+
   return (
     <View
       style={styles.container}
@@ -256,7 +269,10 @@ export default function Recorder(props) {
           <Text className="text-white text-xl py-2" style={[styles.headings]}>
             Your Bookmarks
           </Text>
-          <Marquee marqueeItems={marqueeItems} />
+          <Marquee
+            marqueeItems={marqueeItems}
+            clickMarqueeHandler={clickMarqueeHandler}
+          />
         </View>
         <Modal
           animationType="slide"
@@ -272,7 +288,11 @@ export default function Recorder(props) {
               backgroundColor: "rgba(0, 0, 0, 0.5)",
             }}
           >
-            <FocusMarquee />
+            <FocusMarquee
+              focusMarqueeTitle={focusMarqueeTitle}
+              focusMarqueeInstruction={focusMarqueeInstruction}
+              cancelFocusMarquee={cancelFocusMarquee}
+            />
           </View>
         </Modal>
       </LinearGradient>
