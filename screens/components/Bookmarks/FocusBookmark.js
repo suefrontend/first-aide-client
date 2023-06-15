@@ -117,7 +117,7 @@ export default function FocusBookmark(props) {
               />
             </Pressable>
             <ScrollView>
-              <View style={[styles.textBox, style={height: '80%'}]}>
+              <View style={[styles.textBox]}>
                 <Text
                   className="text-lg text-center leading-8"
                   style={styles.text}
@@ -139,7 +139,6 @@ export default function FocusBookmark(props) {
               </View>
             </ScrollView>
             <Pressable
-              title="Add"
               className="mt-4 rounded py-2"
               style={styles.button}
               onPress={deleteBookmark}
@@ -187,7 +186,7 @@ const styles = StyleSheet.create({
   },
   bookmarkInfo: {
     width: "90%",
-    
+    height: "76%",
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
@@ -198,13 +197,13 @@ const styles = StyleSheet.create({
   textBox: {
     width: "90%",
     alignSelf: "center",
-    paddingTop: 30,
-    paddingBottom: 20,
+    paddingTop: 20,
   },
   innerborder: {
     alignSelf: "center",
     marginVertical: 5,
     width: "97%",
+    height: "98.5%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",
@@ -217,7 +216,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: ThemeColors.red,
     width: "90%",
-    marginBottom: 20,
+    marginBottom: 15,
   },
   editButton: {
     width: 50,
