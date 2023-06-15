@@ -5,6 +5,7 @@ import {
   Button,
   Animated,
   Dimensions,
+  Pressable,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { useFonts } from "expo-font";
@@ -50,8 +51,17 @@ export default function HomeScreen(props) {
 
   const DrawerContent = ({ navigation }) => {
     return (
-      <View>
-        <Text>Drawer Content</Text>
+      <View style={styles.container}>
+        <View style={styles.box}></View>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>Edit Profile</Text>
+        </Pressable>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>Disclaimer</Text>
+        </Pressable>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>Log Out</Text>
+        </Pressable>
       </View>
     );
   };
@@ -76,7 +86,7 @@ export default function HomeScreen(props) {
             headerShown: false,
             drawerStyle: {
               backgroundColor: "transparent",
-              width: "50%",
+              width: "80%",
             },
             drawerActiveBackgroundColor: "transparent",
             drawerInactiveBackgroundColor: "transparent",
@@ -300,3 +310,30 @@ export default function HomeScreen(props) {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    alignItems: "center",
+  },
+  box: {
+    width: "100%",
+    height: "30%",
+    backgroundColor: ThemeColors.red,
+  },
+  button: {
+    width: "80%",
+    height: 30,
+    backgroundColor: ThemeColors.red,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 5,
+  },
+  buttonText: {
+    color: "white",
+    fontFamily: "Poppins_regular",
+    fontSize: 16,
+  },
+});
