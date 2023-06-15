@@ -5,6 +5,7 @@ import {
   Image,
   Pressable,
   TextInput,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -66,7 +67,7 @@ export default function FocusBookmark(props) {
                   }}
                 >
                   <Text
-                    className="text-3xl text-white mt-3"
+                    className="text-3xl text-white mt-3 capitalize"
                     style={[styles.heading, { width: "80%" }]}
                   >
                     {title && title}
@@ -115,14 +116,28 @@ export default function FocusBookmark(props) {
                 style={{ marginLeft: "auto", marginRight: 6, marginTop: 6 }}
               />
             </Pressable>
-            <View style={styles.textBox}>
-              <Text
-                className="text-lg text-center leading-8"
-                style={styles.text}
-              >
-                {instruction}
-              </Text>
-            </View>
+            <ScrollView>
+              <View style={[styles.textBox, style={height: '80%'}]}>
+                <Text
+                  className="text-lg text-center leading-8"
+                  style={styles.text}
+                >
+                  {instruction}Contrary to popular belief, Lorem Ipsum is not
+                  simply random text. It has roots in a piece of classical Latin
+                  literature from 45 BC, making it over 2000 years old. Richard
+                  McClintock, a Latin professor at Hampden-Sydney College in
+                  Virginia, looked up one of the more obscure Latin words,
+                  consectetur, from a Lorem Ipsum passage, and going through the
+                  cites of the word in classical literature, discovered the
+                  undoubtable source. Lorem Ipsum comes from sections 1.10.32
+                  and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
+                  of Good and Evil) by Cicero, written in 45 BC. This book is a
+                  treatise on the theory of ethics, very popular during the
+                  Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor
+                  sit amet..", comes from a line in section 1.10.32.
+                </Text>
+              </View>
+            </ScrollView>
             <Pressable
               title="Add"
               className="mt-4 rounded py-2"
@@ -172,6 +187,7 @@ const styles = StyleSheet.create({
   },
   bookmarkInfo: {
     width: "90%",
+    
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
