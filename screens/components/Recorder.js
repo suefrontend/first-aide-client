@@ -1,4 +1,14 @@
-import { StyleSheet, View, Text, Button, Pressable, Modal } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Pressable,
+  Modal,
+  SafeAreaView,
+  RefreshControl,
+  ScrollView,
+} from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Voice from "@react-native-voice/voice";
@@ -13,6 +23,7 @@ import FocusMarquee from "./Marquee/FocusMarquee";
 
 export default function Recorder(props) {
   const { logoutHandler, navigation, setApiResponse } = props;
+  const [refreshing, setRefreshing] = useState(false);
   const [voiceResult, setVoiceResult] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
@@ -51,6 +62,26 @@ export default function Recorder(props) {
     setVoiceResult("");
   };
 
+  const getCurrentName = async () => {
+    try {
+      const response = await authGet("/users");
+      const data = response.data;
+      setName(data.username);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMarqueeItems = async () => {
+    try {
+      const response = await authGet("/bookmarks/");
+      setMarqueeItems(response.data);
+      console.log(marqueeItems);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     clear();
     Voice.onSpeechStart = onSpeechStart;
@@ -58,33 +89,19 @@ export default function Recorder(props) {
     Voice.onSpeechError = onSpeechError;
     Voice.onSpeechResults = onSpeechResults;
 
-    const getCurrentName = async () => {
-      try {
-        const response = await authGet("/users");
-        const data = response.data;
-        setName(data.username);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     getCurrentName();
-
-    const getMarqueeItems = async () => {
-      try {
-        const response = await authGet("/bookmarks/");
-        setMarqueeItems(response.data);
-        console.log(marqueeItems);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     getMarqueeItems();
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
     };
+  }, []);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getCurrentName();
+    getMarqueeItems();
+    setRefreshing(false);
   }, []);
 
   const recordHandler = async () => {
@@ -175,125 +192,137 @@ export default function Recorder(props) {
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View style={styles.contentBox}>
-          <Text
-            className="text-xl font-bold text-white pt-14 mt-4 pb-3"
-            style={[styles.subtitle, styles.textshadow]}
+        <SafeAreaView style={styles.container}>
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
           >
-            Hello, {name}
-          </Text>
-          <View style={styles.voicebox}>
-            <Text
-              className="text-4xl font-bold text-white"
-              style={[styles.title, styles.textshadow]}
-            >
-              {recordingMessage}
-            </Text>
-            {voiceResult !== "" && (
+            <View style={styles.contentBox}>
               <Text
-                className="text-2xl font-bold text-white text-center"
-                style={[styles.result, styles.textshadow]}
+                className="text-xl font-bold text-white pt-14 mt-4 pb-3"
+                style={[styles.subtitle, styles.textshadow]}
               >
-                {voiceResult}...
+                Hello, {name}
               </Text>
-            )}
-          </View>
-          <View>
-            <View
-              className="flex-column items-center justify-center py-14"
-              style={styles.mic}
-            >
-              <Pressable
-                ref={pressableRef}
-                style={styles.microphoneButton}
-                onPressIn={() => {
-                  setRecording(true);
-                  handlePressIn();
-                }}
-                onPressOut={() => {
-                  handlePressOut();
-                  setRecording(false);
-                }}
-              >
-                {/* Default two rings */}
-                {!isRecording && (
-                  <>
-                    <View style={styles.ring2} />
-                    <View style={styles.ring1} />
-                  </>
+              <View style={styles.voicebox}>
+                <Text
+                  className="text-4xl font-bold text-white"
+                  style={[styles.title, styles.textshadow]}
+                >
+                  {recordingMessage}
+                </Text>
+                {voiceResult !== "" && (
+                  <Text
+                    className="text-2xl font-bold text-white text-center"
+                    style={[styles.result, styles.textshadow]}
+                  >
+                    {voiceResult}...
+                  </Text>
                 )}
-                {isRecording && (
-                  <>
-                    <AnimatedRing
-                      delay={0}
-                      scale={0.5}
-                      isRecording={isRecording}
+              </View>
+              <View>
+                <View
+                  className="flex-column items-center justify-center py-14"
+                  style={styles.mic}
+                >
+                  <Pressable
+                    ref={pressableRef}
+                    style={styles.microphoneButton}
+                    onPressIn={() => {
+                      setRecording(true);
+                      handlePressIn();
+                    }}
+                    onPressOut={() => {
+                      handlePressOut();
+                      setRecording(false);
+                    }}
+                  >
+                    {/* Default two rings */}
+                    {!isRecording && (
+                      <>
+                        <View style={styles.ring2} />
+                        <View style={styles.ring1} />
+                      </>
+                    )}
+                    {isRecording && (
+                      <>
+                        <AnimatedRing
+                          delay={0}
+                          scale={0.5}
+                          isRecording={isRecording}
+                        />
+                        <AnimatedRing
+                          delay={1000}
+                          scale={1}
+                          isRecording={isRecording}
+                        />
+                        <AnimatedRing
+                          delay={2000}
+                          scale={1}
+                          isRecording={isRecording}
+                        />
+                        <AnimatedRing
+                          delay={3000}
+                          scale={1}
+                          isRecording={isRecording}
+                        />
+                      </>
+                    )}
+                    <FontAwesome
+                      name="microphone"
+                      size={60}
+                      style={styles.red}
                     />
-                    <AnimatedRing
-                      delay={1000}
-                      scale={1}
-                      isRecording={isRecording}
-                    />
-                    <AnimatedRing
-                      delay={2000}
-                      scale={1}
-                      isRecording={isRecording}
-                    />
-                    <AnimatedRing
-                      delay={3000}
-                      scale={1}
-                      isRecording={isRecording}
-                    />
-                  </>
-                )}
-                <FontAwesome name="microphone" size={60} style={styles.red} />
-              </Pressable>
+                  </Pressable>
+                </View>
+              </View>
+              <View style={styles.temp}>
+                {isFetching && <Loader />}
+                <Pressable onPress={logoutHandler} style={{ borderWidth: 1 }}>
+                  <Text>Logout</Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => navigation.navigate("Instruction")}
+                  style={{ borderWidth: 1 }}
+                >
+                  <Text>Instructions</Text>
+                </Pressable>
+              </View>
             </View>
-          </View>
-          <View style={styles.temp}>
-            {isFetching && <Loader />}
-            <Pressable onPress={logoutHandler} style={{ borderWidth: 1 }}>
-              <Text>Logout</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => navigation.navigate("Instruction")}
-              style={{ borderWidth: 1 }}
-            >
-              <Text>Instructions</Text>
-            </Pressable>
-          </View>
-        </View>
-        {/* More Instructions Section */}
-        <View className="mt-11 pl-4" style={styles.instructions}>
-          <Text className="text-white text-xl py-2" style={[styles.headings]}>
-            Your Bookmarks
-          </Text>
-          <Marquee
-            marqueeItems={marqueeItems}
-            clickMarqueeHandler={clickMarqueeHandler}
-          />
-        </View>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={clickMarquee}
-          onRequestClose={() => setClickMarquee(false)}
-        >
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-            }}
-          >
-            <FocusMarquee
-              focusMarqueeTitle={focusMarqueeTitle}
-              focusMarqueeInstruction={focusMarqueeInstruction}
-              cancelFocusMarquee={cancelFocusMarquee}
+          </ScrollView>
+          {/* More Instructions Section */}
+          <View className="mt-11 pl-4" style={styles.instructions}>
+            <Text className="text-white text-xl py-2" style={[styles.headings]}>
+              Your Bookmarks
+            </Text>
+            <Marquee
+              marqueeItems={marqueeItems}
+              clickMarqueeHandler={clickMarqueeHandler}
             />
           </View>
-        </Modal>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={clickMarquee}
+            onRequestClose={() => setClickMarquee(false)}
+          >
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              <FocusMarquee
+                focusMarqueeTitle={focusMarqueeTitle}
+                focusMarqueeInstruction={focusMarqueeInstruction}
+                cancelFocusMarquee={cancelFocusMarquee}
+              />
+            </View>
+          </Modal>
+        </SafeAreaView>
       </LinearGradient>
     </View>
   );
@@ -310,6 +339,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 50,
     textTransform: "capitalize",
+  },
+  container: {
+    flex: 1,
   },
   subtitle: {
     textAlign: "center",
