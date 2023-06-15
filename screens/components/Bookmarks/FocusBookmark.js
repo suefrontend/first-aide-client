@@ -107,39 +107,36 @@ export default function FocusBookmark(props) {
           </View>
         </View>
 
-      <ScrollView>
-        <View style={styles.bookmarkInfo}>
-          <View style={styles.innerborder}>
-            <Pressable onPress={cancelFocusBookmark}>
-              <Entypo
-                name="circle-with-cross"
-                size={30}
-                color={ThemeColors.lightgray}
-                style={{ marginLeft: "auto", marginRight: 6, marginTop: 12 }}
-              />
-            </Pressable>
+        <ScrollView>
+          <View style={styles.bookmarkInfo}>
+            <View style={styles.innerborder}>
+              <Pressable onPress={cancelFocusBookmark}>
+                <Entypo
+                  name="circle-with-cross"
+                  size={30}
+                  color={ThemeColors.lightgray}
+                  style={{ marginLeft: "auto", marginRight: 6, marginTop: 12 }}
+                />
+              </Pressable>
 
               <View style={[styles.textBox]}>
                 <Text
                   className="text-lg text-center leading-8"
-
-
-        
-
                   style={styles.text}
                 >
                   {instruction}
                 </Text>
               </View>
-            <Pressable
-              className="mt-4 rounded py-2"
-              style={styles.button}
-              onPress={deleteBookmark}
-            >
-              <Text className="text-white text-lg" style={styles.font}>
-                Delete Bookmark
-              </Text>
-            </Pressable>
+              <Pressable
+                className="mt-4 rounded py-2"
+                style={styles.button}
+                onPress={deleteBookmark}
+              >
+                <Text className="text-white text-lg" style={styles.font}>
+                  Delete Bookmark
+                </Text>
+              </Pressable>
+            </View>
           </View>
         </ScrollView>
       </LinearGradient>
