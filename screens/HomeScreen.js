@@ -17,7 +17,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { ThemeColors } from "../theme";
 
 import Recorder from "./components/Recorder";
-import MedicalInfo from "./components/MedicalInfo";
+import MedicalRecordScreen from "./components/MedicalRecord/MedicalRecordScreen";
 import HospitalInfo from "./components/HospitalInfo";
 import Bookmark from "./components/Bookmarks/Bookmark";
 import EmergencyContact from "./components/EmergContacts/EmergencyContact";
@@ -107,7 +107,7 @@ export default function HomeScreen(props) {
           ></Tab.Screen>
           <Tab.Screen
             name="Medical Info"
-            component={MedicalInfo}
+            component={MedicalRecordScreen}
             options={{
               headerShown: false,
               tabBarIcon: ({ focused }) => (
