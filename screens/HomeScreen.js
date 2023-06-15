@@ -70,14 +70,14 @@ export default function HomeScreen(props) {
               // bottom: 25,
               // marginHorizontal: 20,
               // paddingHorizontal: 20,
-              height: 80,
+              height: 75,
               // borderRadius: 8,
-              // shadowColor: "#000",
-              // shadowOpacity: 0.1,
-              // shadowOffset: {
-              //   width: 4,
-              //   height: 4,
-              // },
+              shadowColor: "#000",
+              shadowOpacity: 0.1,
+              shadowOffset: {
+                width: 4,
+                height: -4,
+              },
             },
           }}
         >
@@ -222,7 +222,7 @@ export default function HomeScreen(props) {
             })}
           ></Tab.Screen>
         </Tab.Navigator>
-        <Animated.View
+        {/* <Animated.View
           style={{
             width: getWidth() - 20,
             height: 2,
@@ -233,7 +233,7 @@ export default function HomeScreen(props) {
             borderRadius: 50,
             transform: [{ translateX: tabOffsetValue }],
           }}
-        ></Animated.View>
+        ></Animated.View> */}
       </>
     );
   }
