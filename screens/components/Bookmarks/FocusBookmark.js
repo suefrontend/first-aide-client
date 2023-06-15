@@ -5,6 +5,7 @@ import {
   Image,
   Pressable,
   TextInput,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -105,36 +106,38 @@ export default function FocusBookmark(props) {
             )}
           </View>
         </View>
-        <View style={styles.bookmarkInfo}>
-          <View style={styles.innerborder}>
-            <Pressable onPress={cancelFocusBookmark}>
-              <Icon
-                name="close"
-                size={30}
-                color={ThemeColors.lightgray}
-                style={{ marginLeft: "auto", marginRight: 6, marginTop: 6 }}
-              />
-            </Pressable>
-            <View style={styles.textBox}>
-              <Text
-                className="text-xl text-center leading-8"
-                style={styles.text}
+        <ScrollView>
+          <View style={styles.bookmarkInfo}>
+            <View style={styles.innerborder}>
+              <Pressable onPress={cancelFocusBookmark}>
+                <Icon
+                  name="close"
+                  size={30}
+                  color={ThemeColors.lightgray}
+                  style={{ marginLeft: "auto", marginRight: 6, marginTop: 6 }}
+                />
+              </Pressable>
+              <View style={styles.textBox}>
+                <Text
+                  className="text-xl text-center leading-8"
+                  style={styles.text}
+                >
+                  {instruction}
+                </Text>
+              </View>
+              <Pressable
+                title="Add"
+                className="mt-4 rounded py-2"
+                style={styles.button}
+                onPress={deleteBookmark}
               >
-                {instruction}
-              </Text>
+                <Text className="text-white text-lg" style={styles.font}>
+                  Delete Bookmark
+                </Text>
+              </Pressable>
             </View>
-            <Pressable
-              title="Add"
-              className="mt-4 rounded py-2"
-              style={styles.button}
-              onPress={deleteBookmark}
-            >
-              <Text className="text-white text-lg" style={styles.font}>
-                Delete Bookmark
-              </Text>
-            </Pressable>
           </View>
-        </View>
+        </ScrollView>
       </LinearGradient>
     </View>
   );
@@ -171,13 +174,14 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsSemibold,
   },
   bookmarkInfo: {
-    width: "90%",
+    width: "100%",
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     elevation: 3,
+    marginBottom: 200,
   },
   textBox: {
     width: "90%",
