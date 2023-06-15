@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { FontFamily, ThemeColors } from "../../theme";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function MarqueeItem({ id, instruction, title, users_id }) {
   const [icon, setIcon] = useState(title);
   const getIcon = () => {
     switch (icon) {
       case "abrasions":
-        return require("../docs/icons/abrasions.png");
+        return require("../../docs/icons/abrasions.png");
       case "stings":
         break;
       case "choking":
-        return require("../docs/icons/choking.png");
+        return require("../../docs/icons/choking.png");
         break;
       case "nosebleed":
-        return require("../docs/icons/nosebleed.png");
+        return require("../../docs/icons/nosebleed.png");
         break;
       default:
-        return require("../docs/icons/seizures.png");
+        return require("../../docs/icons/seizures.png");
     }
   };
 

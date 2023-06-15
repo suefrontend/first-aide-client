@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Button, Pressable } from "react-native";
+import { StyleSheet, View, Text, Button, Pressable, Modal } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Voice from "@react-native-voice/voice";
@@ -8,8 +8,9 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { authGet, authPost } from "../helpers/authenticatedCalls";
 import Loader from "./loading/Loader";
 import { FontFamily, ThemeColors } from "../../theme";
-import Marquee from "./Marquee";
+import Marquee from "./Marquee/Marquee";
 import AnimatedRing from "./AnimatedRing";
+import FocusMarquee from "./Marquee/FocusMarquee";
 
 export default function Recorder(props) {
   const { logoutHandler, navigation, setApiResponse } = props;
@@ -17,6 +18,8 @@ export default function Recorder(props) {
   const [isRecording, setIsRecording] = useState(false);
   const [name, setName] = useState("");
   const [marqueeItems, setMarqueeItems] = useState([]);
+  const [focusMarquee, setFocusMarquee] = useState(null); // View 1 marquee item
+  const [clickMarquee, setClickMarquee] = useState(true); // Modal State
   const [isFetching, setIsFetching] = useState(false); // for loading animation
   const scaleRef = useRef(1);
 
@@ -255,6 +258,23 @@ export default function Recorder(props) {
           </Text>
           <Marquee marqueeItems={marqueeItems} />
         </View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={clickMarquee}
+          onRequestClose={() => setClickMarquee(false)}
+        >
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+            }}
+          >
+            <FocusMarquee />
+          </View>
+        </Modal>
       </LinearGradient>
     </View>
   );
@@ -339,5 +359,11 @@ const styles = StyleSheet.create({
     height: 250,
     borderRadius: 140,
     backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  modalContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
