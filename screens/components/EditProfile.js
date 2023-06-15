@@ -56,6 +56,7 @@ export default function EditProfile({ navigation }) {
       const data = response.data;
       console.log("Edited profile:", data);
       alert("Profile edited successfully");
+      navigation.goBack();
     } catch (error) {
       console.log(error);
     }
