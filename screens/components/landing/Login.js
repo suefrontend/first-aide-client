@@ -23,6 +23,8 @@ export default function Login(props) {
         className="p-2 mb-3 rounded-md border-2 border-white text-lg"
         style={styles.input}
         placeholder="Email"
+        autoCapitalize="none"
+        autoCorrect={false}
         placeholderTextColor="white"
         clearTextOnFocus={true}
         onChangeText={(text) => emailTypeHandler(text)}
@@ -32,10 +34,7 @@ export default function Login(props) {
         onPress={loginHandler}
         style={styles.shadowbutton}
       >
-        <Text
-          className="text-center font-bold text-lg"
-          style={styles.red}
-        >
+        <Text className="text-center font-bold text-lg" style={styles.red}>
           Login
         </Text>
       </Pressable>

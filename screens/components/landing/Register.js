@@ -30,6 +30,8 @@ export default function Register(props) {
         className="p-2 mb-3 rounded-md border-2 border-white text-lg"
         style={styles.input}
         placeholder="name"
+        autoCapitalize="none"
+        autoCorrect={false}
         placeholderTextColor="white"
         onChangeText={(text) => nameTypeHandler(text)}
       />
@@ -37,6 +39,8 @@ export default function Register(props) {
         className="p-2 mb-3 rounded-md border-2 border-white text-lg"
         style={styles.input}
         placeholder="email"
+        autoCapitalize="none"
+        autoCorrect={false}
         placeholderTextColor="white"
         onChangeText={(text) => emailTypeHandler(text)}
       />
@@ -44,6 +48,8 @@ export default function Register(props) {
         className="p-2 mb-3 rounded-md border-2 border-white text-lg"
         style={styles.input}
         placeholder="city"
+        autoCapitalize="none"
+        autoCorrect={false}
         placeholderTextColor="white"
         onChangeText={(text) => cityTypeHandler(text)}
       />
