@@ -52,7 +52,7 @@ export default function MedicalRecordScreen() {
             >
               Medical Record
             </Text>
-            <View style={{ marginBottom: 90 }}>
+            <View>
               <ScrollView>
                 <View
                   className="bg-white rounded-lg py-3 mb-2 w-full"
@@ -90,6 +90,9 @@ export default function MedicalRecordScreen() {
                     setConditions={setConditions}
                   />
                 </View>
+                <Text style={{ marginBottom: 100, color: "transparent" }}>
+                  Empty padding
+                </Text>
               </ScrollView>
             </View>
           </View>
