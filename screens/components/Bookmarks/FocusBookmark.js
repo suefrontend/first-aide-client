@@ -117,7 +117,7 @@ export default function FocusBookmark(props) {
             </Pressable>
             <View style={styles.textBox}>
               <Text
-                className="text-xl text-center leading-8"
+                className="text-lg text-center leading-8"
                 style={styles.text}
               >
                 {instruction}
