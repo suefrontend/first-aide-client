@@ -25,6 +25,7 @@ import Bookmark from "./components/Bookmarks/Bookmark";
 import EmergencyContact from "./components/EmergContacts/EmergencyContact";
 import Instruction from "./components/Instruction";
 import Disclaimer from "./components/Disclaimer";
+import EditProfile from "./components/EditProfile";
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -54,7 +55,10 @@ export default function HomeScreen(props) {
     return (
       <View style={styles.container}>
         <View style={styles.box}></View>
-        <Pressable style={styles.button}>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate("EditProfile")}
+        >
           <Text style={styles.buttonText}>Edit Profile</Text>
         </Pressable>
         <Pressable
@@ -313,6 +317,11 @@ export default function HomeScreen(props) {
         <Stack.Screen
           name="Disclaimer"
           component={Disclaimer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfile}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
