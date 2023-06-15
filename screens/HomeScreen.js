@@ -123,7 +123,7 @@ export default function HomeScreen(props) {
             listeners={({ navigation, route }) => ({
               tabPress: (e) => {
                 Animated.spring(tabOffsetValue, {
-                  toValue: getWidth(),
+                  toValue: getWidth() + 6,
                   useNativeDriver: true,
                 }).start();
               },
@@ -137,7 +137,7 @@ export default function HomeScreen(props) {
                 <View
                   style={{
                     position: "absolute",
-                    top: "18%",
+                    top: "10%",
                     width: 50,
                     height: 50,
                     // backgroundColor: ThemeColors.navicon,
@@ -149,7 +149,7 @@ export default function HomeScreen(props) {
                 >
                   <Icon
                     name="microphone"
-                    size={40}
+                    size={36}
                     color={focused ? ThemeColors.red : ThemeColors.navicon}
                     style={{ marginLeft: "auto", marginRight: "auto" }}
                   />
