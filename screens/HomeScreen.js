@@ -62,6 +62,7 @@ export default function HomeScreen(props) {
     return (
       <>
         <Tab.Navigator
+          initialRouteName="Recorder"
           screenOptions={{
             tabBarShowLabel: false,
             tabBarStyle: {
