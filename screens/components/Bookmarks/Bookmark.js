@@ -4,6 +4,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import BookmarkItem from "./BookmarkItem";
 import { authGet } from "../../helpers/authenticatedCalls";
 import FocusBookmark from "./FocusBookmark";
+import { FontFamily } from "../../../theme";
+import Icon from "react-native-vector-icons/Entypo";
 
 export default function Bookmark(props) {
   const [allBookmarks, setAllBookmarks] = useState([]);
@@ -36,15 +38,16 @@ export default function Bookmark(props) {
   };
 
   return (
-    <View>
+    <View className="flex-1 items-center justify-center">
       <LinearGradient
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
         <View style={styles.wrapper}>
           <View style={styles.contentBox}>
+            <Icon name="dots-two-horizontal" size={30} color="#fff" />
             <Text
-              className="py-6 text-2xl font-bold text-white"
+              className="text-2xl font-bold text-white pt-6 pb-3"
               style={styles.headings}
             >
               Bookmarks
@@ -53,7 +56,6 @@ export default function Bookmark(props) {
             <FlatList
               data={allBookmarks}
               keyExtractor={(allBookmarks) => allBookmarks.id}
-              numColumns={2}
               renderItem={({ item }) => (
                 <BookmarkItem
                   {...item}
@@ -61,9 +63,6 @@ export default function Bookmark(props) {
                   cancelFocusBookmark={cancelFocusBookmark}
                 />
               )}
-              columnWrapperStyle={{
-                justifyContent: "space-between",
-              }}
             />
           </View>
         </View>
@@ -89,26 +88,21 @@ export default function Bookmark(props) {
 
 const styles = StyleSheet.create({
   wrapper: {
+    marginTop: 50, // Margin from screen top
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
   },
   contentBox: {
-    marginTop: 90,
     width: "100%",
-    justifyContent: "center",
+    height: "100%",
   },
   linearGradient: {
     width: "100%",
     height: "100%",
   },
   headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
+    fontFamily: FontFamily.poppinsSemibold,
   },
   modalContainer: {
     flex: 1,

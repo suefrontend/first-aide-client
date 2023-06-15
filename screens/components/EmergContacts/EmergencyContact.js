@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { FontFamily } from "../../../theme";
 import EmergencyContactItem from "./EmergencyContactItem";
 import EmergContactForm from "./EmergContactForm";
 import {
@@ -21,6 +21,7 @@ import {
   authDelete,
 } from "../../helpers/authenticatedCalls";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/Entypo";
 import FocusContact from "./FocusContact";
 
 export default function EmergencyContact() {
@@ -104,35 +105,34 @@ export default function EmergencyContact() {
   };
 
   return (
-    <View>
+    <View className="flex-1 items-center justify-center">
       <LinearGradient
         colors={["#FE0944", "#FEAE96"]}
         style={styles.linearGradient}
       >
-        <View>
-          <View style={styles.wrapper}>
-            <View style={styles.contentBox}>
-              <Text
-                className="py-6 text-2xl font-bold text-white"
-                style={styles.headings}
-              >
-                Emergency Contacts
-              </Text>
+        <View style={styles.wrapper}>
+          <View style={styles.contentBox}>
+            <Icon name="dots-two-horizontal" size={30} color="#fff" />
+            <Text
+              className="text-2xl font-bold text-white pt-6 pb-3"
+              style={styles.headings}
+            >
+              Emergency Contacts
+            </Text>
 
-              <FlatList
-                data={contacts}
-                keyExtractor={(contact) => contact.id}
-                renderItem={({ item }) => (
-                  <EmergencyContactItem
-                    {...item}
-                    setShowContact={setShowContact}
-                    popUpContact={popUpContact}
-                    deleteContactHandler={deleteContactHandler}
-                  />
-                )}
-                contentContainerStyle={{ paddingBottom: 200 }}
-              />
-            </View>
+            <FlatList
+              data={contacts}
+              keyExtractor={(contact) => contact.id}
+              renderItem={({ item }) => (
+                <EmergencyContactItem
+                  {...item}
+                  setShowContact={setShowContact}
+                  popUpContact={popUpContact}
+                  deleteContactHandler={deleteContactHandler}
+                />
+              )}
+              contentContainerStyle={{ paddingBottom: 200 }}
+            />
           </View>
         </View>
         <TouchableOpacity
@@ -187,29 +187,21 @@ export default function EmergencyContact() {
 
 const styles = StyleSheet.create({
   wrapper: {
+    marginTop: 50, // Margin from screen top
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
+  },
+  contentBox: {
+    width: "100%",
+    height: "100%",
   },
   linearGradient: {
     width: "100%",
     height: "100%",
   },
-  contentBox: {
-    marginTop: 90,
-    width: "100%",
-    justifyContent: "center",
-  },
   headings: {
-    textShadowColor: "rgba(0, 0, 0, 0.15)",
-    textShadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    textShadowRadius: 2,
-  },
-  color: {
-    color: "#555",
+    fontFamily: FontFamily.poppinsSemibold,
   },
   card: {
     width: "100%",

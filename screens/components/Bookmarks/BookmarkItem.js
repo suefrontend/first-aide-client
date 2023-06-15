@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import { LinearGradient } from "expo-linear-gradient";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function BookmarkItem(props) {
   const { id, instruction, title, users_id, popUpBookmark } = props;
@@ -75,54 +75,44 @@ export default function BookmarkItem(props) {
 
   return (
     <Pressable
-      style={styles.card}
-      className="bg-white flex items-center justify-center rounded-lg"
+      style={[styles.card]}
+      className="bg-white flex items-center justify-center rounded-lg mb-2"
       onPress={() => popUpBookmark([id, instruction, title, users_id])}
     >
-      <View
-        className="flex items-center justify-center"
-        style={styles.innerborder}
-      >
-        <View className="flex items-center ">
-          <Image
-            style={{ width: 68, height: 64, marginBottom: 24 }}
-            contentFit="cover"
-            source={getIcon()}
-          />
-          <Text className="uppercase text-sm" style={styles.color}>
-            {title}
-          </Text>
-        </View>
+      <View className="flex-row items-center" style={styles.innerborder}>
+        <Image
+          style={{ width: 50, height: 40 }}
+          contentFit="cover"
+          source={getIcon()}
+          className="mx-2"
+        />
+        <Text style={[styles.text, { width: "78%" }]} className="text-lg">
+          {title}Stopping a nose blee
+        </Text>
       </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginLeft: "auto",
-    marginRight: "auto",
+  card: {
+    width: "100%",
+    height: 110,
     shadowColor: "#000",
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
     elevation: 3,
   },
-  bg: {
-    backgroundColor: "#FE0944",
-  },
-  card: {
-    width: 160,
-    height: 160,
-  },
-  color: {
-    color: "#555",
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
   },
   innerborder: {
-    width: 152,
-    height: 152,
+    width: "97%",
+    height: 98,
     borderWidth: 1,
-    borderColor: "#ff8aa6",
+    borderColor: ThemeColors.pinklabeltext,
     borderStyle: "solid",
-    borderRadius: 8,
+    borderRadius: 6,
   },
 });

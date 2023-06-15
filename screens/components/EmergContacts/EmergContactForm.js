@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { FontFamily, ThemeColors } from "../../../theme";
 
 export default function EmergContactForm(props) {
   const {
@@ -22,35 +23,33 @@ export default function EmergContactForm(props) {
       <Pressable style={styles.cross} onPress={() => setShowForm(false)}>
         <Icon name="close" size={20} color="#c2c2c2" />
       </Pressable>
-      <Text className="mb-4 text-lg font-bold" style={styles.color}>
+      <Text className="mb-4 text-lg" style={styles.heading}>
         Add New Contact
       </Text>
       <TextInput
         className="bg-gray-200 py-3 px-3 rounded-md"
         placeholder="Name"
-        placeholderTextColor="#a9a9a9"
+        style={styles.text}
         onChangeText={nameTypeHandler}
       />
       <View className="flex-row mt-3 justify-between">
         <TextInput
           className="bg-gray-200 rounded p-3"
-          style={styles.inputsmall}
+          style={[styles.inputsmall, styles.text]}
           placeholder="Phone number"
-          placeholderTextColor="#a9a9a9"
           onChangeText={phoneTypeHandler}
         />
         <TextInput
           className="bg-gray-200 rounded p-3"
-          style={styles.inputsmall}
+          style={[styles.inputsmall, styles.text]}
           placeholder="Relationship"
-          placeholderTextColor="#a9a9a9"
           onChangeText={relationshipTypeHandler}
         />
       </View>
       <Pressable
         title="Add"
         className="mt-4 rounded py-2"
-        style={[styles.button]}
+        style={styles.button}
         onPress={addContactHandler}
       >
         <Text>
@@ -78,10 +77,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 3,
-    backgroundColor: "#FE0944",
-    padding: 12
+    backgroundColor: ThemeColors.red,
   },
   cross: {
     alignSelf: "flex-end",
+  },
+  heading: {
+    fontFamily: FontFamily.poppinsSemibold,
+    color: ThemeColors.text,
+  },
+  text: {
+    color: ThemeColors.text,
+    fontFamily: FontFamily.poppinsMedium,
   },
 });
