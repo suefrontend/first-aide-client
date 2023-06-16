@@ -98,6 +98,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: ThemeColors.text,
-    fontFamily: FontFamily.poppinsRegular,
+    fontFamily: FontFamily.poppinsMedium,
   },
 });
