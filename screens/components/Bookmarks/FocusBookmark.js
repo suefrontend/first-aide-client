@@ -112,14 +112,14 @@ export default function FocusBookmark(props) {
             <View style={styles.bookmarkInfo}>
               <View style={styles.innerborder}>
                 <Pressable onPress={cancelFocusBookmark}>
-                  <Entypo
-                    name="circle-with-cross"
-                    size={30}
-                    color={ThemeColors.lightgray}
+                  <Icon
+                    name="close"
+                    size={20}
+                    color="#c2c2c2"
                     style={{
                       marginLeft: "auto",
-                      marginRight: 6,
-                      marginTop: 12,
+                      marginRight: 10,
+                      marginTop: 10,
                     }}
                   />
                 </Pressable>
