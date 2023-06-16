@@ -277,16 +277,7 @@ export default function Recorder(props) {
                   </Pressable>
                 </View>
               </View>
-              <View style={styles.temp}>
-                {isFetching && <Loader />}
-
-                <Pressable
-                  onPress={() => navigation.navigate("Instruction")}
-                  style={{ borderWidth: 1 }}
-                >
-                  <Text>Instructions</Text>
-                </Pressable>
-              </View>
+              <View style={styles.temp}>{isFetching && <Loader />}</View>
             </View>
           </ScrollView>
           {/* More Instructions Section */}

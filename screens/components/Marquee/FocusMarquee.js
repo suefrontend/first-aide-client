@@ -20,13 +20,18 @@ export default function FocusMarquee(props) {
     <>
       <View className="rounded-lg bg-white mt-5" style={styles.card}>
         {/* <View className="flex-row justify-between items-center"> */}
-        <ScrollView>
-          {/* <View style={styles.wrapperSecond}> */}
-          <View style={styles.innerborder}>
-            <Pressable style={styles.cross} onPress={cancelFocusMarquee}>
-              <Icon name="close" size={20} color="#c2c2c2" style={{marginRight: 2, marginTop: 2}} />
-            </Pressable>
-            <View style={styles.bookmarkInfo} className="px-4 pt-4 pb-5">
+        {/* <View style={styles.wrapperSecond}> */}
+        <View style={styles.innerborder}>
+          <Pressable style={styles.cross} onPress={cancelFocusMarquee}>
+            <Icon
+              name="close"
+              size={20}
+              color="#c2c2c2"
+              style={{ marginRight: 10, marginTop: 10 }}
+            />
+          </Pressable>
+          <ScrollView>
+            <View className="px-4 pt-4 pb-5">
               <Text
                 className="text-3xl pb-6 capitalize"
                 style={[styles.heading]}
@@ -42,9 +47,9 @@ export default function FocusMarquee(props) {
                 </Text>
               </View>
             </View>
-          </View>
-          {/* </View> */}
-        </ScrollView>
+          </ScrollView>
+        </View>
+        {/* </View> */}
         {/* </View> */}
       </View>
     </>
@@ -56,6 +61,7 @@ const styles = StyleSheet.create({
     width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
+    height: "80%",
   },
   wrapperSecond: {
     width: "100%",
@@ -92,6 +98,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonlarge: {
+    width: "100%",
+  },
+  textBox: {
+    height: "98%",
     width: "100%",
   },
 });
