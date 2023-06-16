@@ -132,24 +132,15 @@ export default function Landing() {
             style={styles.linearGradient}
           >
             <View style={styles.formcontainer}>
-              <Text
-                className="text-center font-bold text-4xl text-white mb-4"
-                style={styles.shadowtext}
-              >
-                First Aide
-              </Text>
-              <View
-                className="bg-white items-center justify-center mb-2"
-                style={styles.logo}
-              >
+              <View style={{ width: "100%", height: "50%" }}>
                 <Image
-                  source={require("./docs/first-aid-box2.png")}
+                  source={require("./docs/logo4.png")}
                   alt="First Aid Logo"
+                  resizeMode="contain"
                   style={{
-                    width: 200,
-                    height: 200,
+                    width: "100%",
+                    height: "100%",
                   }}
-                  className="ml-2 mt-2"
                 />
               </View>
               {loginPress && (

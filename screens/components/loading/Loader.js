@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, View, Text, Button, StyleSheet, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { FontFamily } from "../../../theme";
 
 const images = [
   require("../../docs/first-aid-box1.png"),
@@ -63,8 +64,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   loadingText: {
-    fontSize: 24,
+    fontSize: 26,
     textAlign: "center",
+    fontFamily: FontFamily.poppinsSemibold,
+    color: "#fff",
   },
   animationContainer: {
     width: 300,
