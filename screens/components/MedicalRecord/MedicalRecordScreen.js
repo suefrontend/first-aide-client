@@ -10,7 +10,7 @@ import {
   SectionList,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import Entypo from "react-native-vector-icons/Entypo";
+import Icon from "react-native-vector-icons/Entypo";
 import { LinearGradient } from "expo-linear-gradient";
 import AllergyList from "./allergy/AllergyList";
 import { authGet } from "../../helpers/authenticatedCalls";
@@ -18,7 +18,7 @@ import MedicationList from "./medication/MedicationList";
 import ConditionList from "./condition/ConditionList";
 import { FontFamily, ThemeColors } from "../../../theme";
 
-export default function MedicalRecordScreen() {
+export default function MedicalRecordScreen({ navigation }) {
   const [allergies, setAllergies] = useState({});
   const [medications, setMedications] = useState([]);
   const [conditions, setConditions] = useState([]);
@@ -45,7 +45,9 @@ export default function MedicalRecordScreen() {
       >
         <View style={styles.wrapper}>
           <View style={styles.contentBox}>
-            <Entypo name="dots-two-horizontal" size={30} color="#fff" />
+            <Pressable onPress={() => navigation.openDrawer()}>
+              <Icon name="dots-two-horizontal" size={30} color="#fff" />
+            </Pressable>
             <Text
               className="text-2xl font-bold text-white pt-6 pb-3"
               style={styles.headings}

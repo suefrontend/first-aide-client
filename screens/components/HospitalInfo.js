@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import HospitalInfoItem from "./HospitalInfoItem";
 import JustLoader from "./loading/JustLoader";
@@ -9,26 +9,7 @@ import { authGet } from "../helpers/authenticatedCalls";
 import { FontFamily, ThemeColors } from "../../theme";
 import Icon from "react-native-vector-icons/Entypo";
 
-export default function HospitalInfo() {
-  // const hospitals = [
-  //   {
-  //     city_id: 1,
-  //     name: "Vancouver General Hospital",
-  //     address: "899 West 12th Avenue",
-  //     phone: "(604)-875-4111",
-  //     hours: "24 hours a day, 7 days a week",
-  //     er_exists: true,
-  //   },
-  //   {
-  //     city_id: 1,
-  //     name: "Vancouver General Hospital",
-  //     address: "899 West 12th Avenue",
-  //     phone: "(604)-875-4111",
-  //     hours: "24 hours a day, 7 days a week",
-  //     er_exists: true,
-  //   },
-  // ];
-
+export default function HospitalInfo({ navigation }) {
   const [hospitals, setHospitals] = useState(null);
 
   useEffect(() => {
@@ -52,7 +33,9 @@ export default function HospitalInfo() {
       >
         <View style={styles.wrapper}>
           <View style={styles.contentBox}>
-            <Icon name="dots-two-horizontal" size={30} color="#fff" />
+            <Pressable onPress={() => navigation.openDrawer()}>
+              <Icon name="dots-two-horizontal" size={30} color="#fff" />
+            </Pressable>
             <Text
               className="text-2xl font-bold text-white pt-6 pb-3"
               style={styles.headings}

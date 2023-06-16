@@ -6,6 +6,7 @@ import {
   Animated,
   Dimensions,
   Pressable,
+  Image,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { useFonts } from "expo-font";
@@ -17,6 +18,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ThemeColors } from "../theme";
+import { LinearGradient } from "expo-linear-gradient";
 
 import Recorder from "./components/Recorder";
 import MedicalRecordScreen from "./components/MedicalRecord/MedicalRecordScreen";
@@ -54,7 +56,26 @@ export default function HomeScreen(props) {
   const DrawerContent = ({ navigation }) => {
     return (
       <View style={styles.container}>
-        <View style={styles.box}></View>
+        <View style={styles.box}>
+          <LinearGradient
+            colors={["#ff0f0f", "#ff8dbe", "#FFFFFF"]}
+            style={styles.background}
+          >
+            <View
+              style={{
+                marginTop: 100,
+                marginHorizontal: 20,
+              }}
+            >
+              <Image
+                source={require("./docs/logo.png")}
+                alt="logo"
+                resizeMode="contain"
+                style={{ width: "100%" }}
+              />
+            </View>
+          </LinearGradient>
+        </View>
         <Pressable
           style={styles.button}
           onPress={() => navigation.navigate("EditProfile")}
@@ -337,12 +358,15 @@ const styles = StyleSheet.create({
   },
   box: {
     width: "100%",
-    height: "30%",
-    backgroundColor: ThemeColors.red,
+    height: "60%",
+  },
+  background: {
+    width: "100%",
+    height: "100%",
   },
   button: {
     width: "80%",
-    height: 30,
+    height: 50,
     backgroundColor: ThemeColors.red,
     borderRadius: 10,
     justifyContent: "center",
@@ -351,7 +375,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontFamily: "Poppins_regular",
+    fontFamily: "Poppins_semibold",
     fontSize: 16,
   },
 });

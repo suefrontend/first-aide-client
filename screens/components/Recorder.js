@@ -279,9 +279,7 @@ export default function Recorder(props) {
               </View>
               <View style={styles.temp}>
                 {isFetching && <Loader />}
-                <Pressable onPress={logoutHandler} style={{ borderWidth: 1 }}>
-                  <Text>Logout</Text>
-                </Pressable>
+
                 <Pressable
                   onPress={() => navigation.navigate("Instruction")}
                   style={{ borderWidth: 1 }}

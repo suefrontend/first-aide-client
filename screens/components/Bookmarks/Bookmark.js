@@ -1,4 +1,12 @@
-import { View, Text, FlatList, StyleSheet, Modal, Button } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Modal,
+  Button,
+  Pressable,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import BookmarkItem from "./BookmarkItem";
@@ -7,7 +15,7 @@ import FocusBookmark from "./FocusBookmark";
 import { FontFamily } from "../../../theme";
 import Icon from "react-native-vector-icons/Entypo";
 
-export default function Bookmark(props) {
+export default function Bookmark({ navigation }) {
   const [allBookmarks, setAllBookmarks] = useState([]);
   const [focusBookmark, setFocusBookmark] = useState(null);
   const [clickBookmark, setClickBookmark] = useState(false); // Modal State
@@ -45,7 +53,9 @@ export default function Bookmark(props) {
       >
         <View style={styles.wrapper}>
           <View style={styles.contentBox}>
-            <Icon name="dots-two-horizontal" size={30} color="#fff" />
+            <Pressable onPress={() => navigation.openDrawer()}>
+              <Icon name="dots-two-horizontal" size={30} color="#fff" />
+            </Pressable>
             <Text
               className="text-2xl font-bold text-white pt-6 pb-3"
               style={styles.headings}
