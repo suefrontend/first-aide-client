@@ -58,24 +58,14 @@ export default function Instruction(props) {
       >
         <View className="">
           <View style={styles.wrapper}>
-            {/* <Text>{instructionKey}</Text>
-          <Text>{instructionDetail}</Text> */}
             <View className="flex-row py-14 justify-between items-start">
               <Text
                 className="text-4xl text-white font-bold"
                 style={styles.headings}
               >
-                Abrasions
-                {apiResponse.title}
+                {apiResponse.title ? apiResponse.title : "Untitled"}
               </Text>
-              <Pressable
-                // style={{
-                //   alignSelf: "flex-end",
-                //   marginTop: 50,
-                //   marginRight: 20,
-                // }}
-                onPress={saveInstruction}
-              >
+              <Pressable onPress={saveInstruction}>
                 <Icon
                   name={buttonClick ? "bookmark" : "bookmark-o"}
                   size={32}
@@ -85,29 +75,8 @@ export default function Instruction(props) {
             </View>
 
             <ScrollView style={{ height: 500 }}>
-              {/* Font size too small? text-lg better? */}
               <Text style={[styles.text]} className="text-white text-lg mb-2">
                 {apiResponse.instruction}
-                Begin with washed hands. Gently clean the area with cool to
-                lukewarm water and mild soap. Remove dirt or other particles
-                from the wound using sterilized tweezers. For a mild scrape
-                that’s not bleeding, leave the wound uncovered. If the wound
-                egin with washed hands. Gently clean the area with cool to
-                lukewarm water and mild soap. Remove dirt or other particles
-                from the wound using sterilized tweezers. For a mild scrape
-                that’s not bleeding, leave the wound uncovered. If the woundegin
-                with washed hands. Gently clean the area with cool to lukewarm
-                water and mild soap. Remove dirt or other particles from the
-                wound using sterilized tweezers. For a mild scrape that’s not
-                bleeding, leave the wound uncovered. If the wound egin with
-                washed hands. Gently clean the area with cool to lukewarm water
-                and mild soap. Remove dirt or other particles from the wound
-                using sterilized tweezers. For a mild scrape that’s not
-                bleeding, leave the wound uncovered. If the woundegin with
-                washed hands. Gently clean the area with cool to lukewarm water
-                and mild soap. Remove dirt or other particles from the wound
-                using sterilized tweezers. For a mild scrape that’s not
-                bleeding, leave the wound uncovered. If the wound
               </Text>
             </ScrollView>
 
@@ -164,7 +133,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: FontFamily.poppinsMedium,
-    lineHeight: 28,
+    lineHeight: 32,
   },
   button: {
     color: ThemeColors.red,
