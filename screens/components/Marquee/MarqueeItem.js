@@ -41,7 +41,7 @@ export default function MarqueeItem({
         />
         <Text
           className="capitalize text-sm"
-          style={[styles.text, { width: "71%", lineHeight: 19 }]}
+          style={[styles.text, { width: "68%", lineHeight: 19 }]}
         >
           {title}
         </Text>
@@ -52,7 +52,7 @@ export default function MarqueeItem({
 
 const styles = StyleSheet.create({
   card: {
-    width: 130,
+    width: 140,
     height: 77,
     shadowColor: "#000",
     shadowOffset: { width: 1, height: 1 },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsMedium,
   },
   innerborder: {
-    width: 124,
+    width: 134,
     height: 72,
     borderWidth: 1,
     borderColor: ThemeColors.pinklabeltext,

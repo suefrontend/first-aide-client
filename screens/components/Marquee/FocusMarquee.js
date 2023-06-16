@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsSemibold,
     textAlign: "center",
     color: ThemeColors.text,
+    lineHeight: 42,
   },
   innerborder: {
     alignSelf: "center",
