@@ -249,7 +249,12 @@ export default function Recorder(props) {
                       <>
                         <AnimatedRing
                           delay={0}
-                          scale={0.5}
+                          scale={2}
+                          isRecording={isRecording}
+                        />
+                        <AnimatedRing
+                          delay={500}
+                          scale={1}
                           isRecording={isRecording}
                         />
                         <AnimatedRing
@@ -258,12 +263,7 @@ export default function Recorder(props) {
                           isRecording={isRecording}
                         />
                         <AnimatedRing
-                          delay={2000}
-                          scale={1}
-                          isRecording={isRecording}
-                        />
-                        <AnimatedRing
-                          delay={3000}
+                          delay={1500}
                           scale={1}
                           isRecording={isRecording}
                         />

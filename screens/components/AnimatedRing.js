@@ -29,7 +29,7 @@ export default function AnimatedRing({ delay, scale }) {
       delay,
       withRepeat(
         withTiming(1, {
-          duration: 3000,
+          duration: 2000,
         }),
         -1,
         false
