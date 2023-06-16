@@ -44,7 +44,7 @@ export default function EmergencyContactItem({
             />
           </View>
         </View>
-        <View>
+        <View className="flex-1 mx-4">
           <Text className="text-lg mb-1" style={[styles.red]}>
             {name}
           </Text>
@@ -55,9 +55,13 @@ export default function EmergencyContactItem({
             </Text>
           </View>
         </View>
-        <View></View>
-        <View className="rounded px-2 py-1" style={styles.labelbg}>
-          <Text style={styles.labeltext}>{relationship}</Text>
+        <View
+          className="rounded px-2 py-1"
+          style={[styles.labelbg, { width: 70 }]}
+        >
+          <Text className="text-center" style={styles.labeltext}>
+            {relationship}
+          </Text>
         </View>
       </View>
     </Pressable>
