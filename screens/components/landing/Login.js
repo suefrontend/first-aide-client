@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { FontFamily, ThemeColors } from "../../../theme";
+import { ThemeColors } from "../../../theme";
 import { useFonts } from "expo-font";
 
 export default function Login(props) {
@@ -22,7 +22,6 @@ export default function Login(props) {
   if (!loaded) {
     return null;
   }
-  // const test = require("../../../assets/fonts/Poppins_medium.ttf");
 
   return (
     <>
