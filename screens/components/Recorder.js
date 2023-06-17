@@ -201,21 +201,21 @@ export default function Recorder(props) {
             <View style={styles.contentBox}>
               <Text
                 className="text-xl font-bold text-white pt-4 mt-4 pb-3"
-                style={[styles.subtitle]}
+                style={styles.subtitle}
               >
                 Hello, {name}
               </Text>
               <View style={styles.voicebox}>
                 <Text
                   className="text-4xl font-bold text-white"
-                  style={[styles.title]}
+                  style={styles.title}
                 >
                   {recordingMessage}
                 </Text>
                 {voiceResult !== "" && (
                   <Text
                     className="text-2xl font-bold text-white text-center"
-                    style={[styles.result]}
+                    style={styles.result}
                   >
                     {voiceResult}...
                   </Text>
@@ -223,7 +223,7 @@ export default function Recorder(props) {
               </View>
               <View>
                 <View
-                  className="flex-column items-center justify-center py-14"
+                  className="flex-column items-center justify-center mt-2"
                   style={styles.mic}
                 >
                   <Pressable
