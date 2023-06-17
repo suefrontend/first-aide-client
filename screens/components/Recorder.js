@@ -200,22 +200,22 @@ export default function Recorder(props) {
           >
             <View style={styles.contentBox}>
               <Text
-                className="text-xl font-bold text-white pt-14 mt-4 pb-3"
-                style={[styles.subtitle, styles.textshadow]}
+                className="text-xl font-bold text-white pt-4 mt-4 pb-3"
+                style={[styles.subtitle]}
               >
                 Hello, {name}
               </Text>
               <View style={styles.voicebox}>
                 <Text
                   className="text-4xl font-bold text-white"
-                  style={[styles.title, styles.textshadow]}
+                  style={[styles.title]}
                 >
                   {recordingMessage}
                 </Text>
                 {voiceResult !== "" && (
                   <Text
                     className="text-2xl font-bold text-white text-center"
-                    style={[styles.result, styles.textshadow]}
+                    style={[styles.result]}
                   >
                     {voiceResult}...
                   </Text>
