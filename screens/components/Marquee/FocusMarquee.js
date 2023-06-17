@@ -36,7 +36,7 @@ export default function FocusMarquee(props) {
                 className="text-3xl pb-6 capitalize"
                 style={[styles.heading]}
               >
-                {focusMarqueeTitle} heading headig
+                {focusMarqueeTitle}
               </Text>
               <View style={[styles.textBox]}>
                 <Text
