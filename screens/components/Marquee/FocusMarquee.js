@@ -21,7 +21,7 @@ export default function FocusMarquee(props) {
       <View className="rounded-lg bg-white mt-5" style={styles.card}>
         {/* <View className="flex-row justify-between items-center"> */}
         {/* <View style={styles.wrapperSecond}> */}
-        <View style={styles.innerborder}>
+        <View style={[styles.innerborder, { height: "100%" }]}>
           <Pressable style={styles.cross} onPress={cancelFocusMarquee}>
             <Icon
               name="close"
@@ -36,7 +36,7 @@ export default function FocusMarquee(props) {
                 className="text-3xl pb-6 capitalize"
                 style={[styles.heading]}
               >
-                {focusMarqueeTitle}
+                {focusMarqueeTitle} heading headig
               </Text>
               <View style={[styles.textBox]}>
                 <Text
@@ -63,14 +63,10 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     height: "80%",
   },
-  wrapperSecond: {
-    width: "100%",
-    marginBottom: 200,
-  },
-  button: {
-    elevation: 3,
-    backgroundColor: ThemeColors.red,
-  },
+  // wrapperSecond: {
+  //   width: "100%",
+  //   marginBottom: 200,
+  // },
   cross: {
     alignSelf: "flex-end",
   },
@@ -86,6 +82,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsSemibold,
     textAlign: "center",
     color: ThemeColors.text,
+    lineHeight: 36,
   },
   innerborder: {
     alignSelf: "center",

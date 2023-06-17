@@ -108,8 +108,8 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.poppinsMedium,
   },
   innerborder: {
-    width: "97%",
-    height: 98,
+    width: "98%",
+    height: 102,
     borderWidth: 1,
     borderColor: ThemeColors.pinklabeltext,
     borderStyle: "solid",
