@@ -8,6 +8,12 @@ This is a final project for Web Development Bootcamp at Lighthouse Labs, complet
 
 First Aide is an AI-powered personal health assistant that utilizes speech recognition and Open AI to provide medical related advice. It also keeps track of personal medical records.
 
+## Demo Video
+
+Click below to see demo video.
+
+🔗 [First-Aide Demo](https://www.youtube.com/watch?v=0kKaE3En4Us) 🔗
+
 ## Disclaimer
 
 This project is created for learning purpose only. In case of medical issues / emergency, please seek professional medical help or go to the emergency room. The responses of the app are fetched from Open AI and cannot replace doctors' advices.
