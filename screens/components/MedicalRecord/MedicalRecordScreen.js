@@ -140,7 +140,6 @@ const styles = StyleSheet.create({
     backgroundColor: ThemeColors.red,
   },
   infoCard: {
-    // width: "90%",
     marginLeft: "auto",
     marginRight: "auto",
     shadowColor: "#000",

@@ -35,10 +35,8 @@ export default function AllergyList(props) {
             severity: severity,
           },
         ]);
-        console.log(allergies);
       } else {
         alert("Oops! Something went wrong. Please try again later.");
-        console.log(response);
       }
     } catch (error) {
       console.log(error);

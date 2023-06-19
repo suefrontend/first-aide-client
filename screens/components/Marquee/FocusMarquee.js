@@ -63,10 +63,6 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     height: "80%",
   },
-  // wrapperSecond: {
-  //   width: "100%",
-  //   marginBottom: 200,
-  // },
   cross: {
     alignSelf: "flex-end",
   },

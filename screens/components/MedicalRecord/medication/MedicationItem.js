@@ -24,7 +24,6 @@ export default function MedicationItem({ id, name, setMedications }) {
         );
       } else {
         alert("Oops! Something went wrong. Please try again later.");
-        console.log(response);
       }
     } catch (error) {
       console.log(error);

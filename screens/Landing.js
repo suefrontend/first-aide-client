@@ -28,7 +28,6 @@ export default function Landing() {
         const value = await getToken();
         if (value !== null) {
           setUserAuthenticated(true);
-          console.log(value);
         } else {
           setUserAuthenticated(false);
         }
@@ -58,7 +57,6 @@ export default function Landing() {
   };
 
   const loginHandler = async () => {
-    console.log("Login:", user);
     if (user.email === "") {
       alert("Please enter your email");
       return;
@@ -67,7 +65,6 @@ export default function Landing() {
       const response = await axios.post("http://localhost:8000/login", {
         email: user.email,
       });
-      console.log(response.data.accessToken);
       storeToken(response.data.accessToken);
       setUserAuthenticated(true);
     } catch (error) {
@@ -76,7 +73,6 @@ export default function Landing() {
   };
 
   const registerHandler = async () => {
-    console.log("Register:", user);
     if (user.name === "" || user.email === "" || user.city === "") {
       alert("Please fill out all fields");
       return;
@@ -88,7 +84,6 @@ export default function Landing() {
         email: user.email,
         city: user.city,
       });
-      console.log(response.data.accessToken);
       storeToken(response.data.accessToken);
       setUserAuthenticated(true);
     } catch (error) {
@@ -97,12 +92,10 @@ export default function Landing() {
   };
 
   const logoutHandler = () => {
-    console.log("Logout:", user);
     removeToken();
     setUserAuthenticated(false);
     setLoginPress(true);
     setRegisterPress(false);
-    console.log(userAuthenticated);
   };
 
   const switchHandler = () => {

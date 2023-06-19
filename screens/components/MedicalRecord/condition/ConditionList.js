@@ -35,7 +35,6 @@ export default function ConditionList(props) {
         ]);
       } else {
         alert("Oops! Something went wrong. Please try again later.");
-        console.log(response);
       }
     } catch (error) {
       console.log(error);

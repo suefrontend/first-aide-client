@@ -22,7 +22,6 @@ export default function AllergyItem({ id, name, severity, setAllergies }) {
         setAllergies((prev) => prev.filter((allergy) => allergy.id !== id));
       } else {
         alert("Oops! Something went wrong. Please try again later.");
-        console.log(response);
       }
     } catch (error) {
       console.log(error);
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
   leftrow: {
     width: 152,
   },
-  rightrow: { width: 147, },
+  rightrow: { width: 147 },
   inputsmall: {
     width: "43%",
   },

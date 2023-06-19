@@ -54,7 +54,6 @@ export default function EditProfile({ navigation }) {
         city: city,
       });
       const data = response.data;
-      console.log("Edited profile:", data);
       alert("Profile edited successfully");
       navigation.goBack();
     } catch (error) {
@@ -218,7 +217,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginVertical: 5,
     width: "97%",
-    // maxHeight: "98.5%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",

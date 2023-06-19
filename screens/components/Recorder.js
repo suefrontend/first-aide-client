@@ -76,7 +76,6 @@ export default function Recorder(props) {
     try {
       const response = await authGet("/bookmarks/");
       setMarqueeItems(response.data);
-      console.log(marqueeItems);
     } catch (error) {
       console.log(error);
     }
@@ -105,7 +104,6 @@ export default function Recorder(props) {
   }, []);
 
   const recordHandler = async () => {
-    console.log("Recording...");
     setIsRecording(true);
     try {
       await Voice.start("en-US");
@@ -138,7 +136,6 @@ export default function Recorder(props) {
     });
     stopRecordingHandler();
     setIsFetching(true);
-    console.log("Voice Result", voiceResult);
 
     if (voiceResult === "" || voiceResult === undefined) {
       setIsFetching(false);

@@ -42,7 +42,6 @@ export default function EmergencyContact({ navigation }) {
       try {
         const response = await authGet("/emergencyContacts/");
         const data = response.data;
-        console.log("All contacts:", data);
         setContacts(data);
       } catch (error) {
         console.log(error);
@@ -92,10 +91,8 @@ export default function EmergencyContact({ navigation }) {
 
   const deleteContactHandler = async (id) => {
     try {
-      console.log(id);
       const response = await authDelete(`/emergencyContacts`, id);
       const data = response.data;
-      console.log("Deleted contact:", data);
       setContacts(contacts.filter((contact) => contact.id !== id));
       setShowContact(false);
       alert("Contact deleted successfully");

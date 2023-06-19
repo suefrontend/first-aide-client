@@ -55,7 +55,6 @@ export default function Disclaimer({ navigation }) {
 const styles = StyleSheet.create({
   wrapper: {
     width: "90%",
-    // height: "100%",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 90,

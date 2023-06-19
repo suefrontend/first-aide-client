@@ -17,7 +17,6 @@ export default function AnimatedRing({ delay, scale }) {
       opacity: 0.3 - ring.value,
       transform: [
         {
-          // scale: interpolate(ring.value, [0, 1], [scale, scale * 12]),
           scale: interpolate(ring.value, [0, 1], [1, 10]),
         },
       ],

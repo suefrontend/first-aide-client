@@ -25,7 +25,6 @@ export default function FocusBookmark(props) {
     try {
       const response = await authDelete("/bookmarks", id);
       const data = response.data;
-      console.log("Deleted bookmark:", data);
       cancelFocusBookmark();
       alert("Bookmark deleted successfully");
     } catch (error) {
@@ -40,7 +39,6 @@ export default function FocusBookmark(props) {
         title: title,
       });
       const data = response.data;
-      console.log("Edited bookmark:", data);
       cancelFocusBookmark();
       alert("Bookmark edited successfully");
     } catch (error) {
@@ -204,7 +202,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginVertical: 5,
     width: "97%",
-    // maxHeight: "98.5%",
     borderWidth: 1,
     borderColor: "#ff8aa6",
     borderStyle: "solid",

@@ -28,7 +28,6 @@ export default function FocusContact(props) {
       try {
         const response = await authGet(`/emergencyContacts/${focusContact}`);
         const data = response.data;
-        console.log("Focus contact:", data);
         setFocusPerson(data);
       } catch (error) {
         console.log(error);

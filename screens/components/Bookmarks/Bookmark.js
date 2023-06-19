@@ -25,7 +25,6 @@ export default function Bookmark({ navigation }) {
       try {
         const response = await authGet("/bookmarks/");
         setAllBookmarks(response.data);
-        console.log(allBookmarks);
       } catch (error) {
         console.log(error);
       }

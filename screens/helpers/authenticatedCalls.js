@@ -8,7 +8,6 @@ export const authGet = async (url) => {
 
   const fullUrl = `${API}${url}`;
   const token = await getToken();
-  console.log("TOKEN", token);
   return axios.get(fullUrl, {
     headers: {
       Authorization: `Bearer ${token}`,

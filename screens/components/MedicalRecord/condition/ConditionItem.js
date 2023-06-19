@@ -23,7 +23,6 @@ export default function ConditionItem({ id, name, setConditions }) {
         );
       } else {
         alert("Oops! Something went wrong. Please try again later.");
-        console.log(response);
       }
     } catch (error) {
       console.log(error);

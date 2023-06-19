@@ -16,7 +16,6 @@ export default function HospitalInfo({ navigation }) {
     const fetchHospitalData = async () => {
       try {
         const response = await authGet("/hospitals");
-        console.log("Hospitals", response.data);
         setHospitals(response.data);
       } catch (error) {
         console.log(error);

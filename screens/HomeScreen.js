@@ -130,13 +130,7 @@ export default function HomeScreen(props) {
                 screenOptions={{
                   tabBarShowLabel: false,
                   tabBarStyle: {
-                    // backgroundColor: "white",
-                    // position: "absolute",
-                    // bottom: 25,
-                    // marginHorizontal: 20,
-                    // paddingHorizontal: 20,
                     height: 75,
-                    // borderRadius: 8,
                     shadowColor: "#000",
                     shadowOpacity: 0.1,
                     shadowOffset: {
@@ -209,11 +203,9 @@ export default function HomeScreen(props) {
                           top: "10%",
                           width: 50,
                           height: 50,
-                          // backgroundColor: ThemeColors.navicon,
                           borderRadius: 25,
                           justifyContent: "center",
                           alignContent: "center",
-                          // marginBottom: 30,
                         }}
                       >
                         <Icon
@@ -304,20 +296,6 @@ export default function HomeScreen(props) {
     );
   }
 
-  {
-    /* <Animated.View
-    style={{
-      width: getWidth() - 20,
-      height: 2,
-      backgroundColor: ThemeColors.red,
-      position: "absolute",
-      bottom: 80,
-      left: 17,
-      borderRadius: 50,
-      transform: [{ translateX: tabOffsetValue }],
-    }}
-  ></Animated.View> */
-  }
   return (
     <NavigationContainer>
       <Stack.Navigator>

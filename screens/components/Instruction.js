@@ -29,7 +29,6 @@ export default function Instruction(props) {
       }
 
       setBookmark(apiResponse);
-      console.log(apiResponse);
 
       const addBookmark = async () => {
         try {
@@ -101,7 +100,6 @@ export default function Instruction(props) {
 const styles = StyleSheet.create({
   wrapper: {
     width: "90%",
-    // height: "100%",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 90,
