@@ -21,16 +21,27 @@ This project is created for learning purpose only. In case of medical issues / e
 ## App Features
 
 - User `Registration`, `Login` / `Logout`
+  ![](docs/register-logout-login.gif)
+- User can `navigate` using the bottom navigation bar
+  ![](docs/navigation.gif)
 - User can ask questions using voice
 - `Speech Recognition` for user questions
 - App returns answers to user questions right away using `Open AI` technology
+  ![](docs/speech-recognition.gif)
 - User can `bookmark` those first-aid responses for future easy access
+  ![](docs/bookmarking.gif)
 - User can `edit titles` of bookmarks, even `delete` bookmarks
+  ![](docs/edit-bookmark.gif)
 - User can `create and update` their emergency contacts
+  ![](docs/edit-contacts.gif)
 - User can `create and update` their prescriptions, allergies and conditions
+  ![](docs/edit-medical-record.gif)
 - The app provides a list of nearby hospitals according to the city where user resides
+  ![](docs/display-hospitals.png)
 - User can `edit` their profile and change their name/email/city
+  ![](docs/edit-profile.gif)
 - The app `remembers users locally` even when they quit and re-launch the app
+  ![](docs/user-recognition.gif)
 
 ## Tech Stack
 
